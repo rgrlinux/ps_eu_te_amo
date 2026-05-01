@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Confirmação{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 80px auto; text-align: center;">
+    <div class="card">
+        {% if sucesso %}
+            <h2>💝 Confirmação recebida</h2>
+            <p style="font-size: 1.2rem; margin: 20px 0;">As mensagens de {{ perfil.usuario.get_full_name }} foram enviadas conforme solicitado.</p>
+            <p>Descanse em paz. 💖</p>
+        {% else %}
+            <h2>❌ Código inválido</h2>
+            <p style="margin: 20px 0;">Este link não é válido ou já foi utilizado.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

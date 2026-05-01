@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Planos{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin: 40px 0;">
+    <h2>Escolha seu plano 💖</h2>
+    <p style="color: #666;">Garanta que suas mensagens serão guardadas para sempre</p>
+</div>
+
+<div class="grid">
+    <div class="card">
+        <h3>📝 Grátis</h3>
+        <p style="font-size: 2rem; margin: 20px 0;">R$ 0</p>
+        <ul style="list-style: none; text-align: left;">
+            <li>✓ 1 destinatário</li>
+            <li>✓ 3 mensagens</li>
+            <li>✓ Apenas texto</li>
+            <li>✓ 5 MB de fotos</li>
+        </ul>
+        <a href="#" class="btn">Plano Atual</a>
+    </div>
+
+    <div class="card" style="border: 2px solid #ff6b6b;">
+        <h3>💝 Básico</h3>
+        <p style="font-size: 2rem; margin: 20px 0;">R$ 29<span style="font-size: 1rem;">/ano</span></p>
+        <ul style="list-style: none; text-align: left;">
+            <li>✓ 5 destinatários</li>
+            <li>✓ 20 mensagens</li>
+            <li>✓ Texto + Imagens</li>
+            <li>✓ 100 MB de fotos</li>
+            <li>✓ Suporte por e-mail</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Escolher Plano</a>
+    </div>
+
+    <div class="card">
+        <h3>🌹 Premium</h3>
+        <p style="font-size: 2rem; margin: 20px 0;">R$ 79<span style="font-size: 1rem;">/ano</span></p>
+        <ul style="list-style: none; text-align: left;">
+            <li>✓ 20 destinatários</li>
+            <li>✓ Mensagens ilimitadas</li>
+            <li>✓ Texto + Imagens + Vídeos</li>
+            <li>✓ 1 GB de mídia</li>
+            <li>✓ Envio de flores reais</li>
+            <li>✓ Suporte prioritário</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Escolher Plano</a>
+    </div>
+</div>
+
+<div class="card" style="text-align: center; background: #ffeaa7;">
+    <h3>💚 Garantia de eternidade</h3>
+    <p>Seu plano garante que suas mensagens serão guardadas para sempre, mesmo se nossa empresa deixar de existir.</p>
+</div>
+{% endblock %}

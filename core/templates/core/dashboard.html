@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+    <h2>Meu Mural 💖</h2>
+    <a href="{% url 'criar_destinatario' %}" class="btn btn-success">+ Novo Destinatário</a>
+</div>
+
+<div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <h3>Status da sua assinatura</h3>
+    <p>Plano: <strong>{{ perfil.plano|title }}</strong></p>
+    <p>Próximo sinal de vida: <strong>{{ dias_restantes }} dias</strong></p>
+    {% if perfil.plano == 'gratuito' %}
+        <a href="{% url 'renovar' %}" class="btn" style="background: #ffd700; color: #333;">Fazer Upgrade 🚀</a>
+    {% endif %}
+</div>
+
+<div class="grid">
+    {% for destinatario in destinatarios %}
+    <div class="card">
+        <h3>💌 {{ destinatario.nome }}</h3>
+        <p><strong>Contato:</strong> {{ destinatario.contato }}</p>
+        <p><strong>Tipo:</strong> {{ destinatario.get_tipo_display }}</p>
+        <p><strong>Mensagens:</strong> {{ destinatario.mensagens.count }}</p>
+        <p><strong>Ordem de envio:</strong> {{ destinatario.ordem_envio }}</p>
+
+        <a href="{% url 'criar_mensagem' destinatario.id %}" class="btn" style="background: #4ecdc4; margin-top: 10px;">
+            + Adicionar Mensagem
+        </a>
+    </div>
+    {% empty %}
+    <div class="card">
+        <p>Nenhum destinatário cadastrado ainda.</p>
+        <a href="{% url 'criar_destinatario' %}" class="btn btn-primary">Cadastrar primeiro destinatário</a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h3>📊 Resumo</h3>
+    <p>Total de destinatários: {{ destinatarios|length }}</p>
+    <p>Total de mensagens: {{ total_mensagens }}</p>
+    <p>Status do sistema:
+        {% if perfil.status == 'ativo' %}
+            ✅ Monitoramento ativo
+        {% elif perfil.status == 'suspeito' %}
+            ⚠️ Agente notificado
+        {% elif perfil.status == 'falecido' %}
+            💝 Mensagens aguardando envio
+        {% elif perfil.status == 'enviado' %}
+            🌹 Todas as mensagens enviadas
+        {% endif %}
+    </p>
+</div>
+{% endblock %}
