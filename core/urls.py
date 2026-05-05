@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import views
+from . import views, view_checkout
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('confirmar-vida/<int:usuario_id>/', views.confirmar_vida, name='confirmar_vida'),
     path('confirmar-falecimento/<str:codigo>/', views.confirmar_falecimento_view, name='confirmar_falecimento'),
     path('renovar/', views.renovar_assinatura, name='renovar'),
+    path('criar-checkout/', view_checkout.create_checkout, name='criar_checkout'),
 ]
