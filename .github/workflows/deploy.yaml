@@ -16,14 +16,19 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 1. Entra na pasta correta identificada no servidor
             cd /var/www/apps/euteamo
 
-            # 2. Puxa as atualizações do GitHub
+            # 1. Puxa o código novo do GitHub
             git pull origin main
 
-            # 3. Sincroniza o ambiente usando o uv de forma limpa e atômica
+            # 2. Sincroniza as dependências do uv (incluindo o gunicorn que salvamos)
             /home/rogerio/.local/bin/uv sync --frozen
 
-            # 4. Reinicia o serviço no systemd (Substitua pelo nome real do seu arquivo .service)
+            # 3. Roda as migrações do banco por segurança
+            .venv/bin/python manage.py migrate --no-input
+
+            # 4. Coleta os arquivos estáticos (O que estava faltando!)
+            .venv/bin/python manage.py collectstatic --no-input
+
+            # 5. Reinicia o servidor web
             sudo systemctl restart euteamo.service
