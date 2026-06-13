@@ -100,9 +100,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+if FORCE_SCRIPT_NAME:
+    # Na VPS, vai virar '/euteamo/static/'
+    STATIC_URL = f"{FORCE_SCRIPT_NAME.rstrip('/')}/static/"
+else:
+    # Na sua máquina local, continua o padrão de sempre
+    STATIC_URL = 'static/'
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / STATIC_URL]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
