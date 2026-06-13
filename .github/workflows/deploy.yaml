@@ -3,7 +3,7 @@ name: Deploy Automático do Sistema (PS Eu Te Amo)
 on:
   push:
     branches:
-      - main # O deploy roda toda vez que você der 'git push origin main'
+      - main
 
 jobs:
   deploy:
@@ -16,16 +16,14 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 1. Entra na pasta onde o sistema roda na VPS (Ajuste o caminho abaixo)
+            # 1. Entra na pasta correta identificada no servidor
             cd /var/www/apps/euteamo
 
-            # 2. Puxa as alterações do GitHub para a VPS
+            # 2. Puxa as atualizações do GitHub
             git pull origin main
 
-            # 3. Sincroniza o ambiente com o 'uv' usando as dependências travadas do lock
-            # (Usamos o caminho completo do uv caso ele não esteja no PATH global)
-            uv sync --frozen
+            # 3. Sincroniza o ambiente usando o uv de forma limpa e atômica
+            /home/rogerio/.local/bin/uv sync --frozen
 
-            # 4. Reinicia o servidor web/serviço para aplicar o código novo
-            # (Ajuste para o nome do seu serviço do systemd, ex: gunicorn, uvloop, etc.)
-            sudo systemctl restart nginx
+            # 4. Reinicia o serviço no systemd (Substitua pelo nome real do seu arquivo .service)
+            sudo systemctl restart euteamo.service
