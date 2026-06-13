@@ -7,7 +7,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', default=False)
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='localhost').split(',')
+
+# O .strip() limpa qualquer espaço invisível antes ou depois de cada host
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', default='localhost').split(',')]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,6 +101,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

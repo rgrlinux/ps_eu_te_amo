@@ -11,10 +11,17 @@
 
                 <div class="hero-footer-cta">
                     <p>Deixe mensagens, fotos e declarações<br>que serão entregues quando você partir.</p>
-                    <button class="btn-accent token-cta">
-                        Começar agora
-                        <i data-lucide="arrow-right" class="icon-inline"></i>
-                    </button>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="btn-accent token-cta" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                            Ir para o Dashboard
+                            <i data-lucide="arrow-right" class="icon-inline"></i>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'cadastro' %}" class="btn-accent token-cta" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                            Começar agora
+                            <i data-lucide="arrow-right" class="icon-inline"></i>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
