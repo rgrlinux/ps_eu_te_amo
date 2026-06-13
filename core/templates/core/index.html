@@ -1,69 +1,21 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Mensagens que ficam para sempre{% endblock %}
-
-{% block content %}
-<div class="hero">
-    <h1>💖 Suas palavras nunca serão esquecidas</h1>
-    <p style="font-size: 1.2rem; margin: 20px 0;">Deixe mensagens, fotos e declarações que serão entregues quando você partir.</p>
-    {% if not user.is_authenticated %}
-        <a href="{% url 'cadastro' %}" class="btn btn-primary" style="font-size: 1.2rem; padding: 12px 30px;">Começar agora 💝</a>
-    {% else %}
-        <a href="{% url 'dashboard' %}" class="btn btn-primary" style="font-size: 1.2rem; padding: 12px 30px;">Ir para meu mural 💝</a>
-    {% endif %}
-</div>
-
-<div class="grid">
-    <div class="card">
-        <h3>📝 Mensagens eternas</h3>
-        <p>Escreva cartas, depoimentos e desabafos que serão entregues no momento certo.</p>
-    </div>
-
-    <div class="card">
-        <h3>📸 Fotos e memórias</h3>
-        <p>Compartilhe imagens especiais que guardam momentos únicos.</p>
-    </div>
-
-    <div class="card">
-        <h3>💌 Para quem você ama</h3>
-        <p>Cadastre destinatários especiais e agende a ordem de entrega.</p>
-    </div>
-
-    <div class="card">
-        <h3>🔒 Segurança total</h3>
-        <p>Sistema de confirmação com curador digital para garantir que suas mensagens cheguem.</p>
-    </div>
-
-    <div class="card">
-        <h3>🌹 Flores póstumas</h3>
-        <p>Plano premium com envio de flores reais para seus entes queridos.</p>
-    </div>
-
-    <div class="card">
-        <h3>🛡️ Seus dados, seu controle</h3>
-        <p>Você define quem recebe, quando recebe e o que recebe.</p>
-    </div>
-</div>
-
-<div style="text-align: center; margin: 50px 0; padding: 30px; background: #ffeaa7; border-radius: 10px;">
-    <h2>💝 Como funciona?</h2>
-    <div class="grid" style="margin-top: 20px;">
-        <div>
-            <h3>1️⃣ Cadastre-se</h3>
-            <p>Crie sua conta gratuitamente</p>
-        </div>
-        <div>
-            <h3>2️⃣ Configure</h3>
-            <p>Defina seu curador e tempo de resposta</p>
-        </div>
-        <div>
-            <h3>3️⃣ Escreva</h3>
-            <p>Crie suas mensagens especiais</p>
-        </div>
-        <div>
-            <h3>4️⃣ Descanse em paz</h3>
-            <p>Suas palavras serão entregues no momento certo</p>
-        </div>
-    </div>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.S. Te amo</title>
+    <link rel="stylesheet"  href="{% static 'css/main.css' %}">>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    {% block content %}
+        {% include "./main_sections/hero.html" %}
+        {% include "./main_sections/about.html" %}
+        {% include "./main_sections/howitworks.html" %}
+        {% include "./main_sections/faq.html" %}
+    {% endblock content %}
+</body>
+</html>

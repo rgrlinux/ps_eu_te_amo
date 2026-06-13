@@ -14,6 +14,8 @@ class Perfil(models.Model):
     ]
 
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+  # Corrigido: trocado 'anecdotes' por 'verbose_name'
+    foto = models.ImageField(verbose_name='Foto de perfil', upload_to='avatar/%Y/%m/', blank=True, null=True)
     ultimo_sinal_vida = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ativo')
 
@@ -108,3 +110,19 @@ class LogAtividade(models.Model):
 
     def __str__(self):
         return f"{self.perfil.usuario.username} - {self.acao} - {self.data}"
+
+
+class ServicoExtra(models.Model):
+    # Seguindo o padrão de nomes das entidades em inglês para manter o padrão do projeto
+    title = models.CharField(max_length=100, verbose_name="Nome do Serviço")
+    description = models.TextField(verbose_name="Descrição")
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Preço")
+    emoji = models.CharField(max_length=10, default="⭐", verbose_name="Ícone/Emoji")
+    is_active = models.BooleanField(default=True, verbose_name="Ativo")
+
+    class Meta:
+        verbose_name = "Serviço Extra"
+        verbose_name = "Serviços Extras"
+
+    def __str__(self):
+        return self.title

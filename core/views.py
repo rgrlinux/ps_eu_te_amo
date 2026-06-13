@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 # from django.utils import
-from .models import Perfil, Destinatario,  Midia
+from .models import Perfil, Destinatario,  Midia, Mensagem, ServicoExtra
 from .tasks import sinal_vida, confirmar_falecimento
 from .forms import PerfilForm, DestinatarioForm, MensagemForm
 import hashlib
@@ -125,3 +125,30 @@ def confirmar_falecimento_view(request, codigo):
 @login_required
 def renovar_assinatura(request):
     return render(request, 'core/renovacao.html')
+
+
+@login_required
+def listar_mensagens(request):
+    perfil = request.user.perfil
+    # Filtra as mensagens cujos destinatários pertencem ao perfil do usuário logado
+    mensagens = Mensagem.objects.filter(destinatario__perfil=perfil).order_by('-data_criacao')
+
+    context = {
+        'perfil': perfil,
+        'mensagens': mensagens,
+    }
+    return render(request, 'core/mensagens_lista.html', context)
+
+
+
+
+@login_required
+def listar_servicos(request):
+    perfil = request.user.perfil
+    servicos = ServicoExtra.objects.filter(is_active=True)
+
+    context = {
+        'perfil': perfil,
+        'servicos': servicos,
+    }
+    return render(request, 'core/servicos_lista.html', context)

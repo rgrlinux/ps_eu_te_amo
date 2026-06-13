@@ -1,56 +1,106 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Planos{% endblock %}
+{% block title %}Escolha seu Plano - P.S. Te amo{% endblock %}
 
 {% block content %}
-<div style="text-align: center; margin: 40px 0;">
-    <h2>Escolha seu plano 💖</h2>
-    <p style="color: #666;">Garanta que suas mensagens serão guardadas para sempre</p>
-</div>
+<section class="pricing-section">
+    <div class="pricing-container">
 
-<div class="grid">
-    <div class="card">
-        <h3>📝 Grátis</h3>
-        <p style="font-size: 2rem; margin: 20px 0;">R$ 0</p>
-        <ul style="list-style: none; text-align: left;">
-            <li>✓ 1 destinatário</li>
-            <li>✓ 3 mensagens</li>
-            <li>✓ Apenas texto</li>
-            <li>✓ 5 MB de fotos</li>
-        </ul>
-        <a href="#" class="btn">Plano Atual</a>
+        <header class="pricing-header">
+            <h1>Escolha seu plano 💖</h1>
+            <p>Garanta que suas mensagens serão guardadas para sempre</p>
+        </header>
+
+        <div class="plans-grid">
+
+            <div class="plan-card {% if perfil.plano == 'gratuito' %}current-plan{% endif %}">
+                <div class="plan-card-header">
+                    <span class="plan-emoji">📝</span>
+                    <h3>Grátis</h3>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">0</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> 1 destinatário</li>
+                    <li><span class="check-icon">✓</span> 3 mensagens</li>
+                    <li><span class="check-icon">✓</span> Apenas texto</li>
+                    <li><span class="check-icon">✓</span> 5 MB de fotos</li>
+                </ul>
+                <div class="plan-action">
+                    {% if perfil.plano == 'gratuito' %}
+                        <span class="badge-current">Plano Atual</span>
+                    {% else %}
+                        <a href="#" class="btn-plan-select secondary">Escolher Plano</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="plan-card {% if perfil.plano == 'basico' %}current-plan{% endif %}">
+                <div class="plan-card-header">
+                    <span class="plan-emoji">💝</span>
+                    <h3>Básico</h3>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">29</span>
+                        <span class="period">/ano</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> 5 destinatários</li>
+                    <li><span class="check-icon">✓</span> 20 mensagens</li>
+                    <li><span class="check-icon">✓</span> Texto + Imagens</li>
+                    <li><span class="check-icon">✓</span> 100 MB de fotos</li>
+                    <li><span class="check-icon">✓</span> Suporte por e-mail</li>
+                </ul>
+                <div class="plan-action">
+                    {% if perfil.plano == 'basico' %}
+                        <span class="badge-current">Plano Atual</span>
+                    {% else %}
+                        <a href="#" class="btn-plan-select">Escolher Plano</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="plan-card featured {% if perfil.plano == 'premium' %}current-plan{% endif %}">
+                <div class="plan-ribbon">Mais Seguro</div>
+                <div class="plan-card-header">
+                    <span class="plan-emoji">🌹</span>
+                    <h3>Premium</h3>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">79</span>
+                        <span class="period">/ano</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="check-icon">✓</span> 20 destinatários</li>
+                    <li><span class="check-icon">✓</span> Mensagens ilimitadas</li>
+                    <li><span class="check-icon">✓</span> Texto + Imagens + Vídeos</li>
+                    <li><span class="check-icon">✓</span> 1 GB de mídia</li>
+                    <li><span class="check-icon">✓</span> Envio de flores reais</li>
+                    <li><span class="check-icon">✓</span> Suporte prioritário</li>
+                </ul>
+                <div class="plan-action">
+                    {% if perfil.plano == 'premium' %}
+                        <span class="badge-current">Plano Atual</span>
+                    {% else %}
+                        <a href="#" class="btn-plan-select featured-btn">Escolher Plano</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="pricing-footer">
+            <div class="trust-banner">
+                <span class="heart-icon">💚</span>
+                <strong>Garantia de eternidade:</strong> Seu plano garante que suas mensagens serão guardadas para sempre, mesmo se nossa empresa deixar de existir.
+            </div>
+        </footer>
+
     </div>
-
-    <div class="card" style="border: 2px solid #ff6b6b;">
-        <h3>💝 Básico</h3>
-        <p style="font-size: 2rem; margin: 20px 0;">R$ 29<span style="font-size: 1rem;">/ano</span></p>
-        <ul style="list-style: none; text-align: left;">
-            <li>✓ 5 destinatários</li>
-            <li>✓ 20 mensagens</li>
-            <li>✓ Texto + Imagens</li>
-            <li>✓ 100 MB de fotos</li>
-            <li>✓ Suporte por e-mail</li>
-        </ul>
-        <a href="#" class="btn btn-primary">Escolher Plano</a>
-    </div>
-
-    <div class="card">
-        <h3>🌹 Premium</h3>
-        <p style="font-size: 2rem; margin: 20px 0;">R$ 79<span style="font-size: 1rem;">/ano</span></p>
-        <ul style="list-style: none; text-align: left;">
-            <li>✓ 20 destinatários</li>
-            <li>✓ Mensagens ilimitadas</li>
-            <li>✓ Texto + Imagens + Vídeos</li>
-            <li>✓ 1 GB de mídia</li>
-            <li>✓ Envio de flores reais</li>
-            <li>✓ Suporte prioritário</li>
-        </ul>
-        <a href="#" class="btn btn-primary">Escolher Plano</a>
-    </div>
-</div>
-
-<div class="card" style="text-align: center; background: #ffeaa7;">
-    <h3>💚 Garantia de eternidade</h3>
-    <p>Seu plano garante que suas mensagens serão guardadas para sempre, mesmo se nossa empresa deixar de existir.</p>
-</div>
+</section>
 {% endblock %}

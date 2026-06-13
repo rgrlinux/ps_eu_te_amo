@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Nova Mensagem - P.S. Te amo{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <div class="auth-card" style="max-width: 680px;"> <h2>Mensagem para: {{ destinatario.nome }} 💌</h2>
+            <p class="subtitle-context">Escreva o seu conteúdo e anexe arquivos de mídia importantes.</p>
+
+            <form method="post" enctype="multipart/form-data" class="auth-form">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <div class="field-error">{{ field.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-group">
+                    <label for="id_arquivos">Fotos e imagens (opcional)</label>
+                    <input type="file" name="arquivos" id="id_arquivos" multiple accept="image/*" class="form-file-input">
+                    <small class="help-text">Você pode selecionar e enviar várias fotos de uma vez.</small>
+                </div>
+
+                <button type="submit" class="btn-auth-submit">Salvar Mensagem</button>
+            </form>
+
+            <div class="auth-footer-links">
+                <a href="{% url 'dashboard' %}" class="link-highlight">&lt; Voltar para o Dashboard</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

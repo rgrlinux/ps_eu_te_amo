@@ -1,34 +1,63 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Cadastro{% endblock %}
+{% block title %}Crie sua conta - P.S. Te amo{% endblock title %}
 
 {% block content %}
-<div style="max-width: 500px; margin: 40px auto;">
-    <div class="card">
-        <h2 style="text-align: center;">Crie sua conta 💝</h2>
+<section class="auth-section">
+    <div class="container ">
+        <div class="auth-card">
+            <h2>Crie sua conta</h2>
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
 
-        <form method="post">
-            {% csrf_token %}
-
-            {% for field in form %}
-            <div class="form-group">
-                <label>{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                    <div class="help-text">{{ field.help_text }}</div>
+                {% if form.non_field_errors %}
+                    <div class="form-errors-global">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
                 {% endif %}
-                {% for error in field.errors %}
-                    <div class="help-text" style="color: red;">{{ error }}</div>
-                {% endfor %}
+
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Usuário</label>
+                    <input type="text" name="username" id="id_username" placeholder="email@email.com.br" required maxlength="150">
+                    <small class="help-text">Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.</small>
+                    {% if form.username.errors %}
+                        <div class="field-error">{{ form.username.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">Senha</label>
+                    <input type="password" name="password1" id="id_password1" placeholder="••••••••" required>
+                    <ul class="help-text-list">
+                        <li>Não pode ser muito parecida com o resto das suas informações pessoais.</li>
+                        <li>Precisa conter pelo menos 8 caracteres.</li>
+                        <li>Não pode ser uma senha comumente utilizada.</li>
+                        <li>Não pode ser inteiramente numérica.</li>
+                    </ul>
+                    {% if form.password1.errors %}
+                        <div class="field-error">{{ form.password1.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">Confirmação de senha</label>
+                    <input type="password" name="password2" id="id_password2" placeholder="••••••••" required>
+                    <p class="help-text">Informe a mesma senha informada anteriormente, para verificação.</p>
+                    {% if form.password2.errors %}
+                        <div class="field-error">{{ form.password2.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn-auth-submit">Cadastrar</button>
+            </form>
+
+            <div class="auth-footer-links">
+                <span>Já tem conta? <a href="{% url 'login' %}" class="link-highlight">Faça login</a></span>
             </div>
-            {% endfor %}
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Cadastrar</button>
-        </form>
-
-        <p style="text-align: center; margin-top: 20px;">
-            Já tem conta? <a href="{% url 'login' %}">Faça login</a>
-        </p>
+        </div>
     </div>
-</div>
-{% endblock %}
+</section>
+{% endblock content %}

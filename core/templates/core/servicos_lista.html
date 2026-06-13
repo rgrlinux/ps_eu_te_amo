@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Serviços Extras - P.S. Te amo{% endblock title %}
+
+{% block content %}
+<div class="dash-layout">
+
+    <aside class="dash-sidebar">
+        <div class="sidebar-profile">
+            <a href="{% url 'configurar_perfil' %}" class="avatar-link" title="Configurar Perfil">
+                <div class="avatar-wrapper">
+                    {% if perfil.foto %}
+                        <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
+                    {% else %}
+                        <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
+                    {% endif %}
+                </div>
+            </a>
+            <h3 class="profile-name">{{ request.user.get_full_name|default:request.user.username }}</h3>
+            <span class="profile-plan">Plano: {{ perfil.plano|title }}</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="{% url 'dashboard' %}" class="nav-item">
+                <img src="{% static 'img/icons/dashboard.png' %}" alt="" class="nav-icon"> Dashboard
+            </a>
+            <a href="{% url 'listar_mensagens' %}" class="nav-item">
+                <img src="{% static 'img/icons/messages.png' %}" alt="" class="nav-icon"> Mensagens
+            </a>
+            <a href="{% url 'listar_servicos' %}" class="nav-item active">
+                <img src="{% static 'img/icons/services.png' %}" alt="" class="nav-icon"> Serviços
+            </a>
+            <a href="{% url 'renovar_assinatura' %}" class="nav-item upgrade-link">
+                <img src="{% static 'img/icons/upgrade.png' %}" alt="" class="nav-icon"> Fazer Upgrade
+            </a>
+        </nav>
+    </aside>
+
+    <main class="dash-main">
+        <header class="dash-header">
+            <div class="header-welcome">
+                <h1>Serviços Adicionais ✨</h1>
+                <p class="last-access">Complemente seu plano com serviços e mimos sob demanda para quem você ama.</p>
+            </div>
+        </header>
+
+        <section class="services-market-section">
+            <div class="services-grid-layout">
+
+                {% for servico in servicos %}
+                    <div class="service-market-card">
+                        <div class="service-header-box">
+                            <span class="service-emoji-avatar">{{ servico.emoji }}</span>
+                            <div>
+                                <h3>{{ servico.title }}</h3>
+                                <p class="service-cost">R$ {{ servico.price }} <small>/ taxa única</small></p>
+                            </div>
+                        </div>
+                        <p class="service-desc-text">{{ servico.description }}</p>
+                        <a href="#" class="btn-contract-service">Contratar Serviço</a>
+                    </div>
+                {% empty %}
+                    <div class="empty-state-card" style="width: 100%; text-align: center; padding: 40px;">
+                        <p>Nenhum serviço adicional disponível no momento.</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock content %}

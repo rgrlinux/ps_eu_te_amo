@@ -1,0 +1,1491 @@
+/* ==========================================================================
+   1. VARIABLES & DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* Colors matches exact image palette */
+  --color-bg-main: #f0f4f8;
+  --color-bg-white: #ffffff;
+  --color-bg-card-dark: #596780;
+  --color-bg-card-light: #dce1e8;
+  --color-bg-card-white: #ffffff;
+  --color-text-dark: #2c3a4b;
+  --color-text-muted: #627285;
+  --color-text-light: #ffffff;
+  --color-brand-blue: #0b57d0;
+  --color-accent-blue: #a6cbff;
+  --color-border-dark: #6e819a;
+
+  /* Fonts */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Zen Kaku Gothic New", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-serif: "Zen Antique Soft", Times New Roman, serif;
+
+  /* Grid Layout Elements */
+  --grid-columns: 24;
+  --grid-gap: 20px;
+  --container-max-width: 1440px;
+}
+
+/* ==========================================================================
+   2. CSS RESET
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================================================================
+   3. 24-COLUMN GRID SYSTEM WITH SUBGRID CAPABILITIES
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.row-24 {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+/* 24-Column Loop Generation equivalents using standard CSS */
+.col-24 {
+  grid-column: span 24;
+}
+.col-16 {
+  grid-column: span 16;
+}
+.col-14 {
+  grid-column: span 14;
+}
+.col-12 {
+  grid-column: span 12;
+}
+.col-10 {
+  grid-column: span 10;
+}
+.col-8 {
+  grid-column: span 8;
+}
+.col-6 {
+  grid-column: span 6;
+}
+.col-4 {
+  grid-column: span 4;
+}
+
+/* Subgrid feature capability rule alignment */
+.row-24 .row-24 {
+  grid-column: span var(--grid-columns);
+}
+
+/* ==========================================================================
+   4. HEADER & NAVIGATION
+   ========================================================================== */
+.main-header {
+  background-color: var(--color-bg-white);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.main-header .container {
+  display: grid;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-brand-blue);
+}
+
+.logo-text .heart {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+.logo-img {
+  height: 40px; /* Aljuste a altura máxima para alinhar com o menu */
+  width: auto; /* Mantém a proporção da imagem */
+  display: block;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 32px;
+}
+
+.main-nav a {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--color-brand-blue);
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-link {
+  font-size: 0.9rem;
+  color: var(--color-brand-blue);
+  font-weight: 500;
+}
+
+.btn-primary-nav {
+  background-color: var(--color-brand-blue);
+  color: var(--color-text-light);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary-nav:hover {
+  background-color: #0843a5;
+}
+
+main {
+  flex: 1 0 auto;
+}
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding: 2.5rem 0;
+}
+
+/* O container row-24 cuida do grid principal de 1440px */
+.hero-section .row-24 {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+  justify-content: center;
+}
+
+.hero-card {
+  background-color: var(--color-bg-card-dark);
+  color: var(--color-text-light);
+  border-radius: 0.75rem;
+  padding: 3rem; /* Corrigido: respiro interno do card escuro */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Garante que tudo dentro dele centralize por padrão */
+}
+
+.hero-card h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  max-width: 90%; /* Evita que o título cole nas bordas */
+}
+
+.hero-card .subtitle {
+  font-size: 1.25rem; /* Ajustado para melhor legibilidade */
+  max-width: 800px;
+  margin: 0 auto 2.5rem auto;
+  opacity: 0.9;
+}
+
+/* Container da Imagem: define a largura máxima real do miolo do bloco */
+.hero-image-container {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  max-height: 287px;
+  width: 100%;
+  max-width: 1100px; /* Alinha o limite da largura com o layout */
+}
+
+.hero-img {
+  width: 100%; /* Ocupa 100% do seu container pai */
+  height: 18rem;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+/* Rodapé do CTA: Agora acoplado diretamente à largura da imagem */
+.hero-footer-cta {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  max-width: 1100px; /* Mesma largura exata do container da imagem */
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  /* border-top: 1px solid rgba(255, 255, 255, 0.15); Linha sutil separando */
+}
+
+.hero-footer-cta p {
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.95;
+  padding-right: 5rem;
+}
+
+.btn-accent {
+  background-color: var(--color-accent-blue);
+  color: var(--color-brand-blue);
+  border: none;
+  padding: 18px 36px;
+  border-radius: 10px; /* Mantém arredondado estético do botão antigo */
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  white-space: nowrap; /* Evita quebra de linha no botão */
+}
+
+.btn-accent:hover {
+  background-color: #c2dbff;
+  transform: translateY(-1px);
+}
+
+.btn-accent-reverse {
+  background-color: var(--color-bg-main);
+  color: var(--color-brand-blue);
+  border: none;
+  padding: 18px 36px;
+  border-radius: 10px; /* Mantém arredondado estético do botão antigo */
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  white-space: nowrap; /* Evita quebra de linha no botão */
+}
+
+.btn-accent-reverse:hover {
+  background-color: var(--color-accent-blue);
+  transform: translateY(-1px);
+}
+
+.icon-inline {
+  width: 18px;
+  height: 18px;
+}
+/* ==========================================================================
+   6. ABOUT SECTION (FEATURES)
+   ========================================================================== */
+.about-section {
+  padding: 20px 0;
+}
+
+.about-card-wrapper {
+  background-color: var(--color-bg-card-light);
+  border-radius: 12px;
+  padding: 48px;
+}
+
+.about-intro {
+  margin-bottom: 16px;
+}
+
+.about-intro h2 {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-text-dark);
+  margin-bottom: 16px;
+}
+
+.about-intro p {
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 56.25rem;
+}
+
+.feature-card {
+  background-color: var(--color-bg-card-white);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.feature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.feature-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--color-text-dark);
+}
+
+.feature-header .feature-icon-img {
+  width: 46px; /* Ajuste o tamanho padrão que sua designer definiu */
+  height: 46px; /* Mantém o ícone quadrado */
+  object-fit: contain; /* Garante que a imagem não distorça */
+  display: block;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   7. HOW IT WORKS
+   ========================================================================== */
+.how-it-works-section {
+  padding: 20px 0;
+}
+
+.how-card {
+  background-color: var(--color-bg-card-white);
+  border-radius: 12px;
+  padding: 48px;
+}
+
+.how-intro h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.how-intro p {
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  max-width: 700px;
+}
+
+.how-content-grid {
+  align-items: center;
+  margin-bottom: 5px;
+  border: solid 0.1rem var(--color-bg-card-light);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.how-image-side .how-img {
+  border-radius: 8px;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.how-steps-side {
+  align-items: flex-start;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.step-number {
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  font-weight: bold;
+  color: #596780;
+  opacity: 50%;
+  line-height: 1;
+  min-width: 45px;
+}
+
+.step-text h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.step-text p {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.how-footer {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.how-footer p {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  margin-right: 5rem;
+}
+
+.link-cta {
+  color: var(--color-brand-blue);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: solid;
+}
+
+/* ==========================================================================
+   8. FAQ (ACCORDION)
+   ========================================================================== */
+.faq-section {
+  padding: 20px 0 40px 0;
+}
+
+.faq-card {
+  background-color: var(--color-bg-card-dark);
+  color: var(--color-text-light);
+  border-radius: 12px;
+  padding: 48px;
+}
+
+.faq-card h2 {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.accordion-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  text-align: left;
+  padding: 20px 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content p {
+  padding-bottom: 20px;
+  font-size: 1.15rem;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* Active State Accordion */
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   9. FOOTER
+   ========================================================================== */
+.main-footer {
+  background-color: #2c3a4b;
+  color: #a0b2c6;
+  padding: 10px 0;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.main-footer .logo-text {
+  color: var(--color-text-light);
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.main-footer .copyright {
+  margin-top: 12px;
+  opacity: 0.6;
+}
+
+/* Responsive adjustments matching layout standards */
+@media (max-width: 768px) {
+  .col-24,
+  .col-16,
+  .col-14,
+  .col-12,
+  .col-10,
+  .col-8,
+  .col-6 {
+    grid-column: span 24 !important;
+  }
+  .main-nav,
+  .auth-actions {
+    display: none; /* Simplificação para Mobile standard */
+  }
+  .hero-footer-cta,
+  .how-footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  .footer-info {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   10. AUTHENTICATION PAGES (LOGIN / REGISTER) - CORRIGIDO
+   ========================================================================== */
+.auth-section {
+    padding: 60px 0;
+    background-color: var(--color-bg-main);
+    width: 100%;
+}
+
+/* O container mantém o alinhamento da página, mas removemos o display rígido de grid aqui */
+.auth-section .container {
+    display: block;
+    width: 100%;
+}
+
+.auth-card {
+    background-color: var(--color-bg-card-white);
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+    /* Define o tamanho ideal do formulário */
+    width: 100%;
+    max-width: 580px;
+
+    /* A MÁGICA AQUI: Zera em cima/baixo e joga as laterais no automático */
+    margin: 0 auto;
+
+    /* Garante o alinhamento interno dos títulos */
+    text-align: center;
+    color: var(--color-bg-card-dark);
+}
+
+/* Garante que o form mantenha o fluxo de blocos empilhados para baixo */
+.auth-form {
+    text-align: left;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    display: block; /* Garante o empilhamento sinaleiro: Label em cima, Input embaixo */
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d9e2;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    background-color: #fafbfc;
+    box-sizing: border-box; /* Evita que o padding estoure a largura máxima */
+}
+
+.help-text-list, .help-text {
+  padding-left: 1rem;
+
+  font-family: var(--font-sans);
+  font-size: .9rem;
+
+}
+
+.btn-auth-submit{
+ width: 440px;
+    max-width: 100%; /* Evita que o botão quebre em telas menores que 440px */
+    height: 2.5rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: var(--color-bg-card-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c2dbff;
+
+    /* CORREÇÃO AQUI: Força o comportamento de bloco e distribui as margens laterais */
+    display: block;
+    margin: 20px auto 0 auto; /* Centraliza na horizontal e adiciona um espaço acima */
+    cursor: pointer;
+}
+
+.btn-auth-submit:hover {
+  color: var(--color-brand-blue);
+  background-color: #a0b2c6;
+}
+
+
+/* ==========================================================================
+   11. DASHBOARD LAYOUT
+   ========================================================================== */
+.dash-layout {
+    display: flex;
+    min-height: calc(100vh - 80px); /* Ocupa a tela inteira descontando o topo se houver */
+    background-color: #f3f5f8; /* Fundo acinzentado sutil do mockup */
+    font-family: var(--font-sans);
+}
+
+/* --- BARRA LATERAL (ASIDE) --- */
+.dash-sidebar {
+    width: 280px;
+    background-color: var(--color-bg-card-white);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e5ecf4;
+}
+
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.avatar-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 16px auto;
+    border: 3px solid #edf2f7;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.profile-plan {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+/* Links do Menu */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #5c6f84;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: #f0f4f9;
+    color: var(--color-brand-blue);
+    font-weight: 600;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.upgrade-link {
+    margin-top: 24px;
+    color: var(--color-brand-blue);
+    background-color: #e8f1fe;
+}
+
+.upgrade-link:hover {
+    background-color: #d2e3fc;
+}
+
+
+/* --- CONTEÚDO PRINCIPAL (MAIN) --- */
+.dash-main {
+    flex: 1;
+    padding: 40px 48px;
+    overflow-y: auto;
+}
+
+/* Header superior interno */
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header-welcome h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+}
+
+.last-access {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-card-white);
+    padding: 10px 16px;
+    border-radius: 24px;
+    width: 260px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.search-box img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+
+.search-box input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.notification-bell {
+    background-color: var(--color-bg-card-white);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.notification-bell img {
+    width: 28px;
+    height: 28px;
+}
+
+
+/* --- SEÇÃO DE RESUMO (CARDS DE CIMA) --- */
+.dash-summary {
+    margin-bottom: 40px;
+}
+
+.dash-summary h2, .dash-messages-section h2 {
+    font-size: 1.3rem;
+    color: #5c6f84;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.summary-grid {
+    display: flex;
+    gap: 24px;
+}
+
+.summary-card {
+    flex: 1;
+    background-color: var(--color-bg-card-white);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+
+.summary-card h3 {
+    font-size: 1rem;
+    color: #5c6f84;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.card-counter, .status-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+/* O card verde de monitoramento dinâmico do mockup */
+.card-status.status-ativo {
+    background-color: #bdf087; /* Tom verde claro exato do seu print */
+}
+
+.card-status.status-ativo h3, .card-status.status-ativo .status-text {
+    color: #385a14; /* Texto escurecido para contraste e acessibilidade */
+}
+
+
+/* --- SEÇÃO MENSAGENS CADASTRADAS (CARDS DE BAIXO) --- */
+.dash-messages-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-new-message {
+    background-color: #b9c7d6; /* Azul acinzentado do botão do mockup */
+    color: var(--color-bg-card-dark);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-new-message:hover {
+    background-color: #a3b5c9;
+}
+
+.messages-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.message-recipient-card {
+    background-color: var(--color-bg-card-white);
+    border-radius: 16px;
+    padding: 24px;
+    width: calc(33.333% - 16px); /* Distribui em 3 colunas perfeitas com o gap */
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    display: flex;
+    gap: 16px;
+}
+
+.recipient-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: #f0f4f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.recipient-avatar img {
+    width: 24px;
+    height: 24px;
+}
+
+.recipient-info h4 {
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+}
+
+.recipient-info p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.avatar-link {
+    text-decoration: none;
+    display: block;
+    margin: 0 auto 16px auto; /* Mantém o espaçamento que estava antes na wrapper */
+}
+
+.avatar-wrapper {
+    /* Remova o 'margin: 0 auto 16px auto;' daqui se ainda estiver na classe original */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+/* Um efeito sutil de hover para o usuário sacar que ali dá para clicar */
+.avatar-wrapper:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(11, 87, 208, 0.15);
+}
+
+
+
+/* Card Ver Mais linkável */
+.view-more-card {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    width: calc(33.333% - 16px);
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-more-card a {
+    text-decoration: none;
+    color: var(--color-brand-blue);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-more-card:hover {
+    background-color: var(--color-bg-card-white);
+    border-color: var(--color-brand-blue);
+}
+
+/* Responsivo para tablets e telas menores */
+@media (max-width: 1024px) {
+    .dash-layout {
+        flex-direction: column;
+    }
+    .dash-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5ecf4;
+    }
+    .summary-grid {
+        flex-direction: column;
+    }
+    .message-recipient-card, .view-more-card {
+        width: 100%;
+    }
+}
+/* ==========================================================================
+   FORMULÁRIO DE MENSAGENS (CAMPOS GERADOS PELO DJANGO)
+   ========================================================================== */
+
+/* Aplica o estilo na caixa de texto grande (Conteúdo) que o {{ field }} gera */
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d9e2;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    background-color: #fafbfc;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    resize: vertical;
+    min-height: 150px; /* Deixa uma altura inicial confortável para escrever */
+}
+
+/* Aplica o estilo no campo de Título caso o Django mande ele puro */
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d9e2;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    background-color: #fafbfc;
+    box-sizing: border-box;
+}
+
+/* Deixa o campo de escolha de arquivos com uma carinha mais limpa */
+.form-file-input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   12. PRICING TIMELINE / PLANS PAGE
+   ========================================================================== */
+.pricing-section {
+    padding: 60px 20px;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 80px);
+    font-family: var(--font-sans);
+}
+
+.pricing-container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.pricing-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+}
+
+.pricing-header p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+
+/* Flexbox para colocar os três cards lado a lado */
+.plans-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+/* Estrutura Base do Card */
+.plan-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    flex: 1;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Destaque para o plano Premium */
+.plan-card.featured {
+    border: 2px solid var(--color-brand-blue, #0b57d0);
+    box-shadow: 0 10px 25px rgba(11, 87, 208, 0.08);
+}
+
+.plan-ribbon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #e8f1fe;
+    color: #0b57d0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+/* Interior do Card */
+.plan-card-header {
+    text-align: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 24px;
+}
+
+.plan-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.plan-card-header h3 {
+    font-size: 1.4rem;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+}
+
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.plan-price .currency {
+    font-size: 1.2rem;
+    font-weight: 500;
+    vertical-align: super;
+}
+
+.plan-price .period {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+/* Lista de Recursos */
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    flex-grow: 1;
+}
+
+.plan-features li {
+    font-size: 0.95rem;
+    color: #475569;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-icon {
+    color: #10b981; /* Verde esmeralda para os checks */
+    font-weight: 700;
+}
+
+/* Botões de Ação */
+.btn-plan-select {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: var(--color-bg-card-dark, #1e293b);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+}
+
+.btn-plan-select:hover {
+    background-color: #0f172a;
+}
+
+.btn-plan-select.secondary {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-plan-select.secondary:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-plan-select.featured-btn {
+    background-color: #0b57d0;
+}
+
+.btn-plan-select.featured-btn:hover {
+    background-color: #0842a0;
+}
+
+/* Emblema para o plano que o usuário já assina */
+.badge-current {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: #e2e8f0;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Banner da Garantia de Eternidade */
+.pricing-footer {
+    margin-top: 40px;
+}
+
+.trust-banner {
+    background-color: #fef08a; /* Amarelo clarinho do rodapé original */
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    color: #713f12;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.trust-banner strong {
+    color: #451a03;
+}
+
+/* Ajuste Responsivo para Celular */
+@media (max-width: 768px) {
+    .plans-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .plan-card {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================================================
+   13. MESSAGES LIST TABULAR DESIGN
+   ========================================================================== */
+.messages-table-container {
+    background-color: var(--color-bg-card-white);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    border: 1px solid #e5ecf4;
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.custom-table th {
+    background-color: #f8fafc;
+    color: #5c6f84;
+    padding: 14px 16px;
+    font-weight: 600;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.custom-table td {
+    padding: 16px;
+    border-bottom: 1px solid #edf2f7;
+    color: var(--color-text-dark);
+}
+
+.custom-table tbody tr:hover {
+    background-color: #fcfdfe;
+}
+
+.msg-title {
+    color: #0b57d0 !important;
+}
+
+/* Badges de Status */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.pending {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #ffedd5;
+}
+
+.status-badge.sent {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #dcfce7;
+}
+
+.media-badge {
+    background-color: #f1f5f9;
+    color: #475569;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   14. SERVICES MARKETPLACE DESIGN
+   ========================================================================== */
+.services-grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.service-market-card {
+    background-color: var(--color-bg-card-white);
+    border: 1px solid #e5ecf4;
+    border-radius: 16px;
+    padding: 28px;
+    width: calc(50% - 12px); /* Renderiza 2 cards por linha perfeitamente */
+    min-width: 320px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.service-header-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.service-emoji-avatar {
+    font-size: 2.2rem;
+    background-color: #f0f4f9;
+    padding: 12px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.service-header-box h3 {
+    font-size: 1.25rem;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.service-cost {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-brand-blue);
+}
+
+.service-cost small {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+.service-desc-text {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.btn-contract-service {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: #f0f4f9;
+    color: var(--color-brand-blue);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-contract-service:hover {
+    background-color: var(--color-brand-blue);
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .service-market-card {
+        width: 100%;
+    }
+}

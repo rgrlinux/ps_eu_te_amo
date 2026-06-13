@@ -1,421 +1,216 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PS Te amo® | Mensagens que transcendem o tempo</title>
-    <style>
-        /* ============================================ */
-        /* _variables.css - Todas as variáveis e reset   */
-        /* ============================================ */
-        :root {
-            --ps-bg: #fefaf2;
-            --ps-surface: #ffffff;
-            --ps-text: #1a1a2c;
-            --ps-text-muted: #5a5a6e;
-            --ps-border: #e8e2d4;
-            --ps-accent: #c41e3a;
-            --ps-accent-light: #fff0f2;
-            --ps-accent-hover: #9e162e;
-            --ps-gold: #c9a03d;
-            --ps-gold-light: #faf5e6;
-            --font-serif: 'Georgia', 'Times New Roman', 'Playfair Display', serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 1.5rem;
-            --space-lg: 2rem;
-            --space-xl: 3rem;
-            --space-2xl: 4rem;
-            --radius-sm: 10px;
-            --radius-md: 20px;
-            --radius-full: 999px;
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
-            --shadow-md: 0 12px 28px rgba(0,0,0,0.05);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: var(--ps-bg);
-            color: var(--ps-text);
-            font-family: var(--font-sans);
-            line-height: 1.45;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        img {
-            max-width: 100%;
-        }
-        button, .btn {
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        /* ============================================ */
-        /* _grid.css - 24 colunas, rows e subgrid        */
-        /* ============================================ */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-md);
-            width: 100%;
-        }
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 calc(-1 * var(--space-sm) / 2);
-        }
-        [class*="col-"] {
-            padding: 0 calc(var(--space-sm) / 2);
-            width: 100%;
-        }
-        /* grid de 24 colunas */
-        .col-1 { width: 4.166666%; }
-        .col-2 { width: 8.333333%; }
-        .col-3 { width: 12.5%; }
-        .col-4 { width: 16.666666%; }
-        .col-5 { width: 20.833333%; }
-        .col-6 { width: 25%; }
-        .col-7 { width: 29.166666%; }
-        .col-8 { width: 33.333333%; }
-        .col-9 { width: 37.5%; }
-        .col-10 { width: 41.666666%; }
-        .col-11 { width: 45.833333%; }
-        .col-12 { width: 50%; }
-        .col-13 { width: 54.166666%; }
-        .col-14 { width: 58.333333%; }
-        .col-15 { width: 62.5%; }
-        .col-16 { width: 66.666666%; }
-        .col-17 { width: 70.833333%; }
-        .col-18 { width: 75%; }
-        .col-19 { width: 79.166666%; }
-        .col-20 { width: 83.333333%; }
-        .col-21 { width: 87.5%; }
-        .col-22 { width: 91.666666%; }
-        .col-23 { width: 95.833333%; }
-        .col-24 { width: 100%; }
-
-        /* subgrid dentro de grid */
-        .subgrid {
-            display: grid;
-            grid-template-columns: repeat(24, minmax(0, 1fr));
-            gap: var(--space-sm);
-            width: 100%;
-            margin-top: var(--space-sm);
-        }
-        .subgrid-item {
-            grid-column: span 12;
-        }
-        @media (min-width: 768px) {
-            .subgrid-item-4 { grid-column: span 4; }
-            .subgrid-item-6 { grid-column: span 6; }
-            .subgrid-item-8 { grid-column: span 8; }
-            .subgrid-item-12 { grid-column: span 12; }
-        }
-        @media (max-width: 992px) {
-            .col-md-24, [class*="col-"] {
-                width: 100%;
-            }
-            .subgrid {
-                grid-template-columns: repeat(12, 1fr);
-            }
-        }
-
-        /* ============================================ */
-        /* header.css - estilo do cabeçalho             */
-        /* ============================================ */
-        .site-header {
-            background: rgba(254, 250, 242, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--ps-border);
-            padding: 1.2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-inner {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-        }
-        .logo h1 {
-            font-family: var(--font-serif);
-            font-size: 1.9rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #b41e3a, #8b1428);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .reg-mark {
-            font-size: 0.8rem;
-            vertical-align: super;
-            color: var(--ps-accent);
-        }
-        .btn-outline-sm {
-            background: transparent;
-            border: 1.5px solid var(--ps-accent);
-            color: var(--ps-accent);
-            padding: 0.45rem 1.3rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-        .btn-outline-sm:hover {
-            background: var(--ps-accent);
-            color: white;
-        }
-
-        /* ============================================ */
-        /* footer.css - rodapé completo                 */
-        /* ============================================ */
-        .site-footer {
-            background: #1c1c24;
-            color: #ccc;
-            margin-top: var(--space-2xl);
-            padding: var(--space-xl) 0 var(--space-lg);
-            border-top: 4px solid var(--ps-gold);
-        }
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-        }
-        .footer-brand p {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            color: #f3d382;
-            margin-bottom: var(--space-sm);
-        }
-        .footer-links {
-            display: flex;
-            gap: var(--space-xl);
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: #aaa;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: var(--ps-gold);
-        }
-        .footer-copy {
-            text-align: center;
-            border-top: 1px solid #2e2e3a;
-            padding-top: var(--space-md);
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* ============================================ */
-        /* componentes adicionais (cards, botões, etc)  */
-        /* ============================================ */
-        .btn-primary {
-            background: var(--ps-accent);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: 0.2s;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary:hover {
-            background: var(--ps-accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        .btn-outline-dark {
-            background: transparent;
-            border: 1px solid var(--ps-accent);
-            color: var(--ps-accent);
-            padding: 0.7rem 1.8rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-        }
-        .hero-section {
-            padding: var(--space-xl) 0 var(--space-lg);
-        }
-        .card-feature {
-            background: var(--ps-surface);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--ps-border);
-            transition: all 0.2s;
-            height: 100%;
-        }
-        .card-feature:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .steps-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-md);
-            justify-content: space-between;
-        }
-        .step-card {
-            flex: 1;
-            background: var(--ps-surface);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            text-align: center;
-            border: 1px solid var(--ps-border);
-            min-width: 150px;
-        }
-        .step-number {
-            background: var(--ps-accent-light);
-            width: 48px;
-            height: 48px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            font-weight: bold;
-            font-size: 1.6rem;
-            color: var(--ps-accent);
-            margin-bottom: var(--space-sm);
-        }
-        .faq-item {
-            background: var(--ps-surface);
-            border-radius: var(--radius-sm);
-            padding: var(--space-md);
-            margin-bottom: var(--space-sm);
-            border-left: 4px solid var(--ps-gold);
-        }
-        hr {
-            margin: var(--space-lg) 0;
-            border: none;
-            height: 1px;
-            background: var(--ps-border);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mt-2 { margin-top: var(--space-lg); }
-        .mb-2 { margin-bottom: var(--space-lg); }
-        .italic-serif {
-            font-family: var(--font-serif);
-            font-style: italic;
-        }
-    </style>
+    <title>P.S. Te amo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- ========== HEADER (exatamente conforme design) ========== -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-inner">
-                <div class="logo">
-                    <h1>PS Te amo<span class="reg-mark">®</span></h1>
-                    <p style="font-size: 0.8rem; color: var(--ps-text-muted);">suas palavras nunca serão esquecidas.</p>
-                </div>
-                <div class="header-cta">
-                    <a href="#" class="btn-outline-sm">Começar →</a>
-                </div>
+    <header class="main-header">
+        <div class="container row-24">
+            <div class="logo-area col-6">
+                <span class="logo-text">P.S. Te amo <span class="heart">♥</span></span>
+            </div>
+            <nav class="main-nav col-12">
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#como-funciona">Dúvidas</a></li>
+                    <li><a href="#faq">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="auth-actions col-6">
+                <a href="#" class="btn-link">Criar conta</a>
+                <a href="#" class="btn-primary-nav">Fazer login</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero / introdução com texto original -->
         <section class="hero-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-24">
-                        <h2 style="font-size: 2.4rem; font-family: var(--font-serif); font-weight: 500;">Imagine poder deixar algumas palavras guardadas para o futuro — no momento certo, para as pessoas certas.</h2>
-                        <p style="font-size: 1.2rem; margin: var(--space-md) 0; color: var(--ps-text-muted);">Deixe mensagens, fotos e declarações que serão entregues quando você partir.</p>
-                        <div style="margin-top: var(--space-md);">
-                            <a href="#" class="btn-primary">Começar regra →</a>
+            <div class="container row-24">
+                <div class="hero-card col-24">
+                    <h1>Suas palavras nunca serão esquecidas.</h1>
+                    <p class="subtitle">Imagine poder deixar algumas palavras guardadas para o futuro — no momento certo, para as pessoas certas.</p>
+
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=1200" alt="Mão escrevendo uma carta com caneta tinteiro" class="hero-img">
+                    </div>
+
+                    <div class="hero-footer-cta">
+                        <p>Deixe mensagens, fotos e declarações<br>que serão entregues quando você partir.</p>
+                        <button class="btn-accent token-cta">
+                            Começar agora
+                            <i data-lucide="arrow-right" class="icon-inline"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container row-24">
+                <div class="about-card-wrapper col-24 row-24">
+                    <div class="about-intro col-24">
+                        <h2>Sobre</h2>
+                        <p>Nosso serviço permite que você escreva e programe mensagens que serão enviadas apenas quando você não estiver mais aqui. Pode ser uma informação importante, um conselho, aquela história que você sempre quis contar ou até mesmo um "eu te amo".</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Mensagens eternas</h3>
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <p>Escreva cartas, depoimentos e desabafos que serão entregues no momento certo.</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Segurança total</h3>
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <p>Sistema de confirmação com "dead man's switch" digital para garantir que suas mensagens cheguem.</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Seus dados, seu controle</h3>
+                            <i data-lucide="lock"></i>
+                        </div>
+                        <p>Você define quem, quando e o que recebe.</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Para quem você ama</h3>
+                            <i data-lucide="heart"></i>
+                        </div>
+                        <p>Cadastre destinatários especiais e agende a ordem de entrega.</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Fotos e memórias</h3>
+                            <i data-lucide="image"></i>
+                        </div>
+                        <p>Compartilhe imagens especiais que guardam momentos únicos.</p>
+                    </div>
+
+                    <div class="feature-card col-8">
+                        <div class="feature-header">
+                            <h3>Flores póstumas</h3>
+                            <i data-lucide="flower-2"></i>
+                        </div>
+                        <p>Plano premium com envio de flores reais para seus entes queridos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-funciona" class="how-it-works-section">
+            <div class="container row-24">
+                <div class="how-card col-24 row-24">
+                    <div class="how-intro col-24">
+                        <h2>Como funciona</h2>
+                        <p>Criamos mecanismos de confirmação para garantir que o envio aconteça somente no momento adequado, com todo o cuidado que a situação merece.</p>
+                    </div>
+
+                    <div class="how-content-grid col-24 row-24">
+                        <div class="how-image-side col-10">
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600" alt="Pessoa lendo no tablet confortavelmente" class="how-img">
+                        </div>
+
+                        <div class="how-steps-side col-14">
+                            <ol class="steps-list">
+                                <li>
+                                    <span class="step-number">1.</span>
+                                    <div class="step-text">
+                                        <h4>Cadastre-se</h4>
+                                        <p>Crie sua conta gratuitamente</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-number">2.</span>
+                                    <div class="step-text">
+                                        <h4>Configure</h4>
+                                        <p>Defina seu curador e tempo de resposta</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-number">3.</span>
+                                    <div class="step-text">
+                                        <h4>Escreva</h4>
+                                        <p>Crie suas mensagens especiais</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-number">4.</span>
+                                    <div class="step-text">
+                                        <h4>Descanse em paz</h4>
+                                        <p>Sua mensagem será entregue no momento certo</p>
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Seção Sobre (exatamente os cards com os textos originais) -->
-        <section style="padding: var(--space-lg) 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-24">
-                        <h3 style="font-size: 1.8rem; margin-bottom: var(--space-md); font-family: var(--font-serif);">Sobre</h3>
-                        <p style="margin-bottom: var(--space-lg);">Nosso serviço permite que você escreva e programe mensagens que serão enviadas pelas pessoas você não conhece mais aqui. Pode ser uma informação importante, um conteúdo, ajuda a instruir a você sobre o que está a ver. Se você não sabe o que quer dizer, clique aqui e vá para o site.</p>
-                    </div>
-                </div>
-                <!-- grid com 24 colunas: 6 itens (cada um 4 colunas = 24) -->
-                <div class="row">
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>📬 Mensagens internas</strong><br>Somos uma empresa de mensagens internas.<br><a href="#" style="color: var(--ps-accent);">Acesse nosso site →</a></div></div>
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>🔒 Segurança total</strong><br>Somos um serviço de segurança total.<br><a href="#" style="color: var(--ps-accent);">Acesse nosso site →</a></div></div>
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>💡 Nova ideia, seu produto</strong><br>Você pode gostar, usá-lo e vende-lo.</div></div>
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>🎨 Uma guia visual para</strong><br>Criar conteúdo de qualidade.<br><a href="#" style="color: var(--ps-accent);">Acesse nosso site →</a></div></div>
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>🏆 Hitos e vantagens</strong><br>Compartilha nossas ideias e experiências.<br><a href="#" style="color: var(--ps-accent);">Acesse nosso site →</a></div></div>
-                    <div class="col-4 col-md-24"><div class="card-feature"><strong>📡 Uma plataforma</strong><br>Pode programar o seu projeto.<br><a href="#" style="color: var(--ps-accent);">Acesse nosso site →</a></div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção "Como funciona" com os passos e texto original -->
-        <section style="background: var(--ps-gold-light); padding: var(--space-xl) 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-24">
-                        <h3 style="font-size: 1.8rem; margin-bottom: var(--space-xs); font-family: var(--font-serif);">Como funciona</h3>
-                        <p style="margin-bottom: var(--space-lg); max-width: 800px;">Criamos mecanismos de marketing para guardar que o seu conteúdo sobrevive e reencontra algo novo, com todo o conteúdo que a situação envolve.</p>
-                    </div>
-                </div>
-                <div class="steps-list">
-                    <div class="step-card"><div class="step-number">1</div><strong>Cadastre-se</strong><br>Crie sua conta gratuitamente.</div>
-                    <div class="step-card"><div class="step-number">2</div><strong>Confia-se</strong><br>Defina seu nome e tempo de resposta.</div>
-                    <div class="step-card"><div class="step-number">3</div><strong>Escolha</strong><br>Crie suas mensagens especiais.</div>
-                    <div class="step-card"><div class="step-number">4</div><strong>Descanse em paz</strong><br>Sua mensagem será entregue no momento certo.</div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-24 text-center">
-                        <p style="margin: var(--space-md) 0;">Você poderia usar mensagens e envio o nosso e-mail para falar-lhes de forma simples, segura e ininterrupta.</p>
-                        <a href="#" class="btn-primary" style="background: #2c2c3a;">Comprovar →</a>
+                    <div class="how-footer col-24">
+                        <p>Você registra sua mensagem e deixa o resto com a gente.<br>Tudo feito de forma simples, segura e respeitosa.</p>
+                        <a href="#" class="link-cta token-cta">
+                            Começar agora
+                            <i data-lucide="arrow-right" class="icon-inline"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ com itens lorem ipsum originais -->
-        <section style="padding: var(--space-xl) 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-24">
-                        <h3 style="font-size: 1.8rem; font-family: var(--font-serif);">FAQ</h3>
-                        <div style="margin-top: var(--space-md);">
-                            <div class="faq-item"><a href="#">❓ Lorem ipsum dolor sit amet?</a></div>
-                            <div class="faq-item"><a href="#">❓ Lorem ipsum dolor sit amet?</a></div>
-                            <div class="faq-item"><a href="#">❓ Lorem ipsum dolor sit amet?</a></div>
+        <section id="faq" class="faq-section">
+            <div class="container row-24">
+                <div class="faq-card col-24">
+                    <h2>FAQ</h2>
+
+                    <div class="accordion-group">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span>Lorem ipsum dolor sit amet?</span>
+                                <i data-lucide="plus" class="accordion-icon"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapiens et extrema quaeque volunt. Vestri haec philosophia contra bitonem.</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Última chamada: PS Te amo com botão Comprovar (igual original) -->
-        <section style="padding-bottom: var(--space-xl);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-24 text-center" style="background: var(--ps-surface); border-radius: var(--radius-md); padding: var(--space-lg); border: 1px solid var(--ps-border);">
-                        <h2 style="font-family: var(--font-serif); font-size: 2.2rem;">PS Te amo<span style="font-size: 1rem;">®</span></h2>
-                        <div style="margin-top: var(--space-md);">
-                            <a href="#" class="btn-primary" style="background: var(--ps-accent);">Comprovar →</a>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span>Lorem ipsum dolor sit amet?</span>
+                                <i data-lucide="plus" class="accordion-icon"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapiens et extrema quaeque volunt. Vestri haec philosophia contra bitonem.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span>Lorem ipsum dolor sit amet?</span>
+                                <i data-lucide="plus" class="accordion-icon"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapiens et extrema quaeque volunt. Vestri haec philosophia contra bitonem.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span>Lorem ipsum dolor sit amet?</span>
+                                <i data-lucide="plus" class="accordion-icon"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapiens et extrema quaeque volunt. Vestri haec philosophia contra bitonem.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -423,60 +218,19 @@
         </section>
     </main>
 
-    <!-- FOOTER completo (com links institucionais) -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <p>PS Te amo®</p>
-                    <small>Mensagens que cruzam o tempo.</small>
-                </div>
-                <div class="footer-links">
-                    <a href="#">Sobre</a>
-                    <a href="#">Segurança</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Contato</a>
-                    <a href="#">Termos</a>
-                </div>
+    <footer class="main-footer">
+        <div class="container row-24">
+            <div class="footer-logo col-8">
+                <span class="logo-text">P.S. Te amo <span class="heart">♥</span></span>
             </div>
-            <div class="footer-copy">
-                <span>© 2025 PS Te amo — Suas palavras nunca serão esquecidas. ® Todos os afetos reservados.</span>
+            <div class="footer-info col-16">
+                <p>Guardando suas palavras mais importantes para sempre.</p>
+                <p>P.S. Eu Te Amo – Mensagens que transcendem o tempo.</p>
+                <p class="copyright">&copy; 2026 - com amor, para sempre.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JS vanilla apenas para efeitos interativos leves e consistência (sem frameworks) -->
-    <script>
-        (function() {
-            // Pequeno script vanilla para garantir comportamento de links "começar" e scroll suave
-            const buttons = document.querySelectorAll('.btn-primary, .btn-outline-sm, .btn-outline-dark, a[href="#"]');
-            for(let btn of buttons) {
-                if(btn.getAttribute('href') === '#') {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        alert('⚡ Demo PS Te amo® — Em breve você poderá programar suas mensagens eternas.');
-                    });
-                }
-            }
-            // Adicionar um comportamento sutil de fade nos cards (puramente opcional)
-            const cards = document.querySelectorAll('.card-feature, .step-card');
-            if(cards.length) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if(entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                    });
-                }, { threshold: 0.1 });
-                cards.forEach(card => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(10px)';
-                    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    observer.observe(card);
-                });
-            }
-        })();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
