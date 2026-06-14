@@ -16,17 +16,22 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 1. Entra na pasta correta identificada no servidor
+            # 1. Entra na pasta correta do servidor
             cd /var/www/apps/euteamo
-            # 1. Força o Git da VPS a limpar as travas locais (Isso mata o ⇣7 e o U:77)
-            git reset --hard HEAD
+
+            # 2. Força o Git da VPS a se alinhar estritamente com o GitHub (limpa qualquer commit fantasma)
+            git fetch origin main
+            git reset --hard origin/main
             git clean -fd
 
-            # 2. Puxa as atualizações do GitHub
+            # 3. Puxa as atualizações limpas do GitHub
             git pull origin main
 
-            # 3. Sincroniza o ambiente usando o uv de forma limpa e atômica
+            # 4. Sincroniza o ambiente usando o uv de forma limpa e atômica
             /home/rogerio/.local/bin/uv sync --frozen
 
-            # 4. Reinicia o serviço no systemd (Substitua pelo nome real do seu arquivo .service)
+            # 5. Coleta e compacta os arquivos estáticos (Pico.css, JS, imagens) na pasta certa
+            .venv/bin/python manage.py collectstatic --no-input --clear
+
+            # 6. Reinicia o serviço no systemd para atualizar o código na memória
             sudo systemctl restart euteamo.service
