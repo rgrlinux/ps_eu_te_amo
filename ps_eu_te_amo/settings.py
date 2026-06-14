@@ -97,22 +97,23 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-if FORCE_SCRIPT_NAME:
-    # Na VPS, vai virar '/euteamo/static/'
-    STATIC_URL = '/euteamo/static/'
-    MEDIA_URL = '/euteamo/media/'
-else:
-    # Na sua máquina local, continua o padrão de sempre
-    STATIC_URL = 'static/'
-    MEDIA_URL = 'media/'
 
 # STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Mantém dinâmico baseado na raiz do projeto
+
+# Checagem explícita e infalível: se rodar na pasta da VPS, força as rotas da VPS
+if '/var/www/apps/' in str(BASE_DIR):
+    STATIC_URL = '/euteamo/static/'
+    MEDIA_URL = '/euteamo/media/'       # <-- 100% diferente de static/
+else:
+    # Como roda na sua máquina local
+    STATIC_URL = 'static/'
+    MEDIA_URL = 'media/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
