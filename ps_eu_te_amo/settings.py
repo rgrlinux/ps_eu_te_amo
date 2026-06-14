@@ -103,22 +103,21 @@ USE_TZ = True
 if FORCE_SCRIPT_NAME:
     # Na VPS, vai virar '/euteamo/static/'
     STATIC_URL = '/euteamo/static/'
+    MEDIA_URL = '/euteamo/media/'
 else:
     # Na sua máquina local, continua o padrão de sempre
     STATIC_URL = 'static/'
+    MEDIA_URL = 'media/'
 
 # STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Mantém dinâmico baseado na raiz do projeto
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Para imagens (já testando compressão)
-MEDIA_URL = '/euteamo/static/'
-MEDIA_ROOT = '/euteamo/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
