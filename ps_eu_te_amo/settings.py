@@ -118,7 +118,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Para imagens (já testando compressão)
 MEDIA_URL = '/euteamo/static/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/euteamo/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
