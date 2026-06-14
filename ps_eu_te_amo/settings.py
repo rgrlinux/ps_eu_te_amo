@@ -102,7 +102,7 @@ USE_TZ = True
 
 if FORCE_SCRIPT_NAME:
     # Na VPS, vai virar '/euteamo/static/'
-    STATIC_URL = f"{FORCE_SCRIPT_NAME.rstrip('/')}/static/"
+    STATIC_URL = '/euteamo/static/'
 else:
     # Na sua máquina local, continua o padrão de sempre
     STATIC_URL = 'static/'
