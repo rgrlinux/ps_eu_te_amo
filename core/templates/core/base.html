@@ -28,8 +28,8 @@
             <nav class="main-nav col-12">
                 <ul>
                     <li><a href="{% if request.resolver_match.url_name == 'index' %}#sobre{% else %}{% url 'index' %}#sobre{% endif %}">Sobre</a></li>
-                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#como-funciona{% else %}{% url 'index' %}#como-funciona{% endif %}">Dúvidas</a></li>
-                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#faq{% else %}{% url 'index' %}#faq{% endif %}">Contato</a></li>
+                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#como-funciona{% else %}{% url 'index' %}#como-funciona{% endif %}">Como Funciona</a></li>
+                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#faq{% else %}{% url 'index' %}#faq{% endif %}">FAQ</a></li>
                 </ul>
             </nav>
             <div class="auth-actions col-6">

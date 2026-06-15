@@ -200,6 +200,39 @@ main {
 }
 
 /* ==========================================================================
+   LANDING PAGE STRUCTURE (FULL SCREEN SECTIONS)
+   ========================================================================== */
+
+/* 1. Regra geral para TODAS as seções da página index */
+.hero-section,
+.about-section,
+.how-it-works-section,
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza os cards/conteúdo verticalmente */
+  align-items: center;     /* Centraliza o conteúdo horizontalmente */
+  width: 100%;
+  box-sizing: border-box;
+  /* margin-top: 80px; */
+  /* Faz cada seção ocupar no mínimo a tela inteira, descontando o Header fixo */
+  min-height: calc(100vh - 80px);
+  padding: 40px 20px; /* Respiro interno para telas menores não colarem nas bordas */
+}
+
+/* Garante que o container interno dos cards/conteúdo ocupe a largura correta */
+.section-container {
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-max-width);
+}
+
+/* ==========================================================================
    5. HERO SECTION
    ========================================================================== */
 .hero-section {
@@ -207,6 +240,7 @@ main {
 }
 
 .hero-section .row-24 {
+  min-height: calc(100vh - 80px - 5rem); /* 100% da tela - altura do header fixo */
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
   gap: var(--grid-gap);
@@ -327,9 +361,10 @@ main {
 /* ==========================================================================
    6. ABOUT SECTION (FEATURES)
    ========================================================================== */
-.about-section {
-  padding: 20px 0;
-}
+/* .about-section {
+  padding: 7.5rem 0;
+  min-height: calc(100vh - 80px - 7.5rem);
+} */
 
 .about-card-wrapper {
   background-color: var(--color-bg-card-light);
@@ -351,6 +386,7 @@ main {
 
 .about-intro p {
   color: var(--color-text-muted);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   line-height: 1.6;
   max-width: 56.25rem;
@@ -396,14 +432,13 @@ main {
 /* ==========================================================================
    7. HOW IT WORKS
    ========================================================================== */
-.how-it-works-section {
-  padding: 20px 0;
-}
+
 
 .how-card {
   background-color: var(--color-bg-card-white);
   border-radius: 12px;
-  padding: 48px;
+  max-width: 800px;
+  padding: 4px;
 }
 
 .how-intro h2 {
