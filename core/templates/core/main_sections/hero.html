@@ -1,14 +1,14 @@
     {% load static %}
-    <section class="hero-section">
-        <div class="section-container row-24">
-            <div class="hero-card col-24">
+    <section>
+        <div class="container">
+            <div class="card card-hero">
                 <h1>Suas palavras nunca serão esquecidas.</h1>
-                <p class="subtitle">Imagine poder deixar algumas palavras guardadas para o futuro — no momento certo, para as pessoas certas.</p>
-
+                <p class="card-hero-subtitle">
+                    Imagine poder deixar algumas palavras guardadas para o futuro — no momento certo, para as pessoas certas.
+                </p>
                 <div class="hero-image-container">
                     <img src={% static 'img/pen.png' %} alt="Mão escrevendo uma carta com caneta tinteiro" class="hero-img">
                 </div>
-
                 <div class="hero-footer-cta">
                     <p>Deixe mensagens, fotos e declarações<br>que serão entregues quando você partir.</p>
                     {% if user.is_authenticated %}

@@ -16,23 +16,23 @@
 
     {% block extra_head %}{% endblock extra_head %}
 </head>
-<body>
+<body  class="{% if request.resolver_match.url_name == 'index' %}landing-page{% endif %}">
 
     <header class="main-header">
-        <div class="container row-24">
-            <div class="logo-area col-6 logo-img">
+        <div class="container">
+            <div class="logo-area logo-img">
                 <a href="{% url 'index' %}" class="logo-link">
                     <img src="{% static 'img/logo.png' %}" alt="P.S. Te amo" class="logo-img">
                 </a>
             </div>
-            <nav class="main-nav col-12">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#sobre{% else %}{% url 'index' %}#sobre{% endif %}">Sobre</a></li>
-                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#como-funciona{% else %}{% url 'index' %}#como-funciona{% endif %}">Como Funciona</a></li>
+                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#about{% else %}{% url 'index' %}#about{% endif %}">Sobre</a></li>
+                    <li><a href="{% if request.resolver_match.url_name == 'index' %}#how-it-works{% else %}{% url 'index' %}#how-it-works{% endif %}">Como Funciona</a></li>
                     <li><a href="{% if request.resolver_match.url_name == 'index' %}#faq{% else %}{% url 'index' %}#faq{% endif %}">FAQ</a></li>
                 </ul>
             </nav>
-            <div class="auth-actions col-6">
+            <div class="auth-actions">
                 {% if user.is_authenticated %}
                     <span class="user-welcome">Olá, {{ user.username }}</span>
                     <a href="{% url 'dashboard' %}" class="btn-primary-nav">Dashboard</a>
@@ -50,17 +50,20 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container row-24">
-            <div class="logo-area col-6 logo-img">
+        <div class="container" style="justify-content:space-between ;">
+            <div class="logo-area">
                 <a href="{% url 'index' %}" class="logo-link">
                     <img src="{% static 'img/logo_white.png' %}" alt="P.S. Te amo" class="logo-img">
                 </a>
             </div>
-            <div class="footer-info col-16">
-                <p>Guardando suas palavras mais importantes para sempre.</p>
-                <p>P.S. Eu Te Amo – Mensagens que transcendem o tempo.</p>
-                <p class="copyright">&copy; {% now "Y" %} - com amor, para sempre.</p>
-            </div>
+
+        <div class="footer-info">
+          <p class="copyright">P.S. Eu Te Amo – Mensagens que transcendem o tempo. &copy;</p>
+        </div>
+        <div class="footer-info">
+          <p>Product by HUB42 &copy;</p>
+        </div>
+
         </div>
     </footer>
 

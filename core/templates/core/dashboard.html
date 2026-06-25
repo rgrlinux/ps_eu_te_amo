@@ -3,20 +3,24 @@
 
 {% block title %}Dashboard - P.S. Te amo{% endblock title %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+{% endblock extra_head %}
+
 {% block content %}
 <div class="dash-layout">
 
     <aside class="dash-sidebar">
         <div class="sidebar-profile">
-        <a href="{% url 'configurar_perfil' %}" class="avatar-link" title="Configurar Perfil">
-            <div class="avatar-wrapper">
-                {% if perfil.foto %}
-                    <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
-                {% else %}
-                    <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
-                {% endif %}
-            </div>
-        </a>
+            <a href="{% url 'configurar_perfil' %}" class="avatar-link" title="Configurar Perfil">
+                <div class="avatar-wrapper">
+                    {% if perfil.foto %}
+                        <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
+                    {% else %}
+                        <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
+                    {% endif %}
+                </div>
+            </a>
             <h3 class="profile-name">{{ request.user.get_full_name|default:request.user.username }}</h3>
             <span class="profile-plan">Plano: {{ perfil.plano|title }}</span>
         </div>
@@ -38,93 +42,88 @@
     </aside>
 
     <main class="dash-main">
-
-        <header class="dash-header">
-            <div class="header-welcome">
-                <h1>Olá, {{ request.user.first_name|default:request.user.username }}</h1>
-                <p class="last-access">Último acesso: {{ request.user.last_login|date:"l, d \d\e F \d\e Y" }}</p>
-            </div>
-
-            <div class="header-actions">
-                <div class="search-box">
-                    <img src="{% static 'img/icons/search.png' %}" alt="Buscar">
-                    <input type="text" placeholder="Buscar...">
+        <div class="dash-content">
+            <header class="dash-header">
+                <div class="header-welcome">
+                    <h1>Olá, {{ request.user.first_name|default:request.user.username }}</h1>
+                    <p class="last-access">Último acesso: {{ request.user.last_login|date:"l, d \d\e F \d\e Y" }}</p>
                 </div>
-                <div class="notification-bell">
-                    <img src="{% static 'img/icons/bell.png' %}" alt="Notificações">
-                </div>
-                <div class="user-mini-thumb"></div>
-            </div>
-        </header>
-
-        <section class="dash-summary">
-            <h2>Resumo</h2>
-            <div class="summary-grid">
-
-                <div class="summary-card">
-                    <h3>Destinatários</h3>
-                    <p class="card-counter">Total: {{ destinatarios.count }}</p>
-                </div>
-
-                <div class="summary-card">
-                    <h3>Mensagens Programadas</h3>
-                    <p class="card-counter">Total: {{ total_mensagens }}</p>
-                </div>
-
-                <div class="summary-card card-status {% if perfil.status == 'ativo' %}status-ativo{% endif %}">
-                    <h3>Monitoramento</h3>
-                    <p class="status-text">{{ perfil.get_status_display }}</p>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="dash-messages-section">
-            <div class="section-header">
-                <h2>Mensagens cadastradas</h2>
-
-                {% if destinatarios %}
-                    <a href="{% url 'criar_mensagem' destinatarios.first.id %}" class="btn-new-message">
-                        Nova Mensagem <span>+</span>
+                <div class="header-actions">
+                    <a href="{% url 'index' %}" class="btn-back-home">
+                        <img src="{% static 'img/icons/arrow-left.png' %}" alt="Voltar"> Voltar para o site
                     </a>
-                {% else %}
-                    <a href="#" class="btn-new-message" style="opacity: 0.6; cursor: not-allowed;" title="Cadastre um destinatário primeiro">
-                        Nova Mensagem <span>+</span>
-                    </a>
-                {% endif %}
-            </div>
+                </div>
+            </header>
 
-            <div class="messages-grid">
-                {% for d in destinatarios %}
-                    <div class="message-recipient-card">
-                        <div class="recipient-avatar">
-                            <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
+            <section class="dash-summary">
+                <h2>Resumo</h2>
+                <div class="summary-grid">
+                    <div class="summary-card card-status {% if perfil.status == 'ativo' %}status-ativo{% endif %}">
+                        <h3>Monitoramento</h3>
+                        <p class="status-text">{{ perfil.get_status_display }}</p>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3>Mensagens Programadas</h3>
+                        <p class="card-counter">Total: {{ total_mensagens }}</p>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3>Destinatários</h3>
+                        <p class="card-counter">Total: {{ destinatarios.count }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dash-messages-section">
+                <div class="section-header">
+                    <h2>Mensagens cadastradas</h2>
+                    {% if destinatarios %}
+                        <a href="{% url 'criar_mensagem' destinatarios.first.id %}" class="btn-new-message">
+                            Nova Mensagem <span>+</span>
+                        </a>
+                    {% else %}
+                        <a href="#" class="btn-new-message" style="opacity: 0.6; cursor: not-allowed;" title="Cadastre um destinatário primeiro">
+                            Nova Mensagem <span>+</span>
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="messages-grid">
+                    {% for d in destinatarios %}
+                        <div class="message-recipient-card">
+                            <div class="recipient-avatar">
+                                <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
+                            </div>
+                            <div class="recipient-info">
+                                <h4>{{ d.nome }}</h4>
+                                <p>Email: {{ d.contato }}</p>
+                                <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
+                                <p>Ordem de Envio: {{ d.ordem_envio }}</p>
+                                <a href="{% url 'criar_mensagem' d.id %}" class="btn-add-msg-inline">
+                                    + Nova mensagem para {{ d.nome.split.0 }}
+                                </a>
+                            </div>
                         </div>
-                        <div class="recipient-info">
-                            <h4>{{ d.nome }}</h4>
-                            <p class="recipient-email">Email: {{ d.contato }}</p>
-                            <p class="recipient-count">Mensagens Cadastradas: {{ d.mensagens.count }}</p>
-                            <p class="recipient-order">Ordem de Envio: {{ d.ordem_envio }}</p>
-
-                            <a href="{% url 'criar_mensagem' d.id %}" class="btn-add-msg-inline">
-                                + Nova mensagem para {{ d.nome.split.0 }}
-                            </a>
+                    {% empty %}
+                        <div class="empty-state-card">
+                            <p>Você ainda não possui destinatários cadastrados.</p>
                         </div>
-                    </div>
-                {% empty %}
-                    <div class="empty-state-card">
-                        <p>Você ainda não possui destinatários cadastrados.</p>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
 
-                {% if destinatarios.count > 2 %}
-                    <div class="view-more-card">
-                        <a href="#">Ver mais <span class="arrow-icon">&gt;</span></a>
-                    </div>
-                {% endif %}
-            </div>
-    </section>
+                    {% if destinatarios.count > 2 %}
+                        <div class="view-more-card">
+                            <a href="#">Ver mais <span class="arrow-icon">&gt;</span></a>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
 
+        <footer class="dash-footer">
+            <p class="footer-text">P.S. Eu Te Amo – Mensagens que transcendem o tempo.</p>
+            <p class="footer-copy">&copy; {% now "Y" %} - Product by HUB42</p>
+        </footer>
     </main>
 </div>
 {% endblock content %}
