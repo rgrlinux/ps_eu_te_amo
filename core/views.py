@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 # from django.utils import
@@ -140,8 +140,6 @@ def listar_mensagens(request):
     return render(request, 'core/mensagens_lista.html', context)
 
 
-
-
 @login_required
 def listar_servicos(request):
     perfil = request.user.perfil
@@ -152,3 +150,10 @@ def listar_servicos(request):
         'servicos': servicos,
     }
     return render(request, 'core/servicos_lista.html', context)
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Você saiu com sucesso!')
+    return redirect('index')  # Ou 'login' se tiver página de login

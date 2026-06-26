@@ -36,6 +36,7 @@
                 {% if user.is_authenticated %}
                     <span class="user-welcome">Olá, {{ user.username }}</span>
                     <a href="{% url 'dashboard' %}" class="btn-primary-nav">Dashboard</a>
+                    <a href="{% url 'logout' %}" class="btn-link">Sair</a>
                 {% else %}
                     <a href="{% url 'cadastro' %}" class="btn-link">Criar conta</a>
                     <a href="{% url 'login' %}" class="btn-primary-nav">Fazer login</a>

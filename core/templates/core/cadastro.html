@@ -4,10 +4,10 @@
 {% block title %}Crie sua conta - P.S. Te amo{% endblock title %}
 
 {% block content %}
-<section class="auth-section">
-    <div class="container ">
-        <div class="auth-card">
-            <h2>Crie sua conta</h2>
+<section class="login-container">
+
+        <div class="login-box">
+            <h2 class="title">Crie sua conta</h2>
             <form method="POST" class="auth-form">
                 {% csrf_token %}
 
@@ -19,7 +19,7 @@
                     </div>
                 {% endif %}
 
-                <div class="form-group">
+                <div class="input-group">
                     <label for="{{ form.username.id_for_label }}">Usuário</label>
                     <input type="text" name="username" id="id_username" placeholder="email@email.com.br" required maxlength="150">
                     <small class="help-text">Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.</small>
@@ -28,7 +28,7 @@
                     {% endif %}
                 </div>
 
-                <div class="form-group">
+                <div class="input-group">
                     <label for="{{ form.password1.id_for_label }}">Senha</label>
                     <input type="password" name="password1" id="id_password1" placeholder="••••••••" required>
                     <ul class="help-text-list">
@@ -42,7 +42,7 @@
                     {% endif %}
                 </div>
 
-                <div class="form-group">
+                <div class="input-group">
                     <label for="{{ form.password2.id_for_label }}">Confirmação de senha</label>
                     <input type="password" name="password2" id="id_password2" placeholder="••••••••" required>
                     <p class="help-text">Informe a mesma senha informada anteriormente, para verificação.</p>
@@ -51,13 +51,13 @@
                     {% endif %}
                 </div>
 
-                <button type="submit" class="btn-auth-submit">Cadastrar</button>
+                <button type="submit" class="btn-login">Cadastrar</button>
             </form>
 
-            <div class="auth-footer-links">
+            <div class="signup-text">
                 <span>Já tem conta? <a href="{% url 'login' %}" class="link-highlight">Faça login</a></span>
             </div>
         </div>
-    </div>
+
 </section>
 {% endblock content %}

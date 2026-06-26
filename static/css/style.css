@@ -710,7 +710,7 @@ section.container {
 /* Caixa do formulário */
 .login-box {
     width: 100%;
-    max-width: 440px; /* Largura proporcional à imagem */
+    max-width: 600px; /* Largura proporcional à imagem */
     padding: 40px;
     background-color: #ffffff;
     border-radius: 4px;
