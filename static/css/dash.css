@@ -1,374 +1,420 @@
 /* ==========================================================================
-   DASHBOARD - ESTILO EXATAMENTE IGUAL À IMAGEM 1 (SIDEBAR CLARA)
+   1. TOKENS DE DESIGN & VARIÁVEIS OFICIAIS
    ========================================================================== */
+:root {
+  --color-bg-main: #f0f4f8;
+  --color-bg-white: #ffffff;
+  --color-text-dark: #2c3a4b;
+  --color-text-muted: #627285;
+  --color-text-card: #3d4966;
+  --color-brand-blue: #0b57d0;
+  --color-border: #e2e8f0;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Zen Kaku Gothic New", Roboto, sans-serif;
+  --container-max-width: 90rem;
+}
 
-/* 1. TRAVA A TELA E DESATIVA A ROLAGEM DA PÁGINA INTEEIRA */
+/* ==========================================================================
+   2. RESET CSS COMPLETO E LIMPO
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body {
-  background-color: #f0f4f8 !important;
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100vh !important;
-  overflow: hidden !important;
   font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-dark);
 }
 
-/* OCULTA O HEADER E FOOTER GLOBAIS DA LANDING PAGE */
-.main-header, header:not(.dash-header), .main-footer, footer:not(.dash-footer) {
-  display: none !important;
-}
-
-/* ==========================================================================
-   DASHBOARD LAYOUT (SIDEBAR | MAIN)
-   ========================================================================== */
-.dash-layout {
-  display: flex !important;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f0f4f8;
-  box-sizing: border-box;
-  gap: 20px;
-  padding: 20px;
-}
-
-/* ==========================================================================
-   SIDEBAR (BARRA LATERAL ESQUERDA) - CLARA COM SOMBRA
-   ========================================================================== */
-.dash-sidebar {
-  width: 280px;
-  min-width: 280px;
-  background-color: #ffffff;
-  color: #2c3a4b;
+body.dash-body-layout {
   display: flex;
   flex-direction: column;
-  padding: 32px 20px 24px 20px;
-  box-sizing: border-box;
-  height: 100%;
-  flex-shrink: 0;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid #eef2f6;
 }
 
-.sidebar-profile {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   3. LAYOUT CENTRALIZADO (SIMETRIA ABSOLUTA)
+   ========================================================================== */
+.dash-main-layout {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;    /* Centraliza verticalmente no meio exato da tela */
+  justify-content: center;
+  padding: 3rem 0;
+  width: 100%;
+}
+
+.dashboard-section {
+  width: 100%;
+}
+
+.dash-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* O grid que alinha perfeitamente o menu com os dois cards da direita */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.0rem;          /* Espaço refinado e elegante entre o menu e os cards */
+  align-items: stretch; /* Faz o menu lateral ter EXATAMENTE a mesma altura da direita */
+}
+
+/* ==========================================================================
+   4. MENU LATERAL (ASIDE)
+   ========================================================================== */
+.dashboard-menu {
+  background: var(--color-bg-white);
+  border-radius: 1rem;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #eef2f6;
 }
 
-.avatar-wrapper {
-  width: 80px;
-  height: 80px;
+.menu-header .logo-area {
+  margin-bottom: 2rem;
+}
+
+.menu-header .logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.user-profile {
+  margin-bottom: 1rem;
+}
+
+.user-profile img {
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #0b57d0;
-  margin-bottom: 12px;
-  background-color: #f0f4f8;
-}
-
-.profile-avatar {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  border: 3px solid #f0f4f8;
 }
 
-.profile-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 2px 0;
-  color: #2c3a4b;
+.user-info h3 {
+  color: var(--color-text-dark);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
 }
 
-.profile-plan {
-  font-size: 0.75rem;
-  color: #627285;
-  background-color: #f0f4f8;
-  padding: 2px 14px;
-  border-radius: 20px;
-  display: inline-block;
+
+
+/* Link textual do "Editar Perfil" com ícone */
+.btn-edit-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-brand-blue);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.15rem;
+  transition: opacity 0.2s ease;
 }
 
-/* Navegação da Sidebar */
-.sidebar-nav {
+.btn-edit-profile:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.btn-edit-profile i {
+  width: 8px;
+  height: 8px;
+}
+
+.user-plan {
+  margin-top: 1.5rem;
+}
+
+.user-plan .plan-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.user-plan .plan-type {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.dashboard-nav {
+  margin-top: 2.5rem;
+  width: 100%;
+}
+
+.dashboard-nav ul {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
 }
 
-.nav-item {
+.dashboard-nav a {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #627285;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  border-radius: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
   font-size: 0.95rem;
-  transition: background-color 0.2s, color 0.2s;
+  transition: all 0.2s ease;
 }
 
-.nav-item:hover {
-  background-color: #f0f4f8;
-  color: #2c3a4b;
-}
-
-.nav-item.active {
-  background-color: #0b57d0;
-  color: #ffffff;
-}
-
-.nav-item.active .nav-icon {
-  filter: brightness(0) invert(1);
-}
-
-.nav-item.upgrade-link {
-  margin-top: auto;
-  background-color: #e8f1fe;
-  color: #0b57d0;
-}
-
-.nav-item.upgrade-link:hover {
-  background-color: #d2e3fc;
-}
-
-.nav-icon {
+.dashboard-nav a i {
   width: 18px;
   height: 18px;
-  object-fit: contain;
-  opacity: 0.6;
 }
 
-.nav-item.active .nav-icon {
-  opacity: 1;
+.dashboard-nav li.active a {
+  background-color: #f0f4f8;
+  color: var(--color-brand-blue);
+  font-weight: 700;
+  border-radius: 0.75rem;
+}
+
+.dashboard-nav a:hover:not(.active a) {
+  background-color: #f8fafc;
+  color: var(--color-text-dark);
 }
 
 /* ==========================================================================
-   MAIN CONTENT (PAINEL DA DIREITA)
+   5. CONTAINER DOS CARDS DA DIREITA
    ========================================================================== */
-.dash-main {
-  flex: 1;
-  height: 100%;
+.dashboard-main {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid #eef2f6;
-  overflow: hidden;
-  padding: 0;
+  gap: 1.0rem; /* Distância vertical perfeita entre o card superior e inferior */
 }
 
-/* ==========================================================================
-   CONTEÚDO DO MAIN (SCROLLÁVEL)
-   ========================================================================== */
-.dash-content {
-  flex: 1;
-  padding: 32px 40px 16px 40px;
-  overflow-y: auto;
+.dash-card {
+  background: var(--color-bg-white);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  height: auto;
+  min-height: 350px;
 }
 
-/* Scroll personalizado */
-.dash-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.dash-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.dash-content::-webkit-scrollbar-thumb {
-  background: #dce1e8;
-  border-radius: 4px;
-}
-
-.dash-content::-webkit-scrollbar-thumb:hover {
-  background: #b0bcc9;
-}
-
-/* ==========================================================================
-   TOPO DO PAINEL (HEADER)
-   ========================================================================== */
-.dash-header {
+.card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32px;
-  padding-bottom: 0;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.header-welcome h1 {
-  font-size: 1.6rem;
-  color: #2c3a4b;
-  margin: 0 0 2px 0;
+.card-header h3 {
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
 }
 
 .last-access {
-  font-size: 0.85rem;
-  color: #627285;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
   margin: 0;
+  margin-top: 0.25rem;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 4px;
+  gap: 1rem;
 }
 
-.btn-back-home {
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--color-brand-blue);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
   background-color: #f0f4f8;
-  border: 1px solid #eef2f6;
-  border-radius: 8px;
-  padding: 8px 16px;
-  color: #2c3a4b;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background-color 0.2s, border-color 0.2s;
 }
 
-.btn-back-home:hover {
-  background-color: #e8ecf0;
-  border-color: #dce1e8;
+.btn-icon i {
+  width: 22px;
+  height: 22px;
 }
 
-.btn-back-home img {
-  width: 16px;
-  height: 16px;
+/* BOTÃO DE SAIR CORRIGIDO (Fundo azul circular com ícone branco) */
+.btn-logout {
+  background-color: var(--color-brand-blue) !important;
+  color: #ffffff !important;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(11, 87, 208, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #004bb3 !important;
+  transform: scale(1.05);
+}
+
+.btn-logout i {
+  width: 18px;
+  height: 18px;
+  color: #ffffff !important;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 1rem 0;
 }
 
 /* ==========================================================================
-   RESUMO (CARDS SUPERIORES)
+   6. SUMMARY GRID (RESUMO)
    ========================================================================== */
-.dash-summary {
-  margin-bottom: 32px;
-}
-
-.dash-summary h2 {
-  font-size: 1.1rem;
-  color: #2c3a4b;
-  margin: 0 0 16px 0;
-  font-weight: 600;
-}
-
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 0.5rem; /* Gap ideal e compacto entre as três caixas */
 }
 
 .summary-card {
-  background-color: #f8fafc;
-  border-radius: 12px;
-  padding: 18px 24px;
-  border: 1px solid #eef2f6;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 90px;
 }
 
-.summary-card h3 {
-  font-size: 0.85rem;
-  color: #627285;
-  margin: 0 0 6px 0;
-  font-weight: 500;
-}
-
-.card-counter,
-.status-text {
-  font-size: 1.4rem;
+.summary-card h4 {
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #2c3a4b;
+  color: var(--color-text-card);
   margin: 0;
 }
 
-.status-text {
-  color: #2e7d32;
+.summary-card.active {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+/* .summary-card.active h4 {
+  color: #137333;
+} */
+
+.status-wrapper {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #137333;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.bg-light {
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.summary-total {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
 }
 
 /* ==========================================================================
-   SEÇÃO DE MENSAGENS
+   7. MESSAGES SUB-SECTION
    ========================================================================== */
-.dash-messages-section {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.dash-messages-section .section-header {
+.messages-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 1.5rem;
 }
 
-.dash-messages-section .section-header h2 {
-  font-size: 1.1rem;
-  color: #2c3a4b;
+.messages-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
   margin: 0;
-  font-weight: 600;
 }
 
 .btn-new-message {
-  background-color: #0b57d0;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  background-color: #cbd5e1;
+  color: var(--color-text-dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
   font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 0.9rem;
   transition: background-color 0.2s;
-  border: none;
-  cursor: pointer;
 }
 
 .btn-new-message:hover {
-  background-color: #0845a4;
+  background-color: #bbf7d0;
+  color: #137333;
 }
 
-.btn-new-message span {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-/* ==========================================================================
-   GRID DE MENSAGENS (CARDS DOS DESTINATÁRIOS)
-   ========================================================================== */
-.messages-grid {
+.messages-list-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  flex: 1;
-  align-content: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
-.message-recipient-card {
-  background-color: #f8fafc;
-  border-radius: 12px;
-  padding: 18px 24px;
-  border: 1px solid #eef2f6;
+.message-item {
+  border-radius: 0.75rem;
+  padding: 1.5rem;
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   align-items: flex-start;
-  transition: box-shadow 0.2s;
 }
 
-.message-recipient-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.recipient-avatar {
-  width: 44px;
-  height: 44px;
-  background-color: #eef2f6;
+.message-item-icon {
+  background-color: #e2e8f0;
+  color: var(--color-brand-blue);
+  padding: 0.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -376,362 +422,99 @@ html, body {
   flex-shrink: 0;
 }
 
-.recipient-avatar img {
-  width: 22px;
-  height: 22px;
-  opacity: 0.6;
+.message-item-icon i {
+  width: 20px;
+  height: 20px;
 }
 
-.recipient-info {
-  flex: 1;
-  min-width: 0;
+.message-item-info h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem 0;
 }
 
-.recipient-info h4 {
-  font-size: 1rem;
-  color: #2c3a4b;
-  margin: 0 0 4px 0;
-  font-weight: 600;
-}
-
-.recipient-info p {
-  font-size: 0.82rem;
-  color: #627285;
-  margin: 0 0 2px 0;
+.message-item-info p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
   line-height: 1.4;
+  margin: 0 0 0.2rem 0;
 }
 
-.btn-add-msg-inline {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 0.8rem;
-  color: #0b57d0;
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.2s;
+.message-item-info strong {
+  color: var(--color-text-dark);
 }
 
-.btn-add-msg-inline:hover {
-  opacity: 0.7;
+.bg-white {
+  background-color: var(--color-bg-white);
+  border: 1px solid #e2e8f0;
 }
 
-/* ==========================================================================
-   CARD "VER MAIS"
-   ========================================================================== */
-.view-more-card {
-  background-color: #f8fafc;
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  border: 2px dashed #dce1e8;
+.flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px;
 }
 
-.view-more-card a {
-  color: #0b57d0;
-  text-decoration: none;
+.btn-view-more {
+  color: var(--color-brand-blue);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  transition: gap 0.2s;
 }
 
-.view-more-card a .arrow-icon {
-  font-size: 1.1rem;
-  transition: transform 0.2s;
-}
-
-.view-more-card a:hover .arrow-icon {
-  transform: translateX(4px);
-}
-
-.view-more-card:hover {
-  background-color: #ffffff;
-  border-color: #0b57d0;
+.btn-view-more:hover {
+  gap: 8px;
 }
 
 /* ==========================================================================
-   ESTADO VAZIO (SEM DESTINATÁRIOS)
+   8. FOOTER (ISOLADO E CORRIGIDO)
    ========================================================================== */
-.empty-state-card {
-  grid-column: span 2;
-  background-color: #f8fafc;
-  border-radius: 12px;
-  padding: 48px 32px;
-  text-align: center;
-  border: 2px dashed #dce1e8;
-}
-
-.empty-state-card p {
-  color: #627285;
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* ==========================================================================
-   FOOTER DO DASHBOARD (DENTRO DO MAIN)
-   ========================================================================== */
-.dash-footer {
-  background-color: #f8fafc;
-  color: #627285;
-  padding: 10px 40px;
-  font-size: 0.75rem;
+.main-footer {
+  background-color: #2c3a4b;
+  color: #a0b2c6;
+  padding: 20px 0;
+  font-size: 0.85rem;
   flex-shrink: 0;
+  width: 100%;
+}
+
+.footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #eef2f6;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
 }
 
-.dash-footer .footer-text {
-  margin: 0;
-  opacity: 0.7;
+.main-footer .logo-img {
+  height: 24px;
+  width: auto;
 }
 
-.dash-footer .footer-copy {
+.main-footer p {
   margin: 0;
-  opacity: 0.5;
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE
+   9. RESPONSIVIDADE
    ========================================================================== */
-@media (max-width: 1024px) {
-  .dash-layout {
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .dash-sidebar {
-    width: 220px;
-    min-width: 220px;
-    padding: 24px 16px;
-  }
-
-  .dash-content {
-    padding: 24px 24px 16px 24px;
-  }
-
-  .summary-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-
-  .messages-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .dash-footer {
-    padding: 10px 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .dash-layout {
-    flex-direction: column;
-    height: 100vh;
-    padding: 12px;
-    gap: 12px;
-    overflow: hidden;
-  }
-
-  .dash-sidebar {
-    width: 100%;
-    min-width: unset;
-    height: auto;
-    padding: 16px 20px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    border-radius: 12px;
-  }
-
-  .sidebar-profile {
-    flex-direction: row;
-    gap: 12px;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    flex: 1;
-  }
-
-  .avatar-wrapper {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0;
-  }
-
-  .profile-name {
-    font-size: 0.9rem;
-  }
-
-  .profile-plan {
-    font-size: 0.65rem;
-    padding: 0 10px;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    gap: 4px;
-    flex: 1;
-    flex-wrap: wrap;
-  }
-
-  .nav-item {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-
-  .nav-item.upgrade-link {
-    margin-top: 0;
-  }
-
-  .dash-main {
-    height: 100%;
-    border-radius: 12px;
-  }
-
-  .dash-content {
-    padding: 16px 16px 12px 16px;
-  }
-
-  .dash-header {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .header-actions {
-    width: 100%;
-  }
-
-  .btn-back-home {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .summary-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .messages-grid {
+@media (max-width: 992px) {
+  .dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
-
-  .empty-state-card {
-    grid-column: span 1;
-  }
-
-  .dash-messages-section .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .btn-new-message {
-    align-self: stretch;
-    justify-content: center;
-  }
-
-  .message-recipient-card {
-    padding: 16px;
-  }
-
-  .view-more-card {
-    min-height: 60px;
-  }
-
-  .dash-footer {
-    padding: 8px 16px;
-    flex-direction: column;
-    text-align: center;
-    gap: 2px;
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .dash-layout {
-    padding: 8px;
-    gap: 8px;
-  }
-
-  .dash-sidebar {
-    padding: 12px 16px;
-    gap: 8px;
-  }
-
-  .sidebar-profile {
-    gap: 8px;
-  }
-
-  .avatar-wrapper {
-    width: 32px;
-    height: 32px;
-  }
-
-  .profile-name {
-    font-size: 0.8rem;
-  }
-
-  .profile-plan {
-    font-size: 0.6rem;
-    padding: 0 8px;
-  }
-
-  .nav-item {
-    padding: 4px 10px;
-    font-size: 0.7rem;
-    gap: 6px;
-  }
-
-  .nav-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .dash-content {
-    padding: 12px 12px 10px 12px;
-  }
-
-  .header-welcome h1 {
-    font-size: 1.2rem;
-  }
-
-  .last-access {
-    font-size: 0.75rem;
-  }
-
-  .summary-grid {
+  .summary-grid,
+  .messages-list-grid {
     grid-template-columns: 1fr;
-    gap: 8px;
   }
-
-  .summary-card {
-    padding: 12px 16px;
-  }
-
-  .card-counter,
-  .status-text {
-    font-size: 1.2rem;
-  }
-
-  .message-recipient-card {
+  .footer-container {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 16px;
-  }
-
-  .recipient-info {
+    gap: 1rem;
     text-align: center;
   }
 }

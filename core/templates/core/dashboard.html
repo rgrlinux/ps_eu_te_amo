@@ -1,45 +1,175 @@
-{% extends 'core/base.html' %}
 {% load static %}
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>P.S. Te amo - Dashboard</title>
 
-{% block title %}Dashboard - P.S. Te amo{% endblock title %}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&family=Zen+Kaku+Gothic+New:wght={300;400;500;700}&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body class="dash-body-layout">
+        <main class="dash-main-layout">
+            <section id="dashboard" class="dashboard-section">
+                <div class="dash-container">
+                    <div class="dashboard-grid">
+                        <aside class="dashboard-menu">
+                            <div class="menu-header">
+                                <div class="logo-area">
+                                    <img src={% static 'img/logo.png' %} class="logo-img" alt="Logo">
+                                </div>
+                                <div class="user-profile">
+                                    {% if perfil.foto %}
+                                        <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
+                                    {% else %}
+                                        <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
+                                    {% endif %}
+                                </div>
+                                <div id="user-info">
+                                    <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
+                                    <a class="btn-edit-profile" href="#">Editar Perfil <i data-lucide="square-pen"></i></a>
+                                    <div class="user-plan">
+                                        <p class="plan-title">Sua Assinatura</p>
+                                        <p class="plan-type">Plano: {{ perfil.plano|title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="dashboard-nav">
+                                <ul>
+                                    <li class="active"><a href="#"><i data-lucide="layout-dashboard"></i>Dashboard</a></li>
+                                    <li><a href="#"><i data-lucide="mail"></i>Mensagens</a></li>
+                                    <li><a href="#"><i data-lucide="settings"></i>Serviços</a></li>
+                                    <li><a href="#"><i data-lucide="crown"></i>Fazer Upgrade</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                        <div class="dashboard-main">
+                            <div class="dash-card">
+                                <div class="card-header">
+                                    <div class="user-welcome-area">
+                                        <h3>Olá, {{ request.user.first_name|default:request.user.username }}</h3>
+                                        <p class="last-access">Último acesso: Domingo, 10 de Maio 2026</p>
+                                    </div>
+                                    <div class="header-actions">
+                                        <button class="btn-icon" aria-label="Notificações"><i data-lucide="bell"></i></button>
+                                        <button class="btn-icon btn-logout" aria-label="Sair"><i data-lucide="log-out"></i></button>
+                                    </div>
+                                </div>
+                                <h4 class="section-title">Resumo</h4>
+                                <div class="summary-grid">
+                                    <div class="summary-card active">
+                                        <h4>Monitoramento</h4>
+                                        <div class="status-wrapper"><span class="status-dot"></span> Ativo</div>
+                                    </div>
+                                    <div class="summary-card bg-light">
+                                        <h4>Mensagens Programadas</h4>
+                                        <span class="summary-total">Total: {{ total_mensagens }} </span>
+                                    </div>
+                                    <div class="summary-card bg-light card-recipient-summary">
+                                        <div class="summary-card-header">
+                                            <h4>Destinatários</h4>
+                                        </div>
 
-{% block extra_head %}
-    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-{% endblock extra_head %}
+                                        <span class="summary-total">Total: {{ destinatarios.count }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dash-card">
+                                <div class="messages-header">
+                                    <h3>Mensagens cadastradas</h3>
+                                    <a href="#" class="btn-new-message">Nova Mensagem +</a>
+                                </div>
+                                <div class="messages-list-grid">
+                                    <div class="message-item bg-light">
+                                        {% comment %} <div class="message-item-icon"><i data-lucide="user"></i></div> {% endcomment %}
+                                        <div class="message-item-info">
+                                            {% if destinatarios %}
+                                                <div class="messages-grid">
+                                            {% for d in destinatarios %}
+                                                <div class="message-recipient-card">
+                                                    <div class="message-item-icon">
+                                                        <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
+                                                    </div>
+                                                    <h4>{{ d.nome }}</h4>
+                                                    <div class="recipient-info">
+                                                        <p>Email: {{ d.contato }}</p>
+                                                        <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
+                                                        <p>Ordem de Envio: {{ d.ordem_envio }}</p>
+                                                        {% comment %} <a
+                                                            href="{% url 'criar_mensagem' d.id %}"
+                                                            class="btn-add-msg-inline">
+                                                            + Nova mensagem para {{ d.nome.split.0 }}
+                                                        </a> {% endcomment %}
+                                                    </div>
+                                                </div>
+                                            {% empty %}
+                                                <div class="empty-state-card">
+                                                    <p>Você ainda não possui destinatários cadastrados.</p>
+                                                </div>
+                                            {% endfor %}
 
-{% block content %}
-<div class="dash-layout">
 
-    <aside class="dash-sidebar">
-        <div class="sidebar-profile">
-            <a href="{% url 'configurar_perfil' %}" class="avatar-link" title="Configurar Perfil">
-                <div class="avatar-wrapper">
-                    {% if perfil.foto %}
-                        <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
-                    {% else %}
-                        <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
-                    {% endif %}
+
+
+                                                </div>
+                                            {% else %}
+                                                <a
+                                                    href="#"
+                                                    class="btn-new-message"
+                                                    style="opacity: 0.6; cursor: not-allowed;"
+                                                    title="Cadastre um destinatário primeiro">
+                                                    Nova Mensagem <span>+</span>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="messages-grid">
+                                            {% comment %} {% for d in destinatarios %}
+                                                <div class="message-recipient-card">
+                                                    <div class="recipient-avatar">
+                                                        <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
+                                                    </div>
+                                                    <div class="recipient-info">
+                                                        <h4>{{ d.nome }}</h4>
+                                                        <p>Email: {{ d.contato }}</p>
+                                                        <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
+                                                        <p>Ordem de Envio: {{ d.ordem_envio }}</p>
+                                                        <a
+                                                            href="{% url 'criar_mensagem' d.id %}"
+                                                            class="btn-add-msg-inline">
+                                                            + Nova mensagem para {{ d.nome.split.0 }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            {% empty %}
+                                                <div class="empty-state-card">
+                                                    <p>Você ainda não possui destinatários cadastrados.</p>
+                                                </div>
+                                            {% endfor %} {% endcomment %}
+                                            {% if destinatarios.count > 2 %}
+                                                <div class="view-more-card">
+                                                    <a href="#">Ver mais <span class="arrow-icon">&gt;</span></a>
+                                                </div>
+                                            {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
                 </div>
-            </a>
-            <h3 class="profile-name">{{ request.user.get_full_name|default:request.user.username }}</h3>
-            <span class="profile-plan">Plano: {{ perfil.plano|title }}</span>
-        </div>
+            </div>
+        </section>
+    </main>
+     <script src="{% static 'js/script.js' %}"></script>
+</body>
+{% comment %}
 
-        <nav class="sidebar-nav">
-            <a href="{% url 'dashboard' %}" class="nav-item active">
-                <img src="{% static 'img/icons/dashboard.png' %}" alt="" class="nav-icon"> Dashboard
-            </a>
-            <a href="{% url 'listar_mensagens' %}" class="nav-item">
-                <img src="{% static 'img/icons/messages.png' %}" alt="" class="nav-icon"> Mensagens
-            </a>
-            <a href="{% url 'listar_servicos' %}" class="nav-item">
-                <img src="{% static 'img/icons/services.png' %}" alt="" class="nav-icon"> Serviços
-            </a>
-            <a href="{% url 'renovar_assinatura' %}" class="nav-item upgrade-link">
-                <img src="{% static 'img/icons/upgrade.png' %}" alt="" class="nav-icon"> Fazer Upgrade
-            </a>
-        </nav>
-    </aside>
+
 
     <main class="dash-main">
         <div class="dash-content">
@@ -125,5 +255,4 @@
             <p class="footer-copy">&copy; {% now "Y" %} - Product by HUB42</p>
         </footer>
     </main>
-</div>
-{% endblock content %}
+</div> {% endcomment %}
