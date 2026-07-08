@@ -10,11 +10,12 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('configurar-perfil/', views.configurar_perfil, name='configurar_perfil'),
     path('destinatario/novo/', views.criar_destinatario, name='criar_destinatario'),
-    path('mensagem/novo/<int:destinatario_id>/', views.criar_mensagem, name='criar_mensagem'),
+    path('mensagem/nova/', views.criar_mensagem, name='criar_mensagem'),
     path('confirmar-vida/<int:usuario_id>/', views.confirmar_vida, name='confirmar_vida'),
     path('confirmar-falecimento/<str:codigo>/', views.confirmar_falecimento_view, name='confirmar_falecimento'),
     path('renovar/', views.renovar_assinatura, name='renovar_assinatura'),
     path('criar-checkout/', view_checkout.create_checkout, name='criar_checkout'),
     path('mensagens/', views.listar_mensagens, name='listar_mensagens'),
     path('servicos/', views.listar_servicos, name='listar_servicos'),
+    path('dashboard/dados-tabela/', views.carregar_tabela_destinatarios, name='carregar_tabela_destinatarios'),
 ]

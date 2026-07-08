@@ -3,16 +3,16 @@
 {% block title %}Novo Destinatário{% endblock %}
 
 {% block content %}
-<div style="max-width: 600px; margin: 40px auto;">
-    <div class="card">
-        <h2>Adicionar Destinatário 💝</h2>
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Adicionar Destinatário</h2>
 
-        <form method="post">
+        <form method="post" class="modern-form">
             {% csrf_token %}
 
             {% for field in form %}
             <div class="form-group">
-                <label>{{ field.label }}</label>
+                <label class="field-label">{{ field.label }}</label>
                 {{ field }}
                 {% if field.help_text %}
                     <div class="help-text">{{ field.help_text }}</div>
@@ -23,7 +23,7 @@
             </div>
             {% endfor %}
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar</button>
+            <button type="submit" class="btn-primary-action" >Salvar</button>
         </form>
     </div>
 </div>

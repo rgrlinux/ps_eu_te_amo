@@ -1,0 +1,81 @@
+<div class="messages-table-container">
+    {% if page_obj %}
+        <table class="custom-table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th style="width: 60px; text-align: center;">Editar</th>
+                    <th>Título / Assunto</th>
+                    <th>Destinatário</th>
+                    <th>Mídias Anexadas</th>
+                    <th>Data de Criação</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% comment %} "window.location.href='{% url 'editar_mensagem' msg.id %}'" {% endcomment %}
+                {% for msg in page_obj %}
+                    <tr ondblclick="window.location.href='#'" class="clickable-row" title="Duplo clique para editar">
+                        <td class="text-center">
+                            <a href="#" class="btn-table-action" title="Editar Mensagem">
+                                <i data-lucide="pencil-line" style="color: var(--color-brand-blue); width: 18px; height: 18px;"></i>
+                            </a>
+                        </td>
+                        <td class="msg-title"><strong>{{ msg.titulo|default:"Sem título" }}</strong></td>
+                        <td>{{ msg.destinatario.nome }}</td>
+                        <td>
+                            <span class="media-badge">
+                                {{ msg.midias.count|default:0 }} arquivo(s)
+                            </span>
+                        </td>
+                        <td>{{ msg.data_criacao|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            {% if msg.enviada %}
+                                <span class="status-badge sent">Enviada</span>
+                            {% else %}
+                                <span class="status-badge pending">Aguardando Gatilho</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if page_obj.has_other_pages %}
+        <div class="table-pagination">
+            {% if page_obj.has_previous %}
+                <button class="btn-pagination" onclick="buscarLista('{% url 'carregar_tabela_destinatarios' %}?page={{ page_obj.previous_page_number }}')">
+                    <i data-lucide="chevron-left"></i> Anterior
+                </button>
+            {% else %}
+                <button class="btn-pagination" disabled><i data-lucide="chevron-left"></i> Anterior</button>
+            {% endif %}
+
+            <span class="page-current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+            {% if page_obj.has_next %}
+                <button class="btn-pagination" onclick="buscarLista('{% url 'carregar_tabela_destinatarios' %}?page={{ page_obj.next_page_number }}')">
+                    Próximo <i data-lucide="chevron-right"></i>
+                </button>
+            {% else %}
+                <button class="btn-pagination" disabled>Próximo <i data-lucide="chevron-right"></i></button>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    {% else %}
+        <div class="empty-state-card" style="padding: 60px 20px; text-align: center;">
+            <p style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 20px;">
+                Você ainda não escreveu nenhuma mensagem.
+            </p>
+            <a href="{% url 'criar_mensagem' %}" class="btn-new-message" style="display: inline-block;">
+                Escrever Minha Primeira Mensagem
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

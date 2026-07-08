@@ -13,7 +13,7 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src='https://unpkg.com/lucide@latest'/></script>
     </head>
     <body class="dash-body-layout">
         <main class="dash-main-layout">
@@ -34,7 +34,11 @@
                                 </div>
                                 <div id="user-info">
                                     <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
-                                    <a class="btn-edit-profile" href="#">Editar Perfil <i data-lucide="square-pen"></i></a>
+                                    <a
+                                        class="btn-edit-profile"
+                                        href="{% url 'configurar_perfil' %}">Editar Perfil
+                                        <i data-lucide="square-pen" ></i>
+                                    </a>
                                     <div class="user-plan">
                                         <p class="plan-title">Sua Assinatura</p>
                                         <p class="plan-type">Plano: {{ perfil.plano|title }}</p>
@@ -59,7 +63,14 @@
                                     </div>
                                     <div class="header-actions">
                                         <button class="btn-icon" aria-label="Notificações"><i data-lucide="bell"></i></button>
-                                        <button class="btn-icon btn-logout" aria-label="Sair"><i data-lucide="log-out"></i></button>
+                                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="btn-icon btn-logout" aria-label="Sair">
+                                                <i data-lucide="log-out"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 <h4 class="section-title">Resumo</h4>
@@ -81,91 +92,70 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dash-card">
-                                <div class="messages-header">
-                                    <h3>Mensagens cadastradas</h3>
-                                    <a href="#" class="btn-new-message">Nova Mensagem +</a>
-                                </div>
-                                <div class="messages-list-grid">
-                                    <div class="message-item bg-light">
-                                        {% comment %} <div class="message-item-icon"><i data-lucide="user"></i></div> {% endcomment %}
-                                        <div class="message-item-info">
-                                            {% if destinatarios %}
-                                                <div class="messages-grid">
-                                            {% for d in destinatarios %}
-                                                <div class="message-recipient-card">
-                                                    <div class="message-item-icon">
-                                                        <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
-                                                    </div>
-                                                    <h4>{{ d.nome }}</h4>
-                                                    <div class="recipient-info">
-                                                        <p>Email: {{ d.contato }}</p>
-                                                        <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
-                                                        <p>Ordem de Envio: {{ d.ordem_envio }}</p>
-                                                        {% comment %} <a
-                                                            href="{% url 'criar_mensagem' d.id %}"
-                                                            class="btn-add-msg-inline">
-                                                            + Nova mensagem para {{ d.nome.split.0 }}
-                                                        </a> {% endcomment %}
-                                                    </div>
-                                                </div>
-                                            {% empty %}
-                                                <div class="empty-state-card">
-                                                    <p>Você ainda não possui destinatários cadastrados.</p>
-                                                </div>
-                                            {% endfor %}
+  <div class="dash-card">
+    <div class="messages-header">
+        <h3>Mensagens cadastradas</h3>
+        <a href="{% url 'criar_mensagem' %}" class="btn-new-message">Nova Mensagem +</a>
+    </div>
 
-
-
-
-                                                </div>
-                                            {% else %}
-                                                <a
-                                                    href="#"
-                                                    class="btn-new-message"
-                                                    style="opacity: 0.6; cursor: not-allowed;"
-                                                    title="Cadastre um destinatário primeiro">
-                                                    Nova Mensagem <span>+</span>
-                                                </a>
-                                            {% endif %}
-                                        </div>
-                                        <div class="messages-grid">
-                                            {% comment %} {% for d in destinatarios %}
-                                                <div class="message-recipient-card">
-                                                    <div class="recipient-avatar">
-                                                        <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
-                                                    </div>
-                                                    <div class="recipient-info">
-                                                        <h4>{{ d.nome }}</h4>
-                                                        <p>Email: {{ d.contato }}</p>
-                                                        <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
-                                                        <p>Ordem de Envio: {{ d.ordem_envio }}</p>
-                                                        <a
-                                                            href="{% url 'criar_mensagem' d.id %}"
-                                                            class="btn-add-msg-inline">
-                                                            + Nova mensagem para {{ d.nome.split.0 }}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            {% empty %}
-                                                <div class="empty-state-card">
-                                                    <p>Você ainda não possui destinatários cadastrados.</p>
-                                                </div>
-                                            {% endfor %} {% endcomment %}
-                                            {% if destinatarios.count > 2 %}
-                                                <div class="view-more-card">
-                                                    <a href="#">Ver mais <span class="arrow-icon">&gt;</span></a>
-                                                </div>
-                                            {% endif %}
-
-                                    </div>
-                                </div>
-                            </div>
+    <div id="conteudo-dinamico-dashboard">
+        <div class="destinatarios-grid-layout">
+            {% for dest in destinatarios|slice:":2" %}
+            <div class="recipient-figma-card">
+                <div class="recipient-card-top">
+                    <div class="recipient-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <h4>{{ dest.nome }}</h4>
                 </div>
+                <div class="recipient-card-body">
+                    <p><strong>Email:</strong> {{ dest.email|default:dest.contato }}</p>
+                    <p><strong>Mensagens Cadastradas:</strong> {{ dest.mensagens.count|default:0 }}</p>
+                    <p><strong>Ordem de Envio:</strong> {{ dest.ordem_envio|default:1 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if destinatarios.count > 2 %}
+            <div class="recipient-figma-card view-more-figma-card">
+                <a href="#" onclick="buscarLista('{% url 'carregar_tabela_destinatarios' %}'); return false;" class="view-more-link">
+                    <span>Ver mais</span>
+                    <i data-lucide="chevron-right"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
             </div>
         </section>
     </main>
      <script src="{% static 'js/script.js' %}"></script>
+
+
+     <script>
+function buscarLista(url) {
+    const container = document.getElementById('conteudo-dinamico-dashboard');
+
+    // Opcional: Adiciona um efeito visual de carregamento rápido
+    container.style.opacity = '0.5';
+
+    fetch(url, {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.text())
+    .then(html => {
+        container.innerHTML = html;
+        container.style.opacity = '1';
+    })
+    .catch(error => {
+        console.error('Erro ao carregar a listagem:', error);
+        container.style.opacity = '1';
+    });
+}
+</script>
 </body>
 {% comment %}
 

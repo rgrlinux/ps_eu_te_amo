@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.files.base import ContentFile
 from PIL import Image
 import hashlib
-import os
 
+import io
 class Perfil(models.Model):
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
@@ -80,24 +81,41 @@ class Midia(models.Model):
     largura = models.IntegerField(null=True, blank=True)
     altura = models.IntegerField(null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        # Calcular hash
+def save(self, *args, **kwargs):
         if self.arquivo:
+            # 1. Calcular o hash lendo diretamente da memória
+            self.arquivo.seek(0)
             self.hash_arquivo = hashlib.sha256(self.arquivo.read()).hexdigest()
             self.arquivo.seek(0)
 
-            # Redimensionar se for imagem
+            # 2. Processamento se for imagem
             if self.tipo == 'imagem':
-                img = Image.open(self.arquivo.path)
+                # Abrimos a imagem a partir do arquivo em memória (NÃO usamos .path)
+                img = Image.open(self.arquivo)
                 self.largura, self.altura = img.size
 
-                # Redimensionar para max 1200px
+                # Redimensionar para max 1200px se necessário
                 if max(self.largura, self.altura) > 1200:
                     img.thumbnail((1200, 1200), Image.LANCZOS)
-                    img.save(self.arquivo.path, quality=85, optimize=True)
 
-                # Atualizar tamanho
-                self.tamanho_bytes = os.path.getsize(self.arquivo.path)
+                    # Atualiza largura/altura pós-redimensionamento
+                    self.largura, self.altura = img.size
+
+                    # Salva a imagem redimensionada em um buffer de memória
+                    buffer = io.BytesIO()
+                    img.save(buffer, format=img.format or 'JPEG', quality=85, optimize=True)
+                    buffer.seek(0)
+
+                    # Substitui o arquivo original pelo arquivo redimensionado em memória
+                    # Isso garante que o Django salve o arquivo modificado no disco depois
+                    novo_conteudo = ContentFile(buffer.read())
+                    self.arquivo.save(self.arquivo.name, novo_conteudo, save=False)
+
+                # Atualiza o tamanho em bytes usando a propriedade da instância na memória
+                self.tamanho_bytes = self.arquivo.size
+            else:
+                # Se não for imagem (ex: documento), apenas pega o tamanho original
+                self.tamanho_bytes = self.arquivo.size
 
         super().save(*args, **kwargs)
 

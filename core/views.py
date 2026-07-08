@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 # from django.utils import
 from .models import Perfil, Destinatario,  Midia, Mensagem, ServicoExtra
 from .tasks import sinal_vida, confirmar_falecimento
@@ -77,14 +78,13 @@ def criar_destinatario(request):
     return render(request, 'core/destinatario_form.html', {'form': form})
 
 @login_required
-def criar_mensagem(request, destinatario_id):
-    destinatario = get_object_or_404(Destinatario, id=destinatario_id, perfil__usuario=request.user)
+def criar_mensagem(request):
+    # destinatario = get_object_or_404(Destinatario, id=destinatario_id, perfil__usuario=request.user)
 
     if request.method == 'POST':
-        form = MensagemForm(request.POST)
+        form = MensagemForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             mensagem = form.save(commit=False)
-            mensagem.destinatario = destinatario
             mensagem.save()
 
             # Processar mídias enviadas
@@ -94,6 +94,8 @@ def criar_mensagem(request, destinatario_id):
                 hash_md5 = hashlib.md5()
                 for chunk in arquivo.chunks():
                     hash_md5.update(chunk)
+
+                arquivo.seek(0)
 
                 Midia.objects.create(
                     mensagem=mensagem,
@@ -106,9 +108,9 @@ def criar_mensagem(request, destinatario_id):
             messages.success(request, 'Mensagem criada com sucesso!')
             return redirect('dashboard')
     else:
-        form = MensagemForm()
+        form = MensagemForm(user=request.user)
 
-    return render(request, 'core/mensagem_form.html', {'form': form, 'destinatario': destinatario})
+    return render(request, 'core/mensagem_form.html', {'form': form})
 
 def confirmar_vida(request, usuario_id):
     if sinal_vida(usuario_id):
@@ -157,3 +159,62 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
     return redirect('index')  # Ou 'login' se tiver página de login
+
+@login_required
+def criar_mensagem_completa(request):
+    if request.method == 'POST':
+        form_destinatario = DestinatarioForm(request.POST)
+        form_mensagem = MensagemForm(request.POST)
+
+        # Valida os dois formulários ao mesmo tempo
+        if form_destinatario.is_valid() and form_mensagem.is_valid():
+            # 1. Salva o Destinatário primeiro
+            destinatario = form_destinatario.save(commit=False)
+            destinatario.perfil = request.user.perfil
+            destinatario.save()
+
+            # 2. Salva a Mensagem vinculando ao destinatário recém-criado
+            mensagem = form_mensagem.save(commit=False)
+            mensagem.destinatario = destinatario
+            mensagem.save()
+
+            # 3. Processa os arquivos/mídias (igual ao seu código anterior)
+            arquivos = request.FILES.getlist('arquivos')
+            for arquivo in arquivos:
+                hash_md5 = hashlib.md5()
+                for chunk in arquivo.chunks():
+                    hash_md5.update(chunk)
+
+                Midia.objects.create(
+                    mensagem=mensagem,
+                    arquivo=arquivo,
+                    tipo='imagem' if arquivo.content_type.startswith('image') else 'documento',
+                    tamanho_bytes=arquivo.size,
+                    hash_arquivo=hash_md5.hexdigest()
+                )
+
+            messages.success(request, 'Mensagem e destinatário criados com sucesso!')
+            return redirect('dashboard')
+    else:
+        # Se for GET, exibe ambos os formulários vazios
+        form_destinatario = DestinatarioForm()
+        form_mensagem = MensagemForm()
+
+    context = {
+        'form_destinatario': form_destinatario,
+        'form_mensagem': form_mensagem
+    }
+    return render(request, 'core/mensagem_form.html', context)
+
+def carregar_tabela_destinatarios(request):
+    # Pega todos os destinatários do usuário logado
+    destinatarios_lista = Mensagem.objects.filter(destinatario__perfil=request.user.perfil).order_by('destinatario','-data_criacao')
+    # destinatarios_lista = Destinatario.objects.filter(perfil=request.user.perfil).order_by('ordem_envio', 'id') # ajuste o filtro
+
+    # Paginação: exibe 5 destinatários por página, por exemplo
+    paginator = Paginator(destinatarios_lista, 5)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'core/partials/tabela_destinatarios.html', {'page_obj': page_obj})
+#D8DN6K2P

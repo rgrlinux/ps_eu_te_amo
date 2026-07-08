@@ -790,3 +790,186 @@ section.container {
 .signup-text a:hover {
     text-decoration: underline;
 }
+
+
+
+/* Container de Fundo (cinza claro suave) */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 20px;
+}
+
+/* O Card Branco Centralizado */
+.auth-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Título */
+.auth-title {
+  color: #334155;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Instruções e Textos Auxiliares */
+.form-instruction {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: -8px;
+  margin-bottom: 20px;
+}
+
+.help-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Estrutura dos Grupos de Input */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+/* Estilização Geral dos Inputs (Bordas cinzas finas e cantos arredondados) */
+.modern-form .form-control,
+.modern-form .combo-box-destinatarios,
+.modern-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #334155;
+  background-color: #ffffff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-sizing: border-box;
+}
+
+.modern-form .form-control:focus,
+.modern-form .combo-box-destinatarios:focus,
+.modern-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Layout do ComboBox + Botão de Adição Inline */
+.combo-action-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-inline-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-inline-add:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+/* Botão Principal Escuro (Igual ao do seu print "Cadastrar") */
+.btn-primary-action {
+  width: 100%;
+  padding: 14px;
+  background-color: #3b4260; /* Azul escuro/cinza ardósia idêntico à imagem */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.btn-primary-action:hover {
+  background-color: #2a2f48;
+}
+
+
+/* Esconde o input padrão feio */
+.hidden-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* O novo botão customizado */
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+/* Efeito ao passar o mouse */
+.custom-file-upload:hover {
+  background-color: #f1f5f9;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+/* Ícone do Lucide dentro do upload */
+.custom-file-upload i {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Rótulo padrão de cima do grupo */
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}

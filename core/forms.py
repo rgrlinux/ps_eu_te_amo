@@ -45,7 +45,8 @@ class DestinatarioForm(forms.ModelForm):
 class MensagemForm(forms.ModelForm):
     class Meta:
         model = Mensagem
-        fields = ['titulo', 'conteudo']
+        # 1. ADICIONADO: 'destinatario' precisa estar nos fields para poder ser filtrado e exibido
+        fields = ['destinatario', 'titulo', 'conteudo']
         labels = {
             'titulo': 'Título da mensagem',
             'conteudo': 'Sua mensagem',
@@ -54,3 +55,15 @@ class MensagemForm(forms.ModelForm):
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: Para sempre no meu coração'}),
             'conteudo': forms.Textarea(attrs={'class': 'form-control', 'rows': 10, 'placeholder': 'Escreva aqui sua mensagem... Querida, se você está lendo isso...'}),
         }
+
+    # 2. CORRIGIDO: O recuo mudou para cá, ficando FORA da classe Meta
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        if user and hasattr(user, 'perfil'):
+            self.fields['destinatario'].queryset = Destinatario.objects.filter(perfil=user.perfil)
+
+        # Garante que o widget exista antes de atualizar a classe CSS
+        if 'destinatario' in self.fields:
+            self.fields['destinatario'].widget.attrs.update({'class': 'combo-box-destinatarios'})
