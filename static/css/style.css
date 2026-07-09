@@ -973,3 +973,67 @@ section.container {
   color: #334155;
   margin-bottom: 8px;
 }
+
+/* Estilos para mensagens de erro */
+.field-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    padding: 8px 12px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.field-error span {
+    display: block;
+}
+
+.field-error span:not(:last-child)::after {
+    content: '';
+}
+
+/* Estilos para mensagens do Django Messages */
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+}
+
+/* Estilos para os inputs com erro */
+.input-group.error input {
+    border-color: #dc3545;
+    background-color: #fff8f8;
+}
+
+.input-group.error label {
+    color: #dc3545;
+}

@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.files.base import ContentFile
 from PIL import Image
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 import hashlib
 
 import io
@@ -144,3 +146,20 @@ class ServicoExtra(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# @receiver(post_save, sender=User)
+# def criar_perfil_usuario(sender, instance, created, **kwargs):
+#     """Cria um Perfil automaticamente quando um novo User é criado"""
+#     if created:
+#         Perfil.objects.create(usuario=instance)
+#         print(f"✅ Perfil criado para {instance.username}")
+
+# @receiver(post_save, sender=User)
+# def salvar_perfil_usuario(sender, instance, **kwargs):
+#     """Salva o Perfil quando o User é salvo"""
+#     try:
+#         instance.perfil.save()
+#     except Perfil.DoesNotExist:
+#         # Se o perfil não existe, criar
+#         Perfil.objects.create(usuario=instance)

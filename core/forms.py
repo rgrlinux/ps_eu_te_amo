@@ -4,13 +4,14 @@ from .models import Perfil, Destinatario, Mensagem
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['tempo_resposta_dias', 'dias_tolerancia', 'curador_nome', 'curador_email', 'curador_telefone']
+        fields = ['tempo_resposta_dias', 'dias_tolerancia', 'curador_nome', 'curador_email', 'curador_telefone', 'foto']
         labels = {
             'tempo_resposta_dias': 'Tempo sem resposta (dias)',
             'dias_tolerancia': 'Dias de tolerância antes de notificar curador',
             'curador_nome': 'Nome do curador (quem confirma seu falecimento)',
             'curador_email': 'E-mail do curador',
             'curador_telefone': 'Telefone do curador',
+            'foto': 'Foto de perfil',
         }
         widgets = {
             'tempo_resposta_dias': forms.NumberInput(attrs={'class': 'form-control', 'min': 7, 'max': 365}),
@@ -18,6 +19,7 @@ class PerfilForm(forms.ModelForm):
             'curador_nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ex: Maria Silva'}),
             'curador_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'curador@email.com'}),
             'curador_telefone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '(11) 99999-9999'}),
+            'foto': forms.FileInput(attrs={'class': 'form-control'}),
         }
         help_texts = {
             'tempo_resposta_dias': 'Após quantos dias sem resposta o sistema deve começar a alertar?',

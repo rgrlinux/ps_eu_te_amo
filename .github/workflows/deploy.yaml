@@ -17,21 +17,31 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # 1. Entra na pasta correta do servidor
-            cd /var/www/webapps/euteamo
+            cd /var/www/webapps/euteamo || exit 1
 
-            # 2. Força o Git da VPS a se alinhar estritamente com o GitHub (limpa qualquer commit fantasma)
-            git fetch origin main
+            # 2. Ativar ambiente virtual (se necessário)
+            source .venv/bin/activate || echo "Ambiente virtual não encontrado, continuando..."
+
+            # 3. Força o Git da VPS a se alinhar estritamente com o GitHub (limpa qualquer commit fantasma)
+            git fetch origin main --force
             git reset --hard origin/main
             git clean -fd
 
-            # 3. Puxa as atualizações limpas do GitHub
-            git pull origin main
+            # 4. Puxa as atualizações limpas do GitHub
+            git pull origin main --force
 
-            # 4. Sincroniza o ambiente usando o uv de forma limpa e atômica
-            /home/rogerio/.local/bin/uv sync --frozen
+            # 5. Sincroniza o ambiente usando o uv de forma limpa e atômica
+            /home/rogerio/.local/bin/uv sync --frozen --no-dev
 
-            # 5. Coleta e compacta os arquivos estáticos (Pico.css, JS, imagens) na pasta certa
+            # 6. Coleta e compacta os arquivos estáticos (Pico.css, JS, imagens) na pasta certa
             .venv/bin/python manage.py collectstatic --no-input --clear
 
-            # 6. Reinicia o serviço no systemd para atualizar o código na memória
+            # 7. Aplicar migrações do banco de dados
+            .venv/bin/python manage.py migrate --no-input
+
+            # 8. Reinicia o serviço no systemd para atualizar o código na memória
             sudo systemctl restart euteamo.service
+
+            # 9. Verifica se o serviço está rodando
+            sleep 5
+            sudo systemctl status euteamo.service --no-pager

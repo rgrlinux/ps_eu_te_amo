@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 # from django.utils import
-from .models import Perfil, Destinatario,  Midia, Mensagem, ServicoExtra
+from .models import Perfil,   Midia, Mensagem, ServicoExtra
 from .tasks import sinal_vida, confirmar_falecimento
 from .forms import PerfilForm, DestinatarioForm, MensagemForm
 import hashlib
@@ -13,25 +13,53 @@ import hashlib
 def index(request):
     return render(request, 'core/index.html')
 
+# views.py
 def cadastro(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+
+        # DEBUG: Verificar se o formulário é válido
+        print("Dados do POST:", request.POST)
+        print("Form é válido?", form.is_valid())
+
         if form.is_valid():
-            user = form.save()
-            Perfil.objects.create(usuario=user)
-            login(request, user)
-            messages.success(request, 'Cadastro realizado! Complete seu perfil.')
-            return redirect('configurar_perfil')
+            try:
+                user = form.save()
+                print(f"✅ Usuário salvo: {user.username}")
+
+                # Criar perfil
+                perfil = Perfil.objects.create(usuario=user)
+                print(f"✅ Perfil criado: {perfil}")
+
+                login(request, user)
+                messages.success(request, 'Cadastro realizado! Complete seu perfil.')
+                return redirect('configurar_perfil')
+            except Exception as e:
+                print(f"❌ Erro ao salvar: {e}")
+                messages.error(request, f'Erro no cadastro: {e}')
+        else:
+            # Mostrar erros do formulário
+            print("❌ Erros do formulário:", form.errors)
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
+
     else:
         form = UserCreationForm()
+
     return render(request, 'core/cadastro.html', {'form': form})
 
+# views.py
 @login_required
 def configurar_perfil(request):
+    # Garantir que o perfil existe
     perfil, created = Perfil.objects.get_or_create(usuario=request.user)
 
+    if created:
+        messages.info(request, 'Perfil criado automaticamente. Configure seus dados.')
+
     if request.method == 'POST':
-        form = PerfilForm(request.POST, instance=perfil)
+        form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
             form.save()
             messages.success(request, 'Perfil configurado com sucesso!')
@@ -39,7 +67,10 @@ def configurar_perfil(request):
     else:
         form = PerfilForm(instance=perfil)
 
-    return render(request, 'core/configurar_perfil.html', {'form': form})
+    return render(request, 'core/configurar_perfil.html', {
+        'form': form,
+        'perfil': perfil
+    })
 
 @login_required
 def dashboard(request):
