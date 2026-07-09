@@ -17,7 +17,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # 1. Entra na pasta correta do servidor
-            cd /var/www/apps/euteamo
+            cd /var/www/webapps/euteamo
 
             # 2. Força o Git da VPS a se alinhar estritamente com o GitHub (limpa qualquer commit fantasma)
             git fetch origin main
