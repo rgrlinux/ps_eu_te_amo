@@ -257,6 +257,7 @@ section {
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: var(--spacing-lg);
+  max-height: fit-content;
 }
 
 .hero-img {
