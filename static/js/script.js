@@ -1,27 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicialização dos ícones Lucide
-  if (typeof lucide !== "undefined") {
-    lucide.createIcons();
-  }
+  // 1. Ícones Lucide
+  if (typeof lucide !== "undefined") lucide.createIcons();
 
-  // Lógica do Accordion do FAQ
-  const accordionHeaders = document.querySelectorAll(".accordion-header");
-
-  accordionHeaders.forEach((header) => {
+  // 2. Accordion do FAQ
+  document.querySelectorAll(".accordion-header").forEach((header) => {
     header.addEventListener("click", function () {
       const item = this.parentElement;
       const content = this.nextElementSibling;
-
-      // Verifica se já está ativo
       const isActive = item.classList.contains("active");
 
-      // Fecha todos os itens abertos do Accordion (Comportamento padrão)
       document.querySelectorAll(".accordion-item").forEach((i) => {
         i.classList.remove("active");
-        i.querySelector(".accordion-content").style.maxHeight = null;
+        const c = i.querySelector(".accordion-content");
+        if (c) c.style.maxHeight = null;
       });
 
-      // Se não estava ativo antes, abre o atual
       if (!isActive) {
         item.classList.add("active");
         content.style.maxHeight = content.scrollHeight + "px";
@@ -29,17 +22,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Smooth scroll básico para links da navbar
-  const navLinks = document.querySelectorAll(".main-nav a");
-  navLinks.forEach((link) => {
+  // 3. Smooth scroll
+  document.querySelectorAll(".main-nav a[href^='#']").forEach((link) => {
     link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href");
-      if (targetId.startsWith("#")) {
-        e.preventDefault();
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" });
-        }
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // 4. Auto-fechar mensagens
+  document.querySelectorAll(".alert").forEach((msg) => {
+    // Auto-fechar após 5 segundos
+    setTimeout(() => {
+      msg.style.transition = "opacity 0.5s ease";
+      msg.style.opacity = "0";
+      setTimeout(() => (msg.style.display = "none"), 500);
+    }, 5000);
+
+    // Botão de fechar
+    const closeBtn = msg.querySelector(".close, .close-btn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        msg.style.opacity = "0";
+        setTimeout(() => (msg.style.display = "none"), 300);
+      });
+    }
+
+    // Clicar na mensagem fecha
+    msg.addEventListener("click", function (e) {
+      if (!e.target.closest(".close, .close-btn")) {
+        this.style.opacity = "0";
+        setTimeout(() => (this.style.display = "none"), 300);
       }
     });
   });
