@@ -1,25 +1,149 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Configurar Perfil{% endblock %}
+{% block title %}Configurar Perfil - P.S. Te amo{% endblock %}
 
 {% block content %}
-<div class="login-container">
-    <div class="login-box">
-        <h2 class="title">Configurações do Perfil</h2>
-        <form method="post">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="input-group">
-                <label>{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                    <div class="help-text">{{ field.help_text }}</div>
-                {% endif %}
-            </div>
-            {% endfor %}
+<div class="profile-container">
+    <div class="profile-box">
+        <h2 class="main-title">Configuração do Perfil</h2>
 
-            <button type="submit" class="btn-login">Salvar Configurações</button>
+        <form method="post" enctype="multipart/form-data" class="profile-form">
+            {% csrf_token %}
+
+            <!-- SEÇÃO 1: USUÁRIO -->
+            <fieldset class="form-section">
+                <legend class="section-legend">Usuário</legend>
+
+                <div class="section-grid-user">
+                    <div class="user-inputs">
+                        <!-- Linha com Nome e Sobrenome lado a lado -->
+                        <div class="row-two-columns">
+                            <div class="input-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" placeholder="Seu nome">
+                            </div>
+                            <div class="input-group">
+                                <label>Sobrenome</label>
+                                <input type="text" class="form-control" placeholder="Seu sobrenome">
+                            </div>
+                        </div>
+
+                        <!-- Linha Nova: Email (Longo) + Tempo Sem Resposta (Curto) -->
+                        <div class="row-email-days">
+                            <div class="input-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="seu@email.com">
+                            </div>
+                            <div class="input-group">
+                                <label for="{{ form.tempo_resposta_dias.id_for_label }}">Sem resposta (dias)</label>
+                                {{ form.tempo_resposta_dias }}
+                                {% if form.tempo_resposta_dias.errors %}
+                                    <div class="field-error">{{ form.tempo_resposta_dias.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Bloco da Foto de Perfil à Direita (Reduzido com Preview) -->
+                <div class="photo-upload-box">
+                    <label for="{{ form.foto.id_for_label }}" class="photo-label-small">
+
+                        <!-- Se o perfil já tiver foto, exibe a foto atual -->
+                        {% if perfil.foto %}
+                            <img src="{{ perfil.foto.url }}" id="photo-preview" class="preview-img">
+                            <span id="photo-text" style="display: none;">Foto Perfil</span>
+                        {% else %}
+                            <!-- Se não tiver, esconde a imagem e mostra o texto -->
+                            <img src="" id="photo-preview" class="preview-img" style="display: none;">
+                            <span id="photo-text">Foto Perfil</span>
+                        {% endif %}
+
+                        {{ form.foto }}
+                    </label>
+                    {% if form.foto.errors %}
+                        <div class="field-error">{{ form.foto.errors }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 2: CURADOR -->
+            <fieldset class="form-section">
+                <legend class="section-legend">Curador</legend>
+
+                <!-- Nome do Curador e Telefone lado a lado -->
+                <div class="row-two-columns">
+                    <div class="input-group">
+                        <label for="{{ form.curador_nome.id_for_label }}">Nome Completo</label>
+                        {{ form.curador_nome }}
+                        {% if form.curador_nome.errors %}
+                            <div class="field-error">{{ form.curador_nome.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="input-group">
+                        <label for="{{ form.curador_telefone.id_for_label }}">Telefone</label>
+                        {{ form.curador_telefone }}
+                        {% if form.curador_telefone.errors %}
+                            <div class="field-error">{{ form.curador_telefone.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Linha Nova: Email do Curador (Longo) + Dias de Tolerância (Curto) -->
+                <div class="row-email-days">
+                    <div class="input-group">
+                        <label for="{{ form.curador_email.id_for_label }}">Email</label>
+                        {{ form.curador_email }}
+                        {% if form.curador_email.errors %}
+                            <div class="field-error">{{ form.curador_email.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="input-group">
+                        <label for="{{ form.dias_tolerancia.id_for_label }}">Tolerância (dias)</label>
+                        {{ form.dias_tolerancia }}
+                        {% if form.dias_tolerancia.errors %}
+                            <div class="field-error">{{ form.dias_tolerancia.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Salvar Configurações</button>
+            </div>
         </form>
     </div>
 </div>
 {% endblock %}
+ {% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Pega o input de arquivo dinamicamente gerado pelo Django
+        const inputFoto = document.getElementById("{{ form.foto.id_for_label }}");
+        const imgPreview = document.getElementById("photo-preview");
+        const textPreview = document.getElementById("photo-text");
+
+        if (inputFoto) {
+            inputFoto.addEventListener("change", function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    // Quando a leitura do arquivo terminar, injeta na tag <img>
+                    reader.onload = function(e) {
+                        imgPreview.src = e.target.result;
+                        imgPreview.style.display = "block"; // Mostra a imagem
+                        if (textPreview) {
+                            textPreview.style.display = "none"; // Esconde o texto "Foto Perfil"
+                        }
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    });
+</script>
+{% endblock extra_js %}

@@ -1435,3 +1435,169 @@ main {
         height: 32px;
     }
 }
+
+
+/* Container de Configuração do Perfil */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 15px; /* Reduzido padding externo */
+    font-family: Arial, sans-serif;
+}
+
+.profile-box {
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+}
+
+.main-title {
+    font-size: 32px;
+    color: #555555;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Bordas com Legenda Embutida */
+.form-section {
+    border: 1px solid #b8b8b8;
+    border-radius: 4px;
+    padding: 15px 20px; /* Menos espaço vertical interno */
+    margin-bottom: 20px;
+}
+
+.section-legend {
+    font-size: 16px;
+    color: #555555;
+    padding: 0 8px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Divisão superior do Usuário (Inputs vs Foto) */
+.section-grid-user {
+    display: grid;
+    grid-template-columns: 1fr 140px; /* Reduzido o espaço da foto para 140px */
+    gap: 20px;
+    align-items: center; /* Centraliza verticalmente com os inputs */
+}
+
+/* Fileiras padrão de duas colunas iguais (50% / 50%) */
+.row-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* NOVA FILEIRA: Email ocupa 75% da largura e os Dias ocupam 25% */
+.row-email-days {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 15px;
+}
+
+/* Estrutura dos Campos de Input */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px; /* Reduzido de 15px para 10px */
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #444444;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.form-control {
+    padding: 6px 10px; /* Inputs ligeiramente mais finos */
+    border: 1px solid #ababab;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botão da Foto Reduzido (Mais compacto e discreto) */
+.photo-upload-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-label-small {
+    position: relative; /* Necessário para sobrepor elementos internamente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 120px;
+    height: 85px;
+    background-color: #d1e3ff;
+    border: 1px solid #a3c7ff;
+    border-radius: 4px;
+    color: #1c3faa;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0; /* Removido o padding para a imagem colar nas bordas */
+    box-sizing: border-box;
+    overflow: hidden; /* Corta os cantos da imagem se passarem do botão */
+    transition: background 0.2s;
+}
+
+.photo-label-small:hover {
+    background-color: #bcd7ff;
+}
+
+.photo-label-small input[type="file"] {
+    display: none;
+}
+
+/* Mensagens de erro */
+.field-error {
+    color: #cc0000;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+/* Alinhamento do botão de salvar */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.btn-save {
+    background-color: #2b579a;
+    color: #ffffff;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #1e3f73;
+}
+/* Novo: Estilo para fazer a imagem preencher o botão perfeitamente */
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Impede a imagem de distorcer, fazendo o corte perfeito */
+    transition: opacity 0.2s;
+}
+
+/* Novo: Se passar o mouse por cima da foto, ela fica um pouco transparente para indicar clique */
+.photo-label-small:hover .preview-img {
+    opacity: 0.6;
+}
+
+/* Garante que o texto fique por cima da imagem caso precisemos mostrá-lo */
+.photo-label-small span {
+    position: absolute;
+    pointer-events: none; /* Clicar no texto repassa o clique para a label */
+}

@@ -48,9 +48,9 @@
                             <nav class="dashboard-nav">
                                 <ul>
                                     <li class="active"><a href="#"><i data-lucide="layout-dashboard"></i>Dashboard</a></li>
-                                    <li><a href="#"><i data-lucide="mail"></i>Mensagens</a></li>
-                                    <li><a href="#"><i data-lucide="settings"></i>Serviços</a></li>
-                                    <li><a href="#"><i data-lucide="crown"></i>Fazer Upgrade</a></li>
+                                    <li><a href="{% url 'listar_mensagens' %}"><i data-lucide="mail"></i>Mensagens</a></li>
+                                    <li><a href="{% url 'listar_servicos' %}"><i data-lucide="settings"></i>Serviços</a></li>
+                                    <li><a href="{% url 'renovar_assinatura' %}"><i data-lucide="crown"></i>Fazer Upgrade</a></li>
                                 </ul>
                             </nav>
                         </aside>
@@ -157,92 +157,3 @@ function buscarLista(url) {
 }
 </script>
 </body>
-{% comment %}
-
-
-
-    <main class="dash-main">
-        <div class="dash-content">
-            <header class="dash-header">
-                <div class="header-welcome">
-                    <h1>Olá, {{ request.user.first_name|default:request.user.username }}</h1>
-                    <p class="last-access">Último acesso: {{ request.user.last_login|date:"l, d \d\e F \d\e Y" }}</p>
-                </div>
-                <div class="header-actions">
-                    <a href="{% url 'index' %}" class="btn-back-home">
-                        <img src="{% static 'img/icons/arrow-left.png' %}" alt="Voltar"> Voltar para o site
-                    </a>
-                </div>
-            </header>
-
-            <section class="dash-summary">
-                <h2>Resumo</h2>
-                <div class="summary-grid">
-                    <div class="summary-card card-status {% if perfil.status == 'ativo' %}status-ativo{% endif %}">
-                        <h3>Monitoramento</h3>
-                        <p class="status-text">{{ perfil.get_status_display }}</p>
-                    </div>
-
-                    <div class="summary-card">
-                        <h3>Mensagens Programadas</h3>
-                        <p class="card-counter">Total: {{ total_mensagens }}</p>
-                    </div>
-
-                    <div class="summary-card">
-                        <h3>Destinatários</h3>
-                        <p class="card-counter">Total: {{ destinatarios.count }}</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="dash-messages-section">
-                <div class="section-header">
-                    <h2>Mensagens cadastradas</h2>
-                    {% if destinatarios %}
-                        <a href="{% url 'criar_mensagem' destinatarios.first.id %}" class="btn-new-message">
-                            Nova Mensagem <span>+</span>
-                        </a>
-                    {% else %}
-                        <a href="#" class="btn-new-message" style="opacity: 0.6; cursor: not-allowed;" title="Cadastre um destinatário primeiro">
-                            Nova Mensagem <span>+</span>
-                        </a>
-                    {% endif %}
-                </div>
-
-                <div class="messages-grid">
-                    {% for d in destinatarios %}
-                        <div class="message-recipient-card">
-                            <div class="recipient-avatar">
-                                <img src="{% static 'img/icons/user-recipient.png' %}" alt="">
-                            </div>
-                            <div class="recipient-info">
-                                <h4>{{ d.nome }}</h4>
-                                <p>Email: {{ d.contato }}</p>
-                                <p>Mensagens Cadastradas: {{ d.mensagens.count }}</p>
-                                <p>Ordem de Envio: {{ d.ordem_envio }}</p>
-                                <a href="{% url 'criar_mensagem' d.id %}" class="btn-add-msg-inline">
-                                    + Nova mensagem para {{ d.nome.split.0 }}
-                                </a>
-                            </div>
-                        </div>
-                    {% empty %}
-                        <div class="empty-state-card">
-                            <p>Você ainda não possui destinatários cadastrados.</p>
-                        </div>
-                    {% endfor %}
-
-                    {% if destinatarios.count > 2 %}
-                        <div class="view-more-card">
-                            <a href="#">Ver mais <span class="arrow-icon">&gt;</span></a>
-                        </div>
-                    {% endif %}
-                </div>
-            </section>
-        </div>
-
-        <footer class="dash-footer">
-            <p class="footer-text">P.S. Eu Te Amo – Mensagens que transcendem o tempo.</p>
-            <p class="footer-copy">&copy; {% now "Y" %} - Product by HUB42</p>
-        </footer>
-    </main>
-</div> {% endcomment %}
