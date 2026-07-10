@@ -17,36 +17,17 @@ def index(request):
 def cadastro(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-
-        # DEBUG: Verificar se o formulário é válido
-        print("Dados do POST:", request.POST)
-        print("Form é válido?", form.is_valid())
-
         if form.is_valid():
             try:
                 user = form.save()
-                print(f"✅ Usuário salvo: {user.username}")
-
-                # Criar perfil
-                perfil = Perfil.objects.create(usuario=user)
-                print(f"✅ Perfil criado: {perfil}")
-
+                Perfil.objects.create(usuario=user)
                 login(request, user)
                 messages.success(request, 'Cadastro realizado! Complete seu perfil.')
                 return redirect('configurar_perfil')
             except Exception as e:
-                print(f"❌ Erro ao salvar: {e}")
                 messages.error(request, f'Erro no cadastro: {e}')
-        else:
-            # Mostrar erros do formulário
-            print("❌ Erros do formulário:", form.errors)
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f'{field}: {error}')
-
     else:
         form = UserCreationForm()
-
     return render(request, 'core/cadastro.html', {'form': form})
 
 # views.py

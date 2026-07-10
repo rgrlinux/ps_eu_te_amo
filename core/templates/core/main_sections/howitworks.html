@@ -1,7 +1,7 @@
 {% load static %}
-<section id="how-it-works">
+<section class="section-base" id="how-it-works" >
   <div class="container">
-    <div class="card how-card">
+    <div class="how-card">
       <div class="how-intro">
         <h2>Como funciona</h2>
         <p>
@@ -57,11 +57,17 @@
           Você registra sua mensagem e deixa o resto com a gente.<br />Tudo
           feito de forma simples, segura e respeitosa.
         </p>
-
-        <button class="btn-accent-reverse token-cta">
-            Começar agora
-            <i data-lucide="arrow-right" class="icon-inline"></i>
-        </button>
+          {% if user.is_authenticated %}
+              <a href="{% url 'dashboard' %}" class="btn-accent token-cta" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                  Ir para o Dashboard
+                  <i data-lucide="arrow-right" class="icon-inline"></i>
+              </a>
+          {% else %}
+              <a href="{% url 'cadastro' %}" class="btn-accent token-cta" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                  Começar agora
+                  <i data-lucide="arrow-right" class="icon-inline"></i>
+              </a>
+          {% endif %}
       </div>
     </div>
   </div>
