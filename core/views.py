@@ -169,7 +169,7 @@ def listar_servicos(request):
 @login_required
 def logout_view(request):
     logout(request)
-    messages.success(request, 'Você saiu com sucesso!')
+    # messages.success(request, 'Você saiu com sucesso!')
     return redirect('index')  # Ou 'login' se tiver página de login
 
 @login_required
