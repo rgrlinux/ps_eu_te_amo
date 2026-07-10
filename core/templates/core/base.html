@@ -20,18 +20,43 @@
 
     <header class="main-header">
         <div class="container">
-            <div class="logo-area logo-img">
+            <div class="logo-area">
                 <a href="{% url 'index' %}" class="logo-link">
                     <img src="{% static 'img/logo.png' %}" alt="P.S. Te amo" class="logo-img">
                 </a>
             </div>
-            <nav class="main-nav">
-                <ul>
+
+            <!-- Botão do Menu Hambúrguer -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                <span class="menu-toggle-icon">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+            </button>
+
+            <!-- Navegação -->
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
                     <li><a href="{% if request.resolver_match.url_name == 'index' %}#about{% else %}{% url 'index' %}#about{% endif %}">Sobre</a></li>
                     <li><a href="{% if request.resolver_match.url_name == 'index' %}#how-it-works{% else %}{% url 'index' %}#how-it-works{% endif %}">Como Funciona</a></li>
                     <li><a href="{% if request.resolver_match.url_name == 'index' %}#faq{% else %}{% url 'index' %}#faq{% endif %}">FAQ</a></li>
                 </ul>
+
+                <!-- Ações de autenticação dentro do menu mobile -->
+                <div class="auth-actions-mobile">
+                    {% if user.is_authenticated %}
+                        <span class="user-welcome">Olá, {{ user.username }}</span>
+                        <a href="{% url 'dashboard' %}" class="btn-primary-nav">Dashboard</a>
+                        <a href="{% url 'logout' %}" class="btn-link">Sair</a>
+                    {% else %}
+                        <a href="{% url 'cadastro' %}" class="btn-link">Criar conta</a>
+                        <a href="{% url 'login' %}" class="btn-primary-nav">Fazer login</a>
+                    {% endif %}
+                </div>
             </nav>
+
+            <!-- Ações de autenticação desktop -->
             <div class="auth-actions">
                 {% if user.is_authenticated %}
                     <span class="user-welcome">Olá, {{ user.username }}</span>
@@ -44,7 +69,6 @@
             </div>
         </div>
     </header>
-
     <main>
         {% block content %}
         {% endblock content %}
