@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+# from django.contrib.messages import constants as messages
 
 load_dotenv()
 
@@ -9,7 +10,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', default=False)
 
 FORCE_SCRIPT_NAME = os.getenv('FORCE_SCRIPT_NAME', None)
-
+print("FORCE_SCRIPT_NAME:", FORCE_SCRIPT_NAME)
+MESSAGES_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # O .strip() limpa qualquer espaço invisível antes ou depois de cada host
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', default='localhost').split(',')]
 
@@ -108,18 +110,18 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [BASE_DIR / 'static/']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Mantém dinâmico baseado na raiz do projeto
 
 # Checagem explícita e infalível: se rodar na pasta da VPS, força as rotas da VPS
 if '/var/www/apps/' in str(BASE_DIR):
     STATIC_URL = '/euteamo/static/'
     MEDIA_URL = '/euteamo/media/'       # <-- 100% diferente de static/
+    STATIC_ROOT = os.path.join(BASE_DIR, 'euteamo/staticfiles')
 else:
     # Como roda na sua máquina local
     STATIC_URL = 'static/'
     MEDIA_URL = 'media/'
-
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type

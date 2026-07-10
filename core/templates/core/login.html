@@ -3,23 +3,59 @@
 {% block title %}Entrar{% endblock %}
 
 {% block content %}
+<section class='login-container'>
+    <div class="login-box">
+        <h2 class="title">Entrar</h2>
 
-    <section class='login-container'>
-        <div class="login-box">
-            <h2 class="title">Entrar</h2>
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-group">
-                    <label>Usuário</label>
-                    <input type="text" name="username" class="form-control" placeholder="Nome do usuário" required>
-                </div>
-                <div class="input-group">
-                    <label>Senha</label>
-                    <input type="password" name="password" class="form-control" placeholder="Senha" required>
-                </div>
-                <button type="submit" class="btn-login" >Entrar</button>
-            </form>
-            <p class="signup-text">Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
-        </div>
-    </section>
+        <!-- Mostrar mensagens do Django (sucesso, erro, etc) -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Mostrar erros do formulário (LoginView) -->
+        {% if form.errors %}
+            <div class="form-errors-global">
+                <p>⚠️ Usuário ou senha inválidos. Por favor, tente novamente.</p>
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="id_username">Usuário</label>
+                <input type="text" name="username" id="id_username" class="form-control" placeholder="Nome do usuário" required autofocus>
+                {% if form.username.errors %}
+                    <div class="field-error">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="input-group">
+                <label for="id_password">Senha</label>
+                <input type="password" name="password" id="id_password" class="form-control" placeholder="Senha" required>
+                {% if form.password.errors %}
+                    <div class="field-error">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <p class="signup-text">Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+    </div>
+</section>
 {% endblock %}
