@@ -1,0 +1,40 @@
+<p class="section-subtitle-ajax" style="color: #555; margin-bottom: 20px;">Confira abaixo todo o seu legado e conteúdo programado.</p>
+
+<div class="table-responsive-dash">
+    <table class="table-mensagens-custom" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="color: #2c3e50; font-weight: bold; border-bottom: 2px solid #eee;">
+                <th style="padding: 10px 5px;">Título / Assunto</th>
+                <th style="padding: 10px 5px;">Destinatário</th>
+                <th style="padding: 10px 5px;">Mídias Anexadas</th>
+                <th style="padding: 10px 5px;">Data de Criação</th>
+                <th style="padding: 10px 5px;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in mensagens %}
+            <tr style="border-bottom: 1px solid #f5f5f5; color: #444;">
+                <td style="padding: 12px 5px; font-weight: bold;">{{ msg.titulo }}</td>
+                <td style="padding: 12px 5px;">{{ msg.destinatario.nome }}</td>
+                <td style="padding: 12px 5px;">{{ msg.midias.count|default:"0" }} arquivo(s)</td>
+                <!-- Use o filtro date para aproximar do formato do seu print -->
+                <td style="padding: 12px 5px;">{{ msg.data_criacao|date:"d/m/Y H:i" }}</td>
+                <td style="padding: 12px 5px;">
+                    <span class="status-badge-{{ msg.status|slugify }}">{{ msg.get_status_display|default:"Aguardando Gatilho" }}</span>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="padding: 20px; text-align: center; color: #999;">Nenhuma mensagem programada encontrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Executa novamente o carregamento dos ícones do Lucide para a tabela recém-chegada -->
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

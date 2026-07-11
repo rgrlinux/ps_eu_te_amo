@@ -1,0 +1,37 @@
+<p class="section-subtitle-ajax" style="color: var(--color-text-muted); margin-bottom: 2rem;">
+    Complemente seu plano com serviços e mimos sob demanda para quem você ama.
+</p>
+
+<!-- Você pode herdar ou reaproveitar as classes do seu servicos_lista.html original -->
+<section class="services-market-section">
+    <div class="services-grid-layout" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+        {% for servico in servicos %}
+            <div class="service-market-card" style="background: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;">
+                <div class="service-header-box" style="display: flex; align-items: center; gap: 12px;">
+                    <span class="service-emoji-avatar" style="font-size: 2rem;">{{ servico.emoji }}</span>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--color-text-dark);">{{ servico.title }}</h3>
+                        <p class="service-cost" style="margin: 0; font-size: 0.9rem; color: var(--color-brand-blue); font-weight: 600;">
+                            R$ {{ servico.price }} <small style="color: var(--color-text-muted); font-weight: 400;">/ taxa única</small>
+                        </p>
+                    </div>
+                </div>
+                <p class="service-desc-text" style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.5; margin: 0;">{{ servico.description }}</p>
+                <a href="#" class="btn-contract-service" style="display: block; text-align: center; background-color: var(--color-brand-blue); color: white; padding: 0.6rem; border-radius: 0.5rem; font-weight: 600; font-size: 0.9rem; transition: background 0.2s;">Contratar Serviço</a>
+            </div>
+        {% empty %}
+            <div class="empty-state-card" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--color-text-muted);">
+                <p>Nenhum serviço adicional disponível no momento.</p>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<script>
+    // Se o seu botão de contratar usar ícones do lucide no futuro, garante o recarregamento deles
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

@@ -61,12 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================================================
-// MENU HAMBÚRGUER RESPONSIVO
+// MENU HAMBÚRGUER RESPONSIVO (CORRIGIDO E BLINDADO)
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const body = document.body;
+
+    // BLINDAGEM: Só executa se o menuToggle e o mainNav existirem na página atual!
+    if (!menuToggle || !mainNav) {
+        return; // Aborta silenciosamente se não estiver na Landing Page
+    }
 
     // Criar overlay
     const overlay = document.createElement('div');
@@ -99,11 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = mainNav.querySelectorAll('a');
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
-            // Verifica se é um link âncora (#)
             const href = link.getAttribute('href');
             if (href && href.startsWith('#')) {
                 closeMenu();
-                // Scroll suave para o elemento
                 const target = document.querySelector(href);
                 if (target) {
                     setTimeout(function() {

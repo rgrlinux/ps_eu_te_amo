@@ -8,12 +8,13 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&family=Zen+Kaku+Gothic+New:wght={300;400;500;700}&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-        <script src='https://unpkg.com/lucide@latest'/></script>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+        <!-- Linha 14: Verifique se o arquivo abaixo existe na pasta static/css/ -->
+        <link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+
+        <!-- Correção da tag do Lucide que estava fechada incorretamente -->
+        <script src="https://unpkg.com/lucide@latest"></script>
     </head>
     <body class="dash-body-layout">
         <main class="dash-main-layout">
@@ -23,15 +24,18 @@
                         <aside class="dashboard-menu">
                             <div class="menu-header">
                                 <div class="logo-area">
-                                    <img src={% static 'img/logo.png' %} class="logo-img" alt="Logo">
+                                    <img src="{% static 'img/logo.png' %}" class="logo-img" alt="Logo">
                                 </div>
                                 <div class="user-profile">
                                     {% if perfil.foto %}
-                                        <img src="{{ perfil.foto.url }}" alt="{{ request.user.get_full_name }}" class="profile-avatar">
+                                        <!-- Adicionamos o atributo onerror para carregar a imagem padrão caso o arquivo dê 404 -->
+                                        <img src="{{ perfil.foto.url }}"
+                                            alt="{{ request.user.get_full_name }}"
+                                            class="profile-avatar"
+                                            onerror="this.onerror=null; this.src='{% static 'img/icons/default-avatar.png' %}';">
                                     {% else %}
                                         <img src="{% static 'img/icons/default-avatar.png' %}" alt="Avatar padrão" class="profile-avatar">
-                                    {% endif %}
-                                </div>
+                                    {% endif %}                                </div>
                                 <div id="user-info">
                                     <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
                                     <a
@@ -47,9 +51,21 @@
                             </div>
                             <nav class="dashboard-nav">
                                 <ul>
-                                    <li class="active"><a href="#"><i data-lucide="layout-dashboard"></i>Dashboard</a></li>
-                                    <li><a href="{% url 'listar_mensagens' %}"><i data-lucide="mail"></i>Mensagens</a></li>
-                                    <li><a href="{% url 'listar_servicos' %}"><i data-lucide="settings"></i>Serviços</a></li>
+                                    <li id="menu-dash" class="active">
+                                        <a href="#" onclick="restaurarDashboardOriginal(); alternarMenuAtivo('menu-dash'); return false;">
+                                            <i data-lucide="layout-dashboard"></i>Dashboard
+                                        </a>
+                                    </li>
+                                    <li id="menu-mensagens">
+                                        <a href="#" onclick="alterarTituloCard('Gerenciar Mensagens'); buscarLista('{% url 'listar_mensagens' %}'); alternarMenuAtivo('menu-mensagens'); return false;">
+                                            <i data-lucide="mail"></i>Mensagens
+                                        </a>
+                                    </li>
+                                    <li id="menu-servicos">
+                                        <a href="#" onclick="alterarTituloCard('Serviços Adicionais ✨'); buscarLista('{% url 'listar_servicos' %}'); alternarMenuAtivo('menu-servicos'); return false;">
+                                        <i data-lucide="settings"></i>Serviços
+                                        </a>
+                                    </li>
                                     <li><a href="{% url 'renovar_assinatura' %}"><i data-lucide="crown"></i>Fazer Upgrade</a></li>
                                 </ul>
                             </nav>
@@ -92,68 +108,105 @@
                                     </div>
                                 </div>
                             </div>
-  <div class="dash-card">
-    <div class="messages-header">
-        <h3>Mensagens cadastradas</h3>
-        <a href="{% url 'criar_mensagem' %}" class="btn-new-message">Nova Mensagem +</a>
-    </div>
+                            <div class="dash-card">
+                                <div class="messages-header">
+                                    <h3 id="titulo-card-dinamico">Mensagens cadastradas</h3>
+                                    <a href="{% url 'criar_mensagem' %}" class="btn-new-message">Nova Mensagem +</a>
+                                </div>
+                                <div id="conteudo-dinamico-dashboard">
+                                    <div class="destinatarios-grid-layout">
+                                        {% for dest in destinatarios|slice:":2" %}
+                                        <div class="recipient-figma-card">
+                                            <div class="recipient-card-top">
+                                                <div class="recipient-avatar">
+                                                    <i data-lucide="user"></i>
+                                                </div>
+                                                <h4>{{ dest.nome }}</h4>
+                                            </div>
+                                            <div class="recipient-card-body">
+                                                <p><strong>Email:</strong> {{ dest.email|default:dest.contato }}</p>
+                                                <p><strong>Mensagens Cadastradas:</strong> {{ dest.mensagens.count|default:0 }}</p>
+                                                <p><strong>Ordem de Envio:</strong> {{ dest.ordem_envio|default:1 }}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
 
-    <div id="conteudo-dinamico-dashboard">
-        <div class="destinatarios-grid-layout">
-            {% for dest in destinatarios|slice:":2" %}
-            <div class="recipient-figma-card">
-                <div class="recipient-card-top">
-                    <div class="recipient-avatar">
-                        <i data-lucide="user"></i>
+                                        {% if destinatarios.count > 2 %}
+                                        <div class="recipient-figma-card view-more-figma-card">
+                                            <a href="#" onclick="buscarLista('{% url 'carregar_tabela_destinatarios' %}'); return false;" class="view-more-link">
+                                                <span>Ver mais</span>
+                                                <i data-lucide="chevron-right"></i>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4>{{ dest.nome }}</h4>
                 </div>
-                <div class="recipient-card-body">
-                    <p><strong>Email:</strong> {{ dest.email|default:dest.contato }}</p>
-                    <p><strong>Mensagens Cadastradas:</strong> {{ dest.mensagens.count|default:0 }}</p>
-                    <p><strong>Ordem de Envio:</strong> {{ dest.ordem_envio|default:1 }}</p>
-                </div>
-            </div>
-            {% endfor %}
+            </section>
+        </main>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script>
+            let htmlDashboardOriginal = "";
 
-            {% if destinatarios.count > 2 %}
-            <div class="recipient-figma-card view-more-figma-card">
-                <a href="#" onclick="buscarLista('{% url 'carregar_tabela_destinatarios' %}'); return false;" class="view-more-link">
-                    <span>Ver mais</span>
-                    <i data-lucide="chevron-right"></i>
-                </a>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
-            </div>
-        </section>
-    </main>
-     <script src="{% static 'js/script.js' %}"></script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Salva o HTML inicial dos cards assim que a página carrega
+                const container = document.getElementById('conteudo-dinamico-dashboard');
+                if (container) {
+                    htmlDashboardOriginal = container.innerHTML;
+                }
+            });
 
+            function buscarLista(url) {
+                const container = document.getElementById('conteudo-dinamico-dashboard');
 
-     <script>
-function buscarLista(url) {
-    const container = document.getElementById('conteudo-dinamico-dashboard');
+                // Opcional: Adiciona um efeito visual de carregamento rápido
+                container.style.opacity = '0.5';
 
-    // Opcional: Adiciona um efeito visual de carregamento rápido
-    container.style.opacity = '0.5';
+                fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    container.style.opacity = '1';
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar a listagem:', error);
+                    container.style.opacity = '1';
+                });
+            }
+            // 2. Função para alterar o título superior do card principal
+            function alterarTituloCard(novoTitulo) {
+                const titulo = document.getElementById('titulo-card-dinamico');
+                if (titulo) titulo.innerText = novoTitulo;
+            }
+            // 3. NOVA: Restaura o layout para a visualização original de cards
+            function restaurarDashboardOriginal() {
+                alterarTituloCard('Mensagens cadastradas');
+                const container = document.getElementById('conteudo-dinamico-dashboard');
+                if (container && htmlDashboardOriginal) {
+                    container.innerHTML = htmlDashboardOriginal;
+                    // Recarrega os ícones do Lucide dentro dos cards restaurados
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                }
+            }
+            // 4. NOVA: Move a classe .active dinamicamente no menu lateral
+          function alternarMenuAtivo(idMenuAtivo) {
+                // 1. Remove a classe 'active' de TODOS os <li> do menu lateral
+                const todosOsLi = document.querySelectorAll('.dashboard-nav ul li');
+                todosOsLi.forEach(li => li.classList.remove('active'));
 
-    fetch(url, {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => response.text())
-    .then(html => {
-        container.innerHTML = html;
-        container.style.opacity = '1';
-    })
-    .catch(error => {
-        console.error('Erro ao carregar a listagem:', error);
-        container.style.opacity = '1';
-    });
-}
-</script>
-</body>
+                // 2. Adiciona a classe 'active' EXCLUSIVAMENTE no <li> que foi clicado
+                const itemClicado = document.getElementById(idMenuAtivo);
+                if (itemClicado) {
+                    itemClicado.classList.add('active');
+                }
+            }
+        </script>
+    </body>
+</html>

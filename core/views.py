@@ -151,7 +151,16 @@ def listar_mensagens(request):
         'perfil': perfil,
         'mensagens': mensagens,
     }
-    return render(request, 'core/mensagens_lista.html', context)
+# Verifica se a requisição foi feita via JavaScript (Fetch/AJAX)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        # Renderiza APENAS o HTML da tabela isolada
+        return render(request, 'core/partials/tabela_mensagens_fragmento.html', context)
+
+    # Se o usuário acessar a URL direto pelo navegador, carrega a página completa antiga
+    return render(request, 'core/listar_mensagens_completo.html', context)
+
+
+    # return render(request, 'core/mensagens_lista.html', context)
 
 
 @login_required
@@ -163,6 +172,12 @@ def listar_servicos(request):
         'perfil': perfil,
         'servicos': servicos,
     }
+
+    # Se a requisição veio do script JS do Dashboard, manda só o miolo
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'core/partials/servicos_fragmento.html', context)
+
+    # Caso acesse direto pela URL, mantém o comportamento antigo de carregar tudo
     return render(request, 'core/servicos_lista.html', context)
 
 
