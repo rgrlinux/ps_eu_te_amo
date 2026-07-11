@@ -112,16 +112,16 @@ USE_TZ = True
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Mantém dinâmico baseado na raiz do projeto
 
-# Checagem explícita e infalível: se rodar na pasta da VPS, força as rotas da VPS
-if '/var/www/webapps/' in str(BASE_DIR):
-    STATIC_URL = '/euteamo/static/'
-    MEDIA_URL = '/euteamo/media/'       # <-- 100% diferente de static/
-    STATIC_ROOT = os.path.join(BASE_DIR, 'euteamo/staticfiles')
-else:
-    # Como roda na sua máquina local
-    STATIC_URL = 'static/'
-    MEDIA_URL = 'media/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# # Checagem explícita e infalível: se rodar na pasta da VPS, força as rotas da VPS
+# if '/var/www/webapps/' in str(BASE_DIR):
+#     STATIC_URL = '/euteamo/static/'
+#     MEDIA_URL = '/euteamo/media/'       # <-- 100% diferente de static/
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'euteamo/staticfiles')
+# else:
+# Como roda na sua máquina local
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
