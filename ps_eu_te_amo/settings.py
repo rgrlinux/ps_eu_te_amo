@@ -113,7 +113,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static/']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Mantém dinâmico baseado na raiz do projeto
 
 # Checagem explícita e infalível: se rodar na pasta da VPS, força as rotas da VPS
-if '/var/www/apps/' in str(BASE_DIR):
+if '/var/www/webapps/' in str(BASE_DIR):
     STATIC_URL = '/euteamo/static/'
     MEDIA_URL = '/euteamo/media/'       # <-- 100% diferente de static/
     STATIC_ROOT = os.path.join(BASE_DIR, 'euteamo/staticfiles')
