@@ -2,6 +2,26 @@ from django import forms
 from .models import Perfil, Destinatario, Mensagem
 
 class PerfilForm(forms.ModelForm):
+
+    first_name = forms.CharField(
+        label='Nome',
+        max_length=150,
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control','palceholder': 'Digite seu nome'})
+    )
+    last_name = forms.CharField(
+        label='Sobrenome',
+        max_length=150,
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control','palceholder': 'Digite seu sobrenome'})
+    )
+    email = forms.EmailField(
+        label='E-mail',
+        required=False,
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'seu@email.com'})
+    )
+
+
     class Meta:
         model = Perfil
         fields = ['tempo_resposta_dias', 'dias_tolerancia', 'curador_nome', 'curador_email', 'curador_telefone', 'foto']
@@ -26,6 +46,13 @@ class PerfilForm(forms.ModelForm):
             'dias_tolerancia': 'Após o alerta inicial, quantos dias até notificar o curador?',
             'curador_email': 'Essa pessoa receberá um e-mail para confirmar seu falecimento',
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Se a instância do perfil já existir e tiver um usuário vinculado, populamos o Form
+        if self.instance and self.instance.usuario:
+            self.fields['first_name'].initial = self.instance.usuario.first_name
+            self.fields['last_name'].initial = self.instance.usuario.last_name
+            self.fields['email'].initial = self.instance.usuario.email
 
 class DestinatarioForm(forms.ModelForm):
     class Meta:

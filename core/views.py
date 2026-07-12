@@ -42,6 +42,12 @@ def configurar_perfil(request):
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
+
+            user = request.user
+            user.first_name = form.cleaned_data.get('first_name', user.first_name)
+            user.last_name = form.cleaned_data.get('last_name', user.last_name)
+            user.email = form.cleaned_data.get('email', user.email)
+            user.save()
             form.save()
             messages.success(request, 'Perfil configurado com sucesso!')
             return redirect('dashboard')
@@ -49,9 +55,9 @@ def configurar_perfil(request):
         form = PerfilForm(instance=perfil)
 
     return render(request, 'core/configurar_perfil.html', {
-        'form': form,
-        'perfil': perfil
-    })
+            'form': form,
+            'perfil': perfil
+        })
 
 @login_required
 def dashboard(request):
