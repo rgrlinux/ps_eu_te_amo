@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', default=False)
 
 FORCE_SCRIPT_NAME = os.getenv('FORCE_SCRIPT_NAME', None)
-print("FORCE_SCRIPT_NAME:", FORCE_SCRIPT_NAME)
+
 MESSAGES_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # O .strip() limpa qualquer espaço invisível antes ou depois de cada host
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', default='localhost').split(',')]
