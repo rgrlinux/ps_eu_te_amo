@@ -15,9 +15,13 @@
                 <div class="select-wrapper">
                     <label for="{{ form.destinatario.id_for_label }}">Mensagem para:</label>
                     <div class="combo-action-container">
+                        <!-- O select renderizado pelo Django -->
                         {{ form.destinatario }}
-                        <a href="{% url 'criar_destinatario' %}" class="btn-inline-add" title="Adicionar Destinatário">
-                            <i data-lucide="plus"></i>
+
+                        <!-- O link posicionado logo abaixo -->
+                        <a href="{% url 'criar_destinatario' %}" class="btn-inline-add" title="Cadastrar novo destinatário">
+                            <i data-lucide="plus-circle"></i>
+                            <span>Cadastrar novo destinatário</span>
                         </a>
                     </div>
                 </div>

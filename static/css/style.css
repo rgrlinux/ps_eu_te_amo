@@ -1276,6 +1276,53 @@ main {
     background-color: #0843a5;
 }
 
+
+/* Container que agrupa o Select e o Link abaixo dele */
+.combo-action-container {
+    display: flex;
+    flex-direction: column; /* Força o link a ir para baixo do select */
+    gap: 8px;              /* Espaçamento vertical entre o select e o link */
+    width: 100%;
+}
+
+/* Força o elemento select do Django a ocupar a largura total */
+.combo-action-container select,
+.combo-box-destinatarios {
+    width: 100%;
+    display: block;
+    /* Caso queira garantir o estilo idêntico da borda do seu projeto: */
+    padding: 8px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Estilização do link "Cadastrar novo destinatário" */
+.btn-inline-add {
+    display: inline-flex;  /* Alinha ícone e texto na mesma linha */
+    align-items: center;   /* Centraliza verticalmente o ícone com o texto */
+    gap: 6px;              /* Espaçamento horizontal entre o ícone (+) e o texto */
+    color: #0b57d0;        /* Tom de azul do seu projeto */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    align-self: flex-start; /* Garante que o link só ocupe o tamanho do seu próprio texto */
+}
+
+.btn-inline-add:hover {
+    text-decoration: underline;
+    color: #0843a5;
+}
+
+/* Ajuste do tamanho do ícone do Lucide para casar com o texto */
+.btn-inline-add i,
+.btn-inline-add svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2px; /* Deixa o traço do ícone um pouco mais visível igual ao print */
+}
+
 /* ==========================================================================
    RESPONSIVIDADE DO MENU
    ========================================================================== */
