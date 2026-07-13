@@ -134,3 +134,90 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+/**
+ * Utilitário para capturar o CSRF Token do Django.
+ * Ele tenta buscar primeiro de um input oculto no HTML,
+ * e se não achar, busca diretamente nos cookies do navegador.
+ */
+function getCSRFToken() {
+    const inputToken = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (inputToken) {
+        return inputToken.value;
+    }
+
+    // Fallback: busca nos cookies (útil para chamadas AJAX puras)
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, 10) === 'csrftoken=') {
+                cookieValue = decodeURIComponent(cookie.substring(10));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+/**
+ * Envia a atualização de uma mensagem via POST (JSON)
+ * @param {number|string} messageId - ID da mensagem no banco
+ * @param {string} newContent - Conteúdo atualizado
+ */
+async function updateMessage(messageId, newContent) {
+    const csrfToken = getCSRFToken();
+    if (!csrfToken) {
+        console.error("Erro: CSRF token não encontrado.");
+        return { success: false, error: "Erro de segurança (CSRF)." };
+    }
+
+    try {
+        const response = await fetch(`/messages/${messageId}/edit/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ content: newContent })
+        });
+
+        const data = await response.json();
+        return { success: response.ok, ...data };
+    } catch (error) {
+        console.error('Erro de rede ao salvar mensagem:', error);
+        return { success: false, error: 'Erro de conexão com o servidor.' };
+    }
+}
+
+/**
+ * Envia a atualização de um destinatário via POST (JSON)
+ * @param {number|string} recipientId - ID do destinatário no banco
+ * @param {Object} recipientData - Objeto contendo { name, email, phone }
+ */
+async function updateRecipient(recipientId, recipientData) {
+    const csrfToken = getCSRFToken();
+    if (!csrfToken) {
+        console.error("Erro: CSRF token não encontrado.");
+        return { success: false, error: "Erro de segurança (CSRF)." };
+    }
+
+    try {
+        const response = await fetch(`/recipients/${recipientId}/edit/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(recipientData)
+        });
+
+        const data = await response.json();
+        return { success: response.ok, ...data };
+    } catch (error) {
+        console.error('Erro de rede ao salvar destinatário:', error);
+        return { success: false, error: 'Erro de conexão com o servidor.' };
+    }
+}

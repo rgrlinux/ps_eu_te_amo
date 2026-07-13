@@ -1,17 +1,80 @@
+import json
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils import
-from .models import Perfil,   Midia, Mensagem, ServicoExtra
+from .models import Perfil,   Midia, Mensagem, ServicoExtra, Destinatario
 from .tasks import sinal_vida, confirmar_falecimento
 from .forms import PerfilForm, DestinatarioForm, MensagemForm
 import hashlib
 
 def index(request):
     return render(request, 'core/index.html')
+
+class UpdateMessageView(LoginRequiredMixin, View):
+    """
+    View para atualizar o conteúdo de uma mensagem.
+    Recebe um POST com um JSON contendo o novo texto.
+    """
+    def post(self, request, pk):
+        try:
+            # Obtém a mensagem garantindo que pertence ao usuário logado (boa prática de segurança)
+            message = get_object_or_404(Mensagem, pk=pk, user=request.user)
+            data = json.loads(request.body)
+
+            # Ajuste o campo 'content' ou 'text' conforme o seu modelo real
+            new_content = data.get('content')
+            if not new_content or not new_content.strip():
+                return JsonResponse({'success': False, 'error': 'O conteúdo não pode estar vazio.'}, status=400)
+
+            message.content = new_content.strip()
+            message.save()
+
+            return JsonResponse({'success': True, 'message': 'Mensagem atualizada com sucesso!'})
+
+        except Mensagem.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Mensagem não encontrada.'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Dados inválidos.'}, status=400)
+
+
+class UpdateRecipientView(LoginRequiredMixin, View):
+    """
+    View para atualizar os dados de um destinatário (nome, email, telefone, etc).
+    """
+    def post(self, request, pk):
+        try:
+            # Obtém o destinatário garantindo o vínculo com o usuário logado
+            recipient = get_object_or_404(Destinatario, pk=pk, user=request.user)
+            data = json.loads(request.body)
+
+            # Pega os dados enviados pelo form e limpa espaços extras
+            name = data.get('name', '').strip()
+            email = data.get('email', '').strip()
+            phone = data.get('phone', '').strip()
+
+            if not name:
+                return JsonResponse({'success': False, 'error': 'O nome é obrigatório.'}, status=400)
+
+            # Atualiza os campos do seu modelo
+            recipient.name = name
+            recipient.email = email
+            recipient.phone = phone
+            recipient.save()
+
+            return JsonResponse({'success': True, 'message': 'Destinatário atualizado com sucesso!'})
+
+        except Destinatario.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Destinatário não encontrado.'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Dados inválidos.'}, status=400)
 
 # views.py
 def cadastro(request):

@@ -1,0 +1,2644 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$C5IWEA7lEFj32M5TOqhGhx$64d9ucY1qvt61aHepAsWrcxEze8m9xm1LQSGAnDE0kw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Jose",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T22:22:27.276Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$NWOU4nqyrzG2waGciELFUH$OvJBYKWLD9d61sFZF84PH0GxOGCYBHydy4CBcn7jC3k=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Jose1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T22:23:12.784Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$KAxEPOLUKyHiDK4kCWeop4$nn7H9n86WG+Rtgyr+4/oByWeaujkI8ph4MIQ7U3eu2s=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Jose3",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T22:24:20.532Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$KfN8MhjETL9hVsoWeaJf3f$PLggxwTUVTdQuTh4v3JjhWWHfeNK1gC9PmoOW4FdYOA=",
+        "last_login": "2026-07-09T22:26:44.543Z",
+        "is_superuser": false,
+        "username": "MAria",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T22:26:41.017Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$x1OUif06y2X37TJgfMfpK5$NovasD/YKLFiotV4aSsnLFWWnW+4h1ucoVIa4J/vvkM=",
+        "last_login": "2026-07-09T22:57:17.838Z",
+        "is_superuser": false,
+        "username": "mama2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T22:57:17.231Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$WlfcVkY9Fy8qplHL2z0kY3$vFwBh7X7OB9H6iFPa9v7PKc+I/odD6Z4NY9+5ZuyPQ0=",
+        "last_login": "2026-07-09T23:27:29.522Z",
+        "is_superuser": false,
+        "username": "rgrlinux@gmail.com",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T23:27:27.079Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$gvLezMfhKqqHQ1ZPfNH2oS$8VhUs41K37BucLSDYpoxMoBWEMhqejIriYKm0a7uCBE=",
+        "last_login": "2026-07-13T01:10:09.357Z",
+        "is_superuser": false,
+        "username": "crislene.design@gmail.com",
+        "first_name": "Crislene",
+        "last_name": "Ferreira",
+        "email": "crislene.design@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T23:44:10.926Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$0794oybT0DyWv5fxQCgGnF$/64s05xt5Op0s7J0VHDpLIhxjbNRDBA0JILhkctgSdU=",
+        "last_login": "2026-07-10T00:02:18.975Z",
+        "is_superuser": false,
+        "username": "Amrio",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T00:02:18.394Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$4xy31sbL4Tiyuy0Hy83qng$3kys/zox261+Rmw6iqbdnd/orvqA0lvTEYQ3QkMDIiA=",
+        "last_login": "2026-07-10T00:05:53.165Z",
+        "is_superuser": false,
+        "username": "nop",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T00:05:49.181Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$95p0vDPQPCoBbjZc5V2cjQ$b9G0xML5P5iS+mHIo1SBfsc31AYfk410HFjdoI0akWs=",
+        "last_login": "2026-07-10T00:56:31.718Z",
+        "is_superuser": false,
+        "username": "jorge",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T00:56:29.047Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$48kLUrnvdIkbxvgKGwVy9w$M4QkU+2WbNAlppFdihvHBn95jf+jcKfWL3x4B/XKb80=",
+        "last_login": "2026-07-10T01:37:59.599Z",
+        "is_superuser": false,
+        "username": "Marcel",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T01:37:59.003Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$wyFPjlrYZNbSkHi8rbSk4Z$WYwgvpxAUfqmVwD++Vmrgyd4Dq64Sd2tx6ncpsDnIrw=",
+        "last_login": "2026-07-10T18:05:16.548Z",
+        "is_superuser": false,
+        "username": "Janis",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T18:05:13.514Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$8EIzBwwHa6Ub9eOfOGnt9l$XIQtw3gNvvmgX/j2CpKtW0Sm6SU5cbxjZ3W7c0A/084=",
+        "last_login": "2026-07-10T18:14:18.420Z",
+        "is_superuser": false,
+        "username": "Pink",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T18:14:17.757Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$KWUJOvide79nTaWaVG993w$SgTD5SJJlWuKu8PPRfG5CFdoNOa9kD4jKwN6jDMP84A=",
+        "last_login": "2026-07-10T19:47:40.709Z",
+        "is_superuser": false,
+        "username": "Max",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T19:47:39.555Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$DsLVnkjkUzs6g9KrCPgbmz$o/E7mMhRE4ACntgSSWBy7DFy1PBf8mBPHuC9t4EP1Zs=",
+        "last_login": "2026-07-13T19:27:03.409Z",
+        "is_superuser": false,
+        "username": "nono",
+        "first_name": "Rogerio",
+        "last_name": "Oliveira",
+        "email": "rgrlinux@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T20:06:51.905Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$mBMInUI3gKPTvQ2xhEDXLR$bbRxkQgZfWFXqyjkBCgVaVvF+9mmHcjb6GKoNTAqmYA=",
+        "last_login": "2026-07-11T16:11:18.047Z",
+        "is_superuser": false,
+        "username": "Maria_2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-11T16:11:17.528Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$msFprBwvJuP61ZwvxYQsIR$rGcO91b4jUtHOi2xVtpsPuLWUqo5F9i8JRtAZSmHLjI=",
+        "last_login": "2026-07-12T21:50:18.542Z",
+        "is_superuser": false,
+        "username": "Maria_3",
+        "first_name": "Maria Mara",
+        "last_name": "Vilhosa",
+        "email": "rgrlinux@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-11T16:13:03.777Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$TZ6851cGdrKH42L3sTGdta$F5/z4xVRcuA40ZwycvSG22KYwu/I3UG3rg3TmBN72SU=",
+        "last_login": "2026-07-13T18:17:37.411Z",
+        "is_superuser": false,
+        "username": "Shakira",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-13T18:17:34.445Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "0p0ztzl5m215208nk427fj54zc8f6wii",
+    "fields": {
+        "session_data": ".eJxVjEsOgkAQBe8yazMB59ft0j1nIN09jaCGSRhYGe-uJCx0-6rqvUxP2zr2W9Wln7K5mNaZ0-_IJA-dd5LvNN-KlTKvy8R2V-xBq-1K1uf1cP8ORqrjt1ZwgKg8BBkg-BAblkhekVMCSlkVpRUWDyE4DL5hjumMKSIDCLbm_QEYDTgO:1wiFbA:TVT4KYzXGIreeJwk7FY_-e9jrHka-rR2EGlfDa971xM",
+        "expire_date": "2026-07-24T18:05:16.692Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "1u9qykykd5m6t0bh2tkeuat9dhbkkcao",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wjLZx:QaeY8ScGwc0Xk6aWUhhntDWsCrl_FHBm-fV3WxWhpC0",
+        "expire_date": "2026-07-27T18:40:33.246Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "22hosnabcvhlx5d55mh2ok7dg3a3w8zo",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGlwAIevfcbmmUXpGpoUtqT8d9tkx40mdO8N_MWI25rGbeWlnFicRVeXH67iPRM9QD8wHqfJc11XaYoD0WetMlh5vS6ne7fQcFW9rXzCICajVZW7QledaZTORDalJnBEfXOZzLedxApKmDQyfVgdbDRic8Xxag3JA:1wj5BR:l5knxMb7dDYAVxfypMQZihb3TELZazqs4z2Ff69JPKQ",
+        "expire_date": "2026-07-27T01:10:09.365Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2stlqgypdsb7qky0wr6bbie21xnt60i5",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCGAu24dO8ZyNCZStVAUtqV8e7apAvd_vfef6lI25rj1mSJM6uzAnX63RKNDyk74DuVW9VjLesyJ70r-qBNXyvL83K4fweZWv7WgtYDBRMScy_BgB0FIaAjRx4GAElu6h0PE6bQEXbCAdgjC4MjY9X7A9pQN9A:1whxw6:VylIKiBTTVX6-wlXeuyP-Z90l-4txCE-L1NoCc4M37s",
+        "expire_date": "2026-07-23T23:13:42.113Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2xxilnmkdkb6os4w3nadb8decn2przjv",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCZMoVx6b5nIMCAVA0kpV0Z765NutDtf-_9l3B-W4vbelrczOIiFInT7xh8fKS6E777emsytrouc5C7Ig_a5dQ4Pa-H-3dQfC_fOuIIZFXOii0lY0JChBhzsjgaVEQ0GA3aAIPOYAZ7Bh8wEDCTt6jE-wP1ITdE:1wjLDl:qh4cs1oHkco3eLcoz8VOXUXe2J_J0xHFsbfHIgF2KUE",
+        "expire_date": "2026-07-27T18:17:37.550Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2zo1r6qsyk9jxf1f7ccopwz6n4uv79fb",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiJ0a:7_ERdvtkiMKOa3wv2oH3udEUB5lG3lOIallLjSuAZNs",
+        "expire_date": "2026-07-24T21:43:44.336Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "997b9a0pz2v008ct114qgzg0vx6ztlyd",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wjMIw:y2NOGNBdgIJcpqdasgidKfCeyY99DSO8rZkWLelN_rQ",
+        "expire_date": "2026-07-27T19:27:02.108Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fzxws1wip1mw8zou0geatja1scaehnd1",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiLbs:wxLk9tIzVk17kdPLNLlcJazYoh6lPMXh6NEYDdLlTo4",
+        "expire_date": "2026-07-25T00:30:24.158Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "gsavdg1ob0o0qxu9hzyt261mddrrfkan",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiJcE:DHRsfuCV81Wv6GtmpOCm0W-2pLXzk4xz3yDxTF9qzP4",
+        "expire_date": "2026-07-24T22:22:38.611Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hpfsxb20sp2vyeumcmcq4vv7pofbz81u",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiJ0V:91pNUA1O23ck8X4WIwznlmepxBPUU4TmUOjZvUn2d-Y",
+        "expire_date": "2026-07-24T21:43:39.105Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jwwcz8kmb3s49j6gr430yia5j1ch2wot",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCGAu24dO8ZyNCZStVAUtqV8e7apAvd_vfef6lI25rj1mSJM6uzAnX63RKNDyk74DuVW9VjLesyJ70r-qBNXyvL83K4fweZWv7WgtYDBRMScy_BgB0FIaAjRx4GAElu6h0PE6bQEXbCAdgjC4MjY9X7A9pQN9A:1whxw8:A7fjXZVMZ1zvL7798ZIKOh1_rXfoGp7cow0KedIX1Rw",
+        "expire_date": "2026-07-23T23:13:44.628Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mv6heoebu0g0cww2p4qem29znm8xv3xo",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wjLuq:7P1zHmW3QP8rPtvSgjRz_jtjdFvT5aYW1e-_6ysEN_I",
+        "expire_date": "2026-07-27T19:02:08.291Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nt6xmkxab8um8jadacw0beg0pkik36lx",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiJ0V:91pNUA1O23ck8X4WIwznlmepxBPUU4TmUOjZvUn2d-Y",
+        "expire_date": "2026-07-24T21:43:39.794Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "o4r7ni3d7kr3xh7293td3t30dum3m6sj",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCGAu24dO8ZyNCZStVAUtqV8e7apAvd_vfef6lI25rj1mSJM6uzAnX63RKNDyk74DuVW9VjLesyJ70r-qBNXyvL83K4fweZWv7WgtYDBRMScy_BgB0FIaAjRx4GAElu6h0PE6bQEXbCAdgjC4MjY9X7A9pQN9A:1whxw9:8oo3avQrY73ZDs4QN5drQuVE8msneWrmjq7VmM_4VDM",
+        "expire_date": "2026-07-23T23:13:45.384Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "pykg5kwup8j880k967ua8kifoexfhvzf",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGlwAIevfcbmmUXpGpoUtqT8d9tkx40mdO8N_MWI25rGbeWlnFicRVeXH67iPRM9QD8wHqfJc11XaYoD0WetMlh5vS6ne7fQcFW9rXzCICajVZW7QledaZTORDalJnBEfXOZzLedxApKmDQyfVgdbDRic8Xxag3JA:1whzHn:a-iolgoTUn5Pv6URB56xRDawiJo9_aRydIelRjEm1o4",
+        "expire_date": "2026-07-24T00:40:11.640Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "sc3lyv609ip92mzey3ka8o39pzbodyaf",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wj4dU:dzUOl4dK_qdMMZ33r94zlyYPIDSfU2tvC-iwb0HmU3s",
+        "expire_date": "2026-07-27T00:35:04.625Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "tptxy145w45z4kzwnfcr2tnqa199xol6",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wjMIx:2Hrn0htBhrgNf5MGLs9hC53NBQxntutqcCty6qIASwM",
+        "expire_date": "2026-07-27T19:27:03.552Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "vbpzwaxfj80km3qzyg3lq6jiz726ps2r",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wjLZu:YWGxujvUksyibmaKfbhKThAH5AAFZ7UAl-AAGeiKGBM",
+        "expire_date": "2026-07-27T18:40:30.379Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "x3qerbihepemdc04v0bw3vbd9xcikscu",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyGylF3q0Xu_gWxZlKqBpLQn47_bJj3obTLvzbxV4HXJYW1pDpOoizKoTr_lyPGZyk7kweVedaxlmadR74o-aNNDlfS6Hu7fQeaWt3XXiyEA20V24hEoWnTS28SOxdEWJRLFBOzPJMnCDZi9Z4Ns0RCqzxf-2Tfh:1wiJ0X:VFm4AlCzJNm79c8k1Vx11Cq1CrkwzT1S2iVxkt0d65E",
+        "expire_date": "2026-07-24T21:43:41.692Z"
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "Jose"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T22:22:29.388Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "V42k4-V4uShuH92kJxW7F6qas898O2odBEsj2WFECQQ",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 3,
+    "fields": {
+        "usuario": [
+            "Jose1"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T22:23:14.792Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "UR26ALxVZA_6onk0BBNl2EaubwVIrI2q8uP7MqBV3ys",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 5,
+    "fields": {
+        "usuario": [
+            "Jose3"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T22:24:22.521Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "lvpbMaw14F64A4gLO-rGlBxx_wXVufzMdt2lC4x95xg",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 7,
+    "fields": {
+        "usuario": [
+            "MAria"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T22:27:07.080Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "MjZbilLaPLdLTE7pnRHWR4jGkF1_OaAkmmN7_hQSFl8",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 8,
+    "fields": {
+        "usuario": [
+            "mama2"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T22:57:21.706Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "KIGA1A7an9hxZXs7YNDBcizxzAk4UyHcrOsP1mhl6h0",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 9,
+    "fields": {
+        "usuario": [
+            "rgrlinux@gmail.com"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-09T23:29:54.582Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "Crislene Ferreira",
+        "curador_email": "rgrw2k@gmail.com",
+        "curador_telefone": "11980887373",
+        "curador_codigo": "AbXFmhrcx3nmyra_7rKUCR3K_qyMsbBSKD6HTWYPRMM",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 10,
+    "fields": {
+        "usuario": [
+            "crislene.design@gmail.com"
+        ],
+        "foto": "avatar/2026/07/crz-design-avatar.png",
+        "ultimo_sinal_vida": "2026-07-13T19:42:52.644Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 30,
+        "curador_nome": "Rogerio Oliveira",
+        "curador_email": "rgrlinux@gmail.com",
+        "curador_telefone": "11980887373",
+        "curador_codigo": "VOfKGhWB9oTgLqI8wXAjLSVvCzO2tebpsJ_flhuJi3Y",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 11,
+    "fields": {
+        "usuario": [
+            "Amrio"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T01:26:27.082Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "GG81NOcua337m0GVcBK9Az59njRxJT_Kz_whYGO-Vdo",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 12,
+    "fields": {
+        "usuario": [
+            "nop"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T00:05:51.915Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "UmH7lEyGHRJx1Ht7phFVZT-jGxlG52BEWDv4vtAdiOE",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 13,
+    "fields": {
+        "usuario": [
+            "jorge"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T16:50:34.921Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "BD_Yjf4uBXhWvREsx-FtG2raLGjNiSIwIEj7L4CdLE4",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 14,
+    "fields": {
+        "usuario": [
+            "Marcel"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T01:38:17.210Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "NpGUCp8l0TxJc5eeZrbYqor9P954wDBfoIFhoS7Zry0",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 15,
+    "fields": {
+        "usuario": [
+            "Janis"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T18:05:15.738Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "-LT6iwMY-wS3omC2sJfl3Ion8hJp7qEvWt7wkQYELjc",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 16,
+    "fields": {
+        "usuario": [
+            "Pink"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T18:14:18.406Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "yoDXal3KxU9jUiyqOIGfSBkRdSMue8QGsi5L-jD81eU",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 17,
+    "fields": {
+        "usuario": [
+            "Max"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-10T19:47:40.662Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "0kQWUD-B7VeT5LpvY45ftjJ1mtC3Pt42xITaiPJ3eZo",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 18,
+    "fields": {
+        "usuario": [
+            "nono"
+        ],
+        "foto": "avatar/2026/07/unnamed_1_MaYjLx2.jpg",
+        "ultimo_sinal_vida": "2026-07-13T19:33:47.530Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 5,
+        "curador_nome": "Crislene Ferreira",
+        "curador_email": "rgrlinux@gmail.com",
+        "curador_telefone": "11980887373",
+        "curador_codigo": "nUrCHUzjpxcFs0c6cYwY3C3Qudb0EK0cVaTWV63PA64",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 19,
+    "fields": {
+        "usuario": [
+            "Maria_2"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-11T16:12:11.542Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "tUYS6bzNs7aP2DJ6dnGo2Z5kAroBrg7Jch98iox40EM",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 20,
+    "fields": {
+        "usuario": [
+            "Maria_3"
+        ],
+        "foto": "avatar/2026/07/unnamed_OnwDjar.jpg",
+        "ultimo_sinal_vida": "2026-07-13T00:33:27.204Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 35,
+        "dias_tolerancia": 10,
+        "curador_nome": "José Lourenço",
+        "curador_email": "jose.lourenco@ig.com",
+        "curador_telefone": "11 980887373",
+        "curador_codigo": "X2mx9top74yKIS8jVnt8GYFQ7Qcn0PJ-YsHZJKNfj9g",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.perfil",
+    "pk": 21,
+    "fields": {
+        "usuario": [
+            "Shakira"
+        ],
+        "foto": "",
+        "ultimo_sinal_vida": "2026-07-13T18:17:36.613Z",
+        "status": "ativo",
+        "tempo_resposta_dias": 30,
+        "dias_tolerancia": 7,
+        "curador_nome": "",
+        "curador_email": "",
+        "curador_telefone": "",
+        "curador_codigo": "JQJAwHJlWxNdJ8GQ7hwPENdf7ntEFhBW3H8fHruQC1k",
+        "plano": "gratuito",
+        "data_assinatura": null,
+        "data_expiracao": null
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 1,
+    "fields": {
+        "perfil": 9,
+        "nome": "crz",
+        "tipo": "email",
+        "contato": "rgrw2k@gmail.com",
+        "ordem_envio": 1
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 2,
+    "fields": {
+        "perfil": 9,
+        "nome": "Crislene Ferreira",
+        "tipo": "sms",
+        "contato": "hub42@hub42.com.br",
+        "ordem_envio": 2
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 3,
+    "fields": {
+        "perfil": 10,
+        "nome": "Bruno Almeida",
+        "tipo": "email",
+        "contato": "crislene.design@gmail.com",
+        "ordem_envio": 1
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 4,
+    "fields": {
+        "perfil": 18,
+        "nome": "Rogerio Oliveira",
+        "tipo": "email",
+        "contato": "rgrlinux@gmail.com",
+        "ordem_envio": 1
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 5,
+    "fields": {
+        "perfil": 10,
+        "nome": "Lindinalva",
+        "tipo": "email",
+        "contato": "lindinalva@gmail.com",
+        "ordem_envio": 2
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 6,
+    "fields": {
+        "perfil": 10,
+        "nome": "roger",
+        "tipo": "email",
+        "contato": "rgrlinux@gmail.com",
+        "ordem_envio": 3
+    }
+},
+{
+    "model": "core.destinatario",
+    "pk": 7,
+    "fields": {
+        "perfil": 10,
+        "nome": "Roger",
+        "tipo": "email",
+        "contato": "rgrlinux@gmail.com",
+        "ordem_envio": 1
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 1,
+    "fields": {
+        "destinatario": 2,
+        "titulo": "ola",
+        "conteudo": "fhufufdshdsfhfdshksfdkhfds",
+        "data_criacao": "2026-07-09T23:29:52.465Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 2,
+    "fields": {
+        "destinatario": 3,
+        "titulo": "Mensagem Importante",
+        "conteudo": "Olá, \r\n\r\nesta é uma mensagem importante e póstuma.",
+        "data_criacao": "2026-07-09T23:59:08.300Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 3,
+    "fields": {
+        "destinatario": 4,
+        "titulo": "ola",
+        "conteudo": "fgjlkgdfhjklfgdslkhgfdslh",
+        "data_criacao": "2026-07-10T21:45:39.758Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 4,
+    "fields": {
+        "destinatario": 5,
+        "titulo": "Mensagem Importante 2",
+        "conteudo": "olá, leia isso.",
+        "data_criacao": "2026-07-13T00:19:29.972Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 5,
+    "fields": {
+        "destinatario": 3,
+        "titulo": "outra mensagem",
+        "conteudo": "mensagem 2",
+        "data_criacao": "2026-07-13T00:19:54.077Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 6,
+    "fields": {
+        "destinatario": 6,
+        "titulo": "mensagem importante 3",
+        "conteudo": "olá mensagem importante",
+        "data_criacao": "2026-07-13T00:20:38.094Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.mensagem",
+    "pk": 7,
+    "fields": {
+        "destinatario": 7,
+        "titulo": "Mensagem de teste",
+        "conteudo": "Oi, essa mensagem é apenas um teste do mecanismo de disparo.",
+        "data_criacao": "2026-07-13T19:42:37.916Z",
+        "data_envio": null,
+        "enviada": false
+    }
+},
+{
+    "model": "core.midia",
+    "pk": 1,
+    "fields": {
+        "mensagem": 2,
+        "arquivo": "midias/2026/07/logo_header_1.png",
+        "tipo": "imagem",
+        "hash_arquivo": "c0d71e5dbf9f79a4557dda995d941b61",
+        "tamanho_bytes": 6962,
+        "largura": null,
+        "altura": null
+    }
+},
+{
+    "model": "core.midia",
+    "pk": 2,
+    "fields": {
+        "mensagem": 3,
+        "arquivo": "midias/2026/07/unnamed_1.jpg",
+        "tipo": "imagem",
+        "hash_arquivo": "332260c9285d0de6bee70b78e4018f67",
+        "tamanho_bytes": 12021,
+        "largura": null,
+        "altura": null
+    }
+},
+{
+    "model": "core.midia",
+    "pk": 3,
+    "fields": {
+        "mensagem": 7,
+        "arquivo": "midias/2026/07/Untitled-1.png",
+        "tipo": "imagem",
+        "hash_arquivo": "4cf1c67a41db1e71c1ff06f4dfc9e76b",
+        "tamanho_bytes": 9108,
+        "largura": null,
+        "altura": null
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 1,
+    "fields": {
+        "perfil": 7,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T22:27:07.221Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 2,
+    "fields": {
+        "perfil": 8,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T22:57:21.712Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 3,
+    "fields": {
+        "perfil": 9,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:28:06.299Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 4,
+    "fields": {
+        "perfil": 9,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:28:34.780Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 5,
+    "fields": {
+        "perfil": 9,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:29:31.509Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 6,
+    "fields": {
+        "perfil": 9,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:29:54.725Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 7,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:50:46.870Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 8,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:51:00.042Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 9,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:52:56.074Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 10,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:53:24.135Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 11,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:53:51.782Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 12,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:58:19.522Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 13,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-09T23:59:08.894Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 14,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T00:05:23.093Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 15,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T00:06:34.520Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 16,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T00:20:26.540Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 17,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T00:40:12.172Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 18,
+    "fields": {
+        "perfil": 11,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T01:26:27.101Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 19,
+    "fields": {
+        "perfil": 14,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T01:38:17.217Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 20,
+    "fields": {
+        "perfil": 13,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T16:50:35.119Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 21,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:36:12.253Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 22,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:36:36.812Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 23,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:41:39.868Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 24,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:42:14.603Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 25,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:43:47.622Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 26,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:44:18.153Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 27,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:45:11.809Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 28,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:45:41.979Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 29,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:48:15.066Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 30,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:48:50.215Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 31,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:51:27.640Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 32,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:51:54.824Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 33,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:52:05.516Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 34,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:52:16.997Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 35,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:52:47.631Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 36,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T21:52:54.625Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 37,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T22:01:36.912Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 38,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T22:02:07.766Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 39,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T22:22:43.062Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 40,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T22:22:56.566Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 41,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T22:22:58.345Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 42,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:15:57.546Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 43,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:16:41.894Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 44,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:17:38.597Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 45,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:26:29.006Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 46,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:26:59.886Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 47,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:59:00.771Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 48,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-10T23:59:05.232Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 49,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:10:10.316Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 50,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:13:19.759Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 51,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:19:44.689Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 52,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:22:40.326Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 53,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:28:56.109Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 54,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:29:12.123Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 55,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:29:14.485Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 56,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:30:26.695Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 57,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:33:32.916Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 58,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:35:30.157Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 59,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T00:49:43.214Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 60,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:03:47.586Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 61,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:21.386Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 62,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:31.043Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 63,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:32.618Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 64,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:34.154Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 65,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:34.842Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 66,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:53.078Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 67,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:21:58.761Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 68,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:22:00.275Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 69,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:22:01.388Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 70,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:30:32.546Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 71,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:30:46.764Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 72,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T01:31:16.647Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 73,
+    "fields": {
+        "perfil": 19,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T16:12:11.550Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 74,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T16:15:57.107Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 75,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T16:16:00.889Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 76,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:34.362Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 77,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:46.746Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 78,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:50.927Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 79,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:51.761Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 80,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:51.905Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 81,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:51.968Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 82,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:06:52.656Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 83,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:10:06.546Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 84,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-11T18:10:22.347Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 85,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T21:50:21.168Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 86,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T21:51:22.703Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 87,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T21:51:40.691Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 88,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:08:01.145Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 89,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:09:10.937Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 90,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:13:27.940Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 91,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:17:28.598Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 92,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:18:00.674Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 93,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:18:12.346Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 94,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:31:27.718Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 95,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:31:40.040Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 96,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:57:41.338Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 97,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T22:59:24.458Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 98,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:18:00.103Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 99,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:19:11.910Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 100,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:33:21.968Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 101,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:36:40.040Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 102,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:36:50.894Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 103,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:39:17.065Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 104,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-12T23:39:21.243Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 105,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:04:43.745Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 106,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:14:03.401Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 107,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:16:54.601Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 108,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:18:39.656Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 109,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:19:06.863Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 110,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:19:30.461Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 111,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:19:54.448Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 112,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:20:13.927Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 113,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:20:38.676Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 114,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:21:50.473Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 115,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:22:40.406Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 116,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:26:59.616Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 117,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:27:14.394Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 118,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:29:45.789Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 119,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:33:21.870Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 120,
+    "fields": {
+        "perfil": 20,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:33:27.211Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 121,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:35:05.118Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 122,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:55:09.408Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 123,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:55:34.188Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 124,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:59:30.012Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 125,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T00:59:58.786Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 126,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T01:10:09.950Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 127,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T02:05:51.611Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 128,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T02:14:08.434Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 129,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T14:05:32.052Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 130,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:13:49.789Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 131,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:27:21.235Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 132,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:40:40.379Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 133,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:58:38.682Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 134,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:59:03.950Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 135,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T18:59:44.494Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 136,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:02:10.871Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 137,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:06:02.674Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 138,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:27:06.133Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 139,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:28:44.716Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 140,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:28:47.657Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 141,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:32:10.844Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 142,
+    "fields": {
+        "perfil": 18,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:33:47.664Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 143,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:40:13.138Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 144,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:41:48.484Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 145,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:42:38.332Z"
+    }
+},
+{
+    "model": "core.logatividade",
+    "pk": 146,
+    "fields": {
+        "perfil": 10,
+        "acao": "sinal_vida",
+        "detalhes": "Usuário confirmou que está vivo",
+        "ip": null,
+        "data": "2026-07-13T19:42:52.652Z"
+    }
+}
+]

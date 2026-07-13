@@ -11,6 +11,7 @@ dependencies = [
     "gunicorn>=26.0.0",
     "mysqlclient>=2.2.8",
     "pillow>=12.2.0",
+    "psycopg2-binary>=2.9.12",
     "pymysql>=1.2.0",
     "python-dotenv>=1.2.2",
     "redis>=7.4.0",
