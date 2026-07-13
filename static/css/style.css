@@ -1282,6 +1282,90 @@ main {
 
 /* Tablets e telas médias */
 @media (max-width: 992px) {
+  .how-content-grid {
+    grid-template-columns: 1fr; /* Quebra o grid em uma única coluna */
+    gap: var(--spacing-lg, 20px);
+  }
+
+  .how-image-side {
+    display: flex;
+    justify-content: center;
+  }
+
+  .how-img {
+    max-height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* ... manter o restante do seu código de 992px aqui ... */
+}
+
+/* Tablets pequenos e celulares grandes */
+@media (max-width: 768px) {
+  .how-card {
+    padding: var(--spacing-lg, 20px);
+  }
+
+  .how-content-grid {
+    padding: var(--spacing-md, 15px);
+  }
+
+  .how-intro h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .how-intro p {
+    text-align: center;
+  }
+
+  .how-footer {
+    text-align: center;
+    margin-top: var(--spacing-xl, 30px);
+  }
+
+  /* ... manter o restante do seu código de 768px aqui ... */
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .steps-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .steps-list li {
+    display: flex;
+    flex-direction: row;      /* Mantém o número ao lado do texto, conforme seu print */
+    align-items: flex-start;  /* Alinha por cima para textos longos */
+    text-align: left;         /* Garante leitura natural */
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .step-number {
+    font-size: 2.5rem;
+    min-width: 45px;          /* Espaço fixo para o número não espremer o texto */
+    line-height: 1;
+    margin-top: -4px;         /* Ajuste fino de alinhamento vertical com o h4 */
+  }
+
+  .step-text h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+  }
+
+  .step-text p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+
+/* Tablets e telas médias */
+@media (max-width: 992px) {
     .main-nav ul {
         gap: 1.5rem;
     }
@@ -1600,4 +1684,5 @@ main {
 .photo-label-small span {
     position: absolute;
     pointer-events: none; /* Clicar no texto repassa o clique para a label */
+}
 }
