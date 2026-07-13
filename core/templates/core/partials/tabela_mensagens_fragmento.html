@@ -9,6 +9,7 @@
                 <th style="padding: 10px 5px;">Mídias Anexadas</th>
                 <th style="padding: 10px 5px;">Data de Criação</th>
                 <th style="padding: 10px 5px;">Status</th>
+                <th style="padding: 10px 5px; text-align: center;">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -17,22 +18,29 @@
                 <td style="padding: 12px 5px; font-weight: bold;">{{ msg.titulo }}</td>
                 <td style="padding: 12px 5px;">{{ msg.destinatario.nome }}</td>
                 <td style="padding: 12px 5px;">{{ msg.midias.count|default:"0" }} arquivo(s)</td>
-                <!-- Use o filtro date para aproximar do formato do seu print -->
                 <td style="padding: 12px 5px;">{{ msg.data_criacao|date:"d/m/Y H:i" }}</td>
                 <td style="padding: 12px 5px;">
                     <span class="status-badge-{{ msg.status|slugify }}">{{ msg.get_status_display|default:"Aguardando Gatilho" }}</span>
                 </td>
+
+                <!-- Ajustado para link de redirecionamento comum para abrir a tela de edição -->
+                <td style="padding: 12px 5px; text-align: center;">
+                    <a href="{% url 'editar_mensagem' msg.id %}"
+                       class="btn-edit-link"
+                       style="text-decoration: none; color: #2563eb; font-weight: 500; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 4px;">
+                        <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i> Editar
+                    </a>
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="5" style="padding: 20px; text-align: center; color: #999;">Nenhuma mensagem programada encontrada.</td>
+                <td colspan="6" style="padding: 20px; text-align: center; color: #999;">Nenhuma mensagem programada encontrada.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-<!-- Executa novamente o carregamento dos ícones do Lucide para a tabela recém-chegada -->
 <script>
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

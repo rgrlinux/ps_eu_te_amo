@@ -18,32 +18,36 @@ import hashlib
 def index(request):
     return render(request, 'core/index.html')
 
-class UpdateMessageView(LoginRequiredMixin, View):
+class editar_mensagem(LoginRequiredMixin, View):
     """
-    View para atualizar o conteúdo de uma mensagem.
-    Recebe um POST com um JSON contendo o novo texto.
+    View para renderizar e salvar o formulário de edição de uma mensagem.
     """
+    def get(self, request, pk):
+        # Obtém a mensagem pelo ID
+        mensagem = get_object_or_404(Mensagem, pk=pk)
+
+        # Instancia o Form com os dados da mensagem atual
+        form = MensagemForm(instance=mensagem)
+
+        return render(request, 'core/editar_mensagem.html', {
+            'form': form,
+            'mensagem': mensagem
+        })
+
     def post(self, request, pk):
-        try:
-            # Obtém a mensagem garantindo que pertence ao usuário logado (boa prática de segurança)
-            message = get_object_or_404(Mensagem, pk=pk, user=request.user)
-            data = json.loads(request.body)
+        mensagem = get_object_or_404(Mensagem, pk=pk)
+        form = MensagemForm(request.POST, request.FILES or None, instance=mensagem)
 
-            # Ajuste o campo 'content' ou 'text' conforme o seu modelo real
-            new_content = data.get('content')
-            if not new_content or not new_content.strip():
-                return JsonResponse({'success': False, 'error': 'O conteúdo não pode estar vazio.'}, status=400)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Mensagem atualizada com sucesso!")
+            # Redireciona de volta para o dashboard principal
+            return redirect('dashboard')  # Substitua pelo nome correto da sua URL do dashboard
 
-            message.content = new_content.strip()
-            message.save()
-
-            return JsonResponse({'success': True, 'message': 'Mensagem atualizada com sucesso!'})
-
-        except Mensagem.DoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Mensagem não encontrada.'}, status=404)
-        except json.JSONDecodeError:
-            return JsonResponse({'success': False, 'error': 'Dados inválidos.'}, status=400)
-
+        return render(request, 'dashboard/editar_mensagem.html', {
+            'form': form,
+            'mensagem': mensagem
+        })
 
 class UpdateRecipientView(LoginRequiredMixin, View):
     """
@@ -311,6 +315,8 @@ def carregar_tabela_destinatarios(request):
     paginator = Paginator(destinatarios_lista, 5)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'core/partials/tabela_destinatarios.html', {'page_obj': page_obj})
 
-    return render(request, 'core/partials/tabela_destinatarios.html', {'page_obj': page_obj})
+    return redirect('dashboard')
 #D8DN6K2P

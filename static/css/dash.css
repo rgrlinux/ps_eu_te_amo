@@ -279,7 +279,9 @@ button {
   width: 22px;
   height: 22px;
 }
-
+#conteudo-dinamico-dashboard {
+    transition: opacity 0.2s ease-in-out;
+}
 /* BOTÃO DE SAIR CORRIGIDO (Fundo azul circular com ícone branco) */
 .btn-logout {
   background-color: var(--color-brand-blue) !important;

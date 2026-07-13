@@ -18,6 +18,6 @@ urlpatterns = [
     path('mensagens/', views.listar_mensagens, name='listar_mensagens'),
     path('servicos/', views.listar_servicos, name='listar_servicos'),
     path('dashboard/dados-tabela/', views.carregar_tabela_destinatarios, name='carregar_tabela_destinatarios'),
-    path('messages/<int:pk>/edit/', views.UpdateMessageView.as_view(), name='update_message'),
+    path('mensagem/editar/<int:pk>/', views.editar_mensagem.as_view(), name='editar_mensagem'),
     path('recipients/<int:pk>/edit/', views.UpdateRecipientView.as_view(), name='update_recipient'),
 ]

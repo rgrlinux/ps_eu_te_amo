@@ -57,12 +57,12 @@
                                         </a>
                                     </li>
                                     <li id="menu-mensagens">
-                                        <a href="#" onclick="alterarTituloCard('Gerenciar Mensagens'); buscarLista('{% url 'listar_mensagens' %}'); alternarMenuAtivo('menu-mensagens'); return false;">
+                                        <a href="#" onclick="alterarTituloCard('Gerenciar Mensagens', true); buscarLista('{% url 'listar_mensagens' %}'); alternarMenuAtivo('menu-mensagens'); return false;">
                                             <i data-lucide="mail"></i>Mensagens
                                         </a>
                                     </li>
                                     <li id="menu-servicos">
-                                        <a href="#" onclick="alterarTituloCard('Serviços Adicionais'); buscarLista('{% url 'listar_servicos' %}'); alternarMenuAtivo('menu-servicos'); return false;">
+                                        <a href="#" onclick="alterarTituloCard('Serviços Adicionais', false); buscarLista('{% url 'listar_servicos' %}'); alternarMenuAtivo('menu-servicos'); return false;">
                                         <i data-lucide="settings"></i>Serviços
                                         </a>
                                     </li>
@@ -149,6 +149,7 @@
         </main>
         <script src="{% static 'js/script.js' %}"></script>
         <script>
+            // 1. Variáveis Globais e Inicialização
             let htmlDashboardOriginal = "";
 
             document.addEventListener("DOMContentLoaded", function() {
@@ -159,10 +160,11 @@
                 }
             });
 
+            // 2. Requisições AJAX de Listagem
             function buscarLista(url) {
                 const container = document.getElementById('conteudo-dinamico-dashboard');
 
-                // Opcional: Adiciona um efeito visual de carregamento rápido
+                // Adiciona um efeito visual de carregamento rápido
                 container.style.opacity = '0.5';
 
                 fetch(url, {
@@ -180,12 +182,18 @@
                     container.style.opacity = '1';
                 });
             }
-            // 2. Função para alterar o título superior do card principal
-            function alterarTituloCard(novoTitulo) {
+
+            // 3. Controle Visual do Dashboard e Menu
+            function alterarTituloCard(novoTitulo, mostrarBotaoNovaMensagem = true) {
                 const titulo = document.getElementById('titulo-card-dinamico');
                 if (titulo) titulo.innerText = novoTitulo;
+
+                const botaoNovaMsg = document.querySelector('.btn-new-message');
+                if (botaoNovaMsg) {
+                    botaoNovaMsg.style.display = mostrarBotaoNovaMensagem ? 'inline-block' : 'none';
+                }
             }
-            // 3. NOVA: Restaura o layout para a visualização original de cards
+
             function restaurarDashboardOriginal() {
                 alterarTituloCard('Mensagens cadastradas');
                 const container = document.getElementById('conteudo-dinamico-dashboard');
@@ -195,8 +203,8 @@
                     if (typeof lucide !== 'undefined') lucide.createIcons();
                 }
             }
-            // 4. NOVA: Move a classe .active dinamicamente no menu lateral
-          function alternarMenuAtivo(idMenuAtivo) {
+
+            function alternarMenuAtivo(idMenuAtivo) {
                 // 1. Remove a classe 'active' de TODOS os <li> do menu lateral
                 const todosOsLi = document.querySelectorAll('.dashboard-nav ul li');
                 todosOsLi.forEach(li => li.classList.remove('active'));
@@ -207,6 +215,99 @@
                     itemClicado.classList.add('active');
                 }
             }
+
+            // 4. Funções de Edição Inline (AJAX / JSON)
+            function iniciarEdicaoInline(messageId) {
+                const row = document.querySelector(`tr[data-message-id="${messageId}"]`);
+                if (!row) return;
+
+                const cell = row.querySelector('.message-content-cell');
+                const spanText = cell.querySelector('.message-text');
+
+                // Evita abrir múltiplos inputs se o usuário clicar várias vezes no botão editar
+                if (cell.querySelector('input')) return;
+
+                const textoOriginal = spanText.innerText.trim();
+                const textoEscapado = textoOriginal.replace(/'/g, "\\'");
+
+                // Substitui o conteúdo da célula por um input e botões de Salvar/Cancelar
+                cell.innerHTML = `
+                    <div class="edit-inline-container" style="display: flex; gap: 8px; width: 100%;">
+                        <input type="text" class="input-edit" value="${textoOriginal}" style="flex-grow: 1; padding: 4px 8px; margin: 0;">
+                        <button type="button" class="btn-salvar" onclick="salvarEdicaoInline('${messageId}', '${textoEscapado}')" style="background-color: #10b981; color: white; border: none; padding: 4px 10px; cursor: pointer; border-radius: 4px;">✔</button>
+                        <button type="button" class="btn-cancelar" onclick="cancelarEdicaoInline('${messageId}', '${textoEscapado}')" style="background-color: #ef4444; color: white; border: none; padding: 4px 10px; cursor: pointer; border-radius: 4px;">✖</button>
+                    </div>
+                `;
+            }
+
+            function cancelarEdicaoInline(messageId, textoOriginal) {
+                const row = document.querySelector(`tr[data-message-id="${messageId}"]`);
+                if (!row) return;
+
+                const cell = row.querySelector('.message-content-cell');
+                cell.innerHTML = `<span class="message-text">${textoOriginal}</span>`;
+            }
+
+            async function salvarEdicaoInline(messageId, textoOriginal) {
+                const row = document.querySelector(`tr[data-message-id="${messageId}"]`);
+                if (!row) return;
+
+                const cell = row.querySelector('.message-content-cell');
+                const input = cell.querySelector('.input-edit');
+                const novoConteudo = input.value.trim();
+
+                if (!novoConteudo) {
+                    alert('O conteúdo não pode estar vazio.');
+                    return;
+                }
+
+                try {
+                    // Busca o CSRF Token prioritariamente do input hidden ou dos Cookies do Django
+                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || getCookie('csrftoken');
+
+                    // Chamada para a sua view editar_mensagem
+                    const response = await fetch(`/mensagem/editar/${messageId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({ content: novoConteudo })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        // Sucesso! Atualiza a célula com o novo texto salvo
+                        cell.innerHTML = `<span class="message-text">${novoConteudo}</span>`;
+                    } else {
+                        alert(data.error || 'Ocorreu um erro ao salvar.');
+                        cancelarEdicaoInline(messageId, textoOriginal);
+                    }
+                } catch (error) {
+                    console.error('Erro na requisição:', error);
+                    alert('Erro de conexão ao tentar salvar a mensagem.');
+                    cancelarEdicaoInline(messageId, textoOriginal);
+                }
+            }
+
+            // 5. Função Utilitária para Capturar Cookies do Navegador (CSRF)
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
         </script>
+
     </body>
 </html>
