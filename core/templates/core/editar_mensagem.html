@@ -43,14 +43,32 @@
             </div>
 
             <div class="form-group">
-                <label class="field-label">Anexar Novas Mídias</label>
+           
 
-                <label for="arquivos" class="custom-file-upload">
-                    <i data-lucide="upload-cloud"></i>
-                    <span id="file-chosen">Escolher arquivos de mídia...</span>
-                </label>
+              <div class="form-group">
+    <label class="field-label" style="font-weight: 600; color: #1e293b; margin-bottom: 8px; display: block;">Anexar Mídias</label>
 
-                <input type="file" name="arquivos" id="arquivos" multiple class="hidden-file-input">
+    <!-- O Label customizado que funciona como o botão real de clique -->
+    <label for="arquivos" class="custom-file-upload" style="
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: #475569;
+        font-weight: 500;
+    ">
+        <i data-lucide="upload-cloud" style="width: 20px; height: 20px; color: #0284c7;"></i>
+        <span id="file-chosen">Escolher arquivos de mídia...</span>
+    </label>
+
+    <!-- O input original ESCONDIDO usando display: none -->
+    <input type="file" name="arquivos" id="arquivos" multiple style="display: none;">
+
                 <span class="help-text" style="display: block; margin-top: 5px;">
                     Obs: O envio de novos arquivos irá complementar ou atualizar suas mídias salvas.
                 </span>

@@ -22,8 +22,15 @@
                 {% endfor %}
             </div>
             {% endfor %}
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <a href="{% url 'dashboard' %}" class="btn-cancel" style="flex: 1; text-align: center; padding: 12px; background: #e5e7eb; color: #374151; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Voltar
+                </a>
 
-            <button type="submit" class="btn-primary-action" >Salvar</button>
+                <button type="submit" class="btn-primary-action" style="flex: 2; margin: 0;">
+                    Salvar Alterações
+                </button>
+            </div>
         </form>
     </div>
 </div>
