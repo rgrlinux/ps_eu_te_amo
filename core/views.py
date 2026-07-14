@@ -1,5 +1,3 @@
-import json
-from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
@@ -153,8 +151,6 @@ def criar_destinatario(request):
 
 @login_required
 def criar_mensagem(request):
-    # destinatario = get_object_or_404(Destinatario, id=destinatario_id, perfil__usuario=request.user)
-
     if request.method == 'POST':
         form = MensagemForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
