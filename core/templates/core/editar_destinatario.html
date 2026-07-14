@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Editar Destinatário{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-box ">
+        <h2 class="auth-title">Editar Destinatário</h2>
+
+        <form method="post" class="form-section">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group">
+                <label class="field-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <div class="help-text">{{ field.help_text }}</div>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="help-text" style="color: red;">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-primary-action" >Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -694,3 +694,10 @@ button {
     text-align: center;
   }
 }
+.card-destinatario-link:hover  {
+    background-color: #f1f5f9 !important; /* Fica levemente mais escuro */
+    border-color: #cbd5e1 !important;     /* Borda destaca um pouco mais */
+    border-left:2px solid blue ;
+    transform: translateY(-2px);          /* Dá um leve efeito de flutuar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}

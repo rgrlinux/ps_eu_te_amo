@@ -19,5 +19,5 @@ urlpatterns = [
     path('servicos/', views.listar_servicos, name='listar_servicos'),
     path('dashboard/dados-tabela/', views.carregar_tabela_destinatarios, name='carregar_tabela_destinatarios'),
     path('mensagem/editar/<int:pk>/', views.editar_mensagem.as_view(), name='editar_mensagem'),
-    path('recipients/<int:pk>/edit/', views.UpdateRecipientView.as_view(), name='update_recipient'),
+    path('destinatario/<int:pk>/edit/', views.editar_destinatario.as_view(), name='editar_destinatario'),
 ]

@@ -116,6 +116,7 @@
                                 <div id="conteudo-dinamico-dashboard">
                                     <div class="destinatarios-grid-layout">
                                         {% for dest in destinatarios|slice:":2" %}
+                                        <a href="{% url 'editar_destinatario' dest.id %}" class="card-destinatario-link" style="text-decoration: none; color: inherit; display: block;">
                                         <div class="recipient-figma-card">
                                             <div class="recipient-card-top">
                                                 <div class="recipient-avatar">
@@ -129,6 +130,7 @@
                                                 <p><strong>Ordem de Envio:</strong> {{ dest.ordem_envio|default:1 }}</p>
                                             </div>
                                         </div>
+                                        </a>
                                         {% endfor %}
 
                                         {% if destinatarios.count > 2 %}

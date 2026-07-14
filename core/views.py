@@ -49,36 +49,25 @@ class editar_mensagem(LoginRequiredMixin, View):
             'mensagem': mensagem
         })
 
-class UpdateRecipientView(LoginRequiredMixin, View):
+class editar_destinatario(LoginRequiredMixin, View):
     """
     View para atualizar os dados de um destinatário (nome, email, telefone, etc).
     """
+    def get(self, request, pk):
+        destinatario = get_object_or_404(Destinatario, pk=pk, perfil__usuario=request.user)
+        form = DestinatarioForm(instance=destinatario)
+        return render(request, 'core/editar_destinatario.html', {'form': form, 'destinatario': destinatario})
+
     def post(self, request, pk):
-        try:
-            # Obtém o destinatário garantindo o vínculo com o usuário logado
-            recipient = get_object_or_404(Destinatario, pk=pk, user=request.user)
-            data = json.loads(request.body)
+        destinatario = get_object_or_404(Destinatario, pk=pk, perfil__usuario=request.user)
+        form = DestinatarioForm(request.POST, instance=destinatario)
 
-            # Pega os dados enviados pelo form e limpa espaços extras
-            name = data.get('name', '').strip()
-            email = data.get('email', '').strip()
-            phone = data.get('phone', '').strip()
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Destinatário atualizado com sucesso!")
+            return redirect('dashboard')  # Redireciona para o dashboard ou outra página
 
-            if not name:
-                return JsonResponse({'success': False, 'error': 'O nome é obrigatório.'}, status=400)
-
-            # Atualiza os campos do seu modelo
-            recipient.name = name
-            recipient.email = email
-            recipient.phone = phone
-            recipient.save()
-
-            return JsonResponse({'success': True, 'message': 'Destinatário atualizado com sucesso!'})
-
-        except Destinatario.DoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Destinatário não encontrado.'}, status=404)
-        except json.JSONDecodeError:
-            return JsonResponse({'success': False, 'error': 'Dados inválidos.'}, status=400)
+        return render(request, 'core/editar_destinatario.html', {'form': form, 'destinatario': destinatario})
 
 # views.py
 def cadastro(request):
