@@ -4,7 +4,7 @@
 {% block title %}Escolha seu Plano - P.S. Te amo{% endblock %}
 
 {% block content %}
-<section class="section-base text-center" style="padding-top: calc(var(--header-height) + var(--spacing-3xl));">
+<section class="section-base text-center" style="padding-top: 6rem;">
     <div class="container" style="max-width: 1100px;">
 
         <!-- Cabeçalho Alinhado ao Padrão -->
@@ -18,7 +18,7 @@
         </header>
 
         <!-- Grid de Planos utilizando os Cards Oficiais -->
-        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); align-items: stretch; margin-top: var(--spacing-xl);">
+        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); align-items: stretch; margin-top: 1rem;">
 
             <!-- PLANO GRÁTIS -->
             <div class="feature-card {% if perfil.plano == 'gratuito' %}current-plan{% endif %}" style="background-color: var(--color-bg-white); padding: var(--spacing-xl); justify-content: space-between; border: 1px solid var(--color-border-light); border-radius: var(--radius-xl); text-align: left;">
@@ -55,7 +55,7 @@
                         <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: var(--spacing-xs);">Básico</h3>
                         <div style="display: flex; align-items: baseline; color: var(--color-text-darkblue);">
                             <span style="font-size: 1.1rem; font-weight: 600; margin-right: 2px;">R$</span>
-                            <span style="font-size: 2.5rem; font-weight: 800; line-height: 1;">29</span>
+                            <span style="font-size: 2.5rem; font-weight: 800; line-height: 1;">49</span>
                             <span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 400; margin-left: 2px;">/ano</span>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 700; color: var(--color-text-light); margin-bottom: var(--spacing-xs);">Premium</h3>
                         <div style="display: flex; align-items: baseline; color: var(--color-text-light);">
                             <span style="font-size: 1.1rem; font-weight: 600; opacity: 0.9; margin-right: 2px;">R$</span>
-                            <span style="font-size: 2.5rem; font-weight: 800; line-height: 1;">79</span>
+                            <span style="font-size: 2.5rem; font-weight: 800; line-height: 1;">129</span>
                             <span style="font-size: 0.9rem; opacity: 0.7; font-weight: 400; margin-left: 2px;">/ano</span>
                         </div>
                     </div>
@@ -113,7 +113,11 @@
             </div>
 
         </div>
-
+<!-- Note o uso do nome da rota 'create_checkout' que aponta para o padrão correto -->
+<form action="{% url 'create_checkout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="contrast">Assinar Agora</button>
+</form>
         <!-- Alinhamento da Seção de Garantia Baseada nos Alertas do Tema -->
         <footer style="margin-top: var(--spacing-4xl); width: 100%;">
             <div style="background-color: var(--color-bg-white); border-left: 4px solid var(--color-brand-blue); border-radius: var(--radius-md); padding: var(--spacing-lg); text-align: left; max-width: 800px; margin: 0 auto; box-shadow: var(--shadow-sm);">

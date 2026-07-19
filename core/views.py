@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils import
@@ -304,4 +305,32 @@ def carregar_tabela_destinatarios(request):
         return render(request, 'core/partials/tabela_destinatarios.html', {'page_obj': page_obj})
 
     return redirect('dashboard')
-#D8DN6K2P
+
+    def payment_success(request):
+        # Dica: O Stripe pode enviar o ?session_id= na URL se você configurou na success_url
+        return HttpResponse("""
+            <html>
+                <head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"></head>
+                <body class="container" style="margin-top: 10vh; max-width: 600px;">
+                    <article style="border-color: green;">
+                        <header>✅ Pagamento Recebido!</header>
+                        <p>Muito obrigado! Sua assinatura está sendo processada. Você já pode acessar a plataforma.</p>
+                        <a href="/dashboard/" class="button">Ir para o Dashboard</a>
+                    </article>
+                </body>
+            </html>
+        """)
+
+    def payment_cancel(request):
+        return HttpResponse("""
+            <html>
+                <head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"></head>
+                <body class="container" style="margin-top: 10vh; max-width: 600px;">
+                    <article style="border-color: red;">
+                        <header>❌ Operação Cancelada</header>
+                        <p>O processo de pagamento foi interrompido. Nenhuma cobrança foi realizada.</p>
+                        <a href="/renovar/" class="button secondary">Tentar Novamente</a>
+                    </article>
+                </body>
+            </html>
+        """)

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Express</title>
+    <!-- Pico.css para um visual limpo e sem peso -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+    <main class="container" style="max-width: 600px; margin-top: 10vh;">
+        <article>
+            <header>
+                <h3>Assinatura Premium</h3>
+            </header>
+            <p>Tenha acesso a todas as ferramentas industriais e relatórios avançados.</p>
+            <strong style="font-size: 1.5rem; display: block; margin-bottom: 1.5rem;">R$ 99,90 / mês</strong>
+
+            <button id="checkout-button" class="contrast">Pagar com Stripe</button>
+            <p id="error-message" style="color: red; margin-top: 1rem; display: none;"></p>
+        </article>
+    </main>
+
+    <script>
+        document.getElementById('checkout-button').addEventListener('click', async () => {
+            const button = document.getElementById('checkout-button');
+            const errorMessage = document.getElementById('error-message');
+
+            // Feedback visual de carregamento
+            button.setAttribute('aria-busy', 'true');
+            button.disabled = true;
+            errorMessage.style.display = 'none';
+
+            try {
+                const response = await fetch('http://localhost:8000/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        // Substitua pelo ID do preço do seu produto no painel do Stripe
+                        price_id: 'price_1Qxxxxxxxxx'
+                    }),
+                });
+
+                const session = await response.json();
+
+                if (session.url) {
+                    // Redireciona para o checkout seguro do Stripe
+                    window.location.href = session.url;
+                } else {
+                    throw new Error(session.detail || 'Erro ao criar sessão de pagamento.');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                button.removeAttribute('aria-busy');
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

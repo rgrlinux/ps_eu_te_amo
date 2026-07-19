@@ -20,4 +20,8 @@ urlpatterns = [
     path('dashboard/dados-tabela/', views.carregar_tabela_destinatarios, name='carregar_tabela_destinatarios'),
     path('mensagem/editar/<int:pk>/', views.editar_mensagem.as_view(), name='editar_mensagem'),
     path('destinatario/<int:pk>/edit/', views.editar_destinatario.as_view(), name='editar_destinatario'),
+    path('create-checkout/', view_checkout.create_checkout, name='create_checkout'),
+    path('stripe-webhook/', view_checkout.stripe_webhook, name='stripe_webhook'),
+    path('success/', views.payment_success, name='payment_success'),
+    path('cancel/', views.payment_cancel, name='payment_cancel'),
 ]
