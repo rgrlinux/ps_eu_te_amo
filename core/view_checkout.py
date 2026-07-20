@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,27 +11,45 @@ stripe.api_key = settings.SECRET_STRIPE_API_KEY
 # Define a URL base dinamicamente
 BASE_URL = 'http://localhost:8000' if settings.DEBUG else 'https://ps_eu_te_amo.com.br'
 
-@require_POST  # Garante que a criação só aconteça via POST
+@login_required
+@require_POST
 def create_checkout(request):
-    try:
-        session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            mode='subscription',
-            line_items=[{
-                'price': 'price_1TT90CCc7ic2cadjH9ADeh3C',
-                'quantity': 1,
-            }],
-            # Adicionar o ID do usuário nos metadados ajuda a saber quem pagou no webhook!
-            client_reference_id=request.user.id if request.user.is_authenticated else None,
-            success_url=f'{BASE_URL}/success/',
-            cancel_url=f'{BASE_URL}/cancel/',
-        )
-        return redirect(session.url, status=303)  # 303 é o recomendado para redirecionamentos pós-POST
-    except stripe.error.StripeError as e:
-        # Trate o erro de API aqui (ex: logar o erro ou renderizar uma página amigável)
-        # return render(request, 'error.html', {'message': 'Não foi possível iniciar o pagamento.'})
-        return HttpResponse(f"Erro no Stripe: {e}", status=400)
+    # Recupera o tipo de plano enviado pelo HTML
+    plan_type = request.POST.get('plan_type')
 
+    # Dicionário mapeando o tipo do plano para o Price ID gerado lá no painel do Stripe
+    # Substitua pelas strings reais 'price_...' que o Stripe gerou para você
+    PLAN_PRICE_IDS = {
+        'basic': 'price_1Tv4NXCc7ic2cadjkqkHG2Mt',   # ID do preço de R$ 49/ano
+        'premium': 'price_1Tv4WFCc7ic2cadjZxZ9L0GK', # ID do preço de R$ 129/ano
+    }
+
+    stripe_price_id = PLAN_PRICE_IDS.get(plan_type)
+
+    # Se alguém tentar mandar um plano inválido ou o grátis por POST, manda de volta
+    if not stripe_price_id:
+        return redirect('planos_page')
+
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            client_reference_id=request.user.id, # Passa o ID do usuário logado
+            payment_method_types=['card'],       # Ative 'pix' aqui se já configurou no painel
+            line_items=[
+                {
+                    'price': stripe_price_id,
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription', # Modo assinatura para pagamentos recorrentes
+            success_url=request.build_absolute_uri('/success/'), # Suas rotas criadas
+            cancel_url=request.build_absolute_uri('/cancel/'),
+        )
+        # Redireciona o usuário direto para o checkout seguro do Stripe
+        return redirect(checkout_session.url, status=303)
+
+    except Exception as e:
+        # Em caso de erro, você pode logar ou tratar de outra forma
+        return HttpResponse(f"Erro ao criar sessão de checkout: {str(e)}", status=500)
 
 # O Stripe envia Webhooks sem o token CSRF do Django, por isso usamos @csrf_exempt
 @csrf_exempt
@@ -45,10 +64,10 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-    except ValueError as e:
+    except ValueError:
         # Payload inválido
         return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
+    except stripe.error.SignatureVerificationError:
         # Assinatura digital inválida
         return HttpResponse(status=400)
 

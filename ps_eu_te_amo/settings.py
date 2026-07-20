@@ -10,6 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', default=False)
 
 FORCE_SCRIPT_NAME = os.getenv('FORCE_SCRIPT_NAME', None)
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 
 MESSAGES_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # O .strip() limpa qualquer espaço invisível antes ou depois de cada host

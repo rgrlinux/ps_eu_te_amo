@@ -1,3 +1,9 @@
+import stripe
+from ps_eu_te_amo import settings
+from django.utils.timezone import make_aware
+from datetime import datetime
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
@@ -9,10 +15,15 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils import
-from .models import Perfil,   Midia, Mensagem, ServicoExtra, Destinatario
+from .models import Perfil,Midia, Mensagem, ServicoExtra, Destinatario
 from .tasks import sinal_vida, confirmar_falecimento
 from .forms import PerfilForm, DestinatarioForm, MensagemForm
 import hashlib
+
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     return render(request, 'core/index.html')
@@ -334,3 +345,83 @@ def payment_cancel(request):
             </body>
         </html>
     """)
+
+
+# O Stripe envia Webhooks sem o token CSRF do Django, por isso usamos @csrf_exempt
+@csrf_exempt
+@require_POST
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    # Pegue esta chave no painel do Stripe (Developers > Webhooks) ou no Stripe CLI
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError:
+        # Payload inválido
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError:
+        # Assinatura digital inválida
+        return HttpResponse(status=400)
+
+    event_type = event['type']
+    data_object = event['data']['object']
+
+    # 1. Checkout concluído (Primeiro pagamento com sucesso)
+    if event_type == 'checkout.session.completed':
+        user_id = data_object.get('client_reference_id')
+        stripe_customer_id = data_object.get('customer')
+        stripe_subscription_id = data_object.get('subscription')
+
+        if user_id:
+            try:
+                perfil = Perfil.objects.get(usuario_id=user_id)
+                perfil.stripe_customer_id = stripe_customer_id
+                perfil.stripe_subscription_id = stripe_subscription_id
+
+                # Defina a lógica do plano comprado (ex: vindo de metadados ou fixo se tiver só um pago)
+                perfil.plano = 'premium'
+                perfil.data_assinatura = make_aware(datetime.now())
+                perfil.save()
+                logger.info(f"Plano Premium ativado para o perfil do usuário {user_id}")
+            except Perfil.DoesNotExist:
+                logger.error(f"Perfil do usuário {user_id} não foi encontrado.")
+
+    # 2. Assinatura atualizada/renovada (Muda data de expiração ou plano)
+    elif event_type == 'customer.subscription.updated':
+        stripe_subscription_id = data_object.get('id')
+        stripe_status = data_object.get('status') # 'active', 'past_due', 'unpaid'
+
+        current_period_end = data_object.get('current_period_end')
+        data_expiracao = make_aware(datetime.fromtimestamp(current_period_end))
+
+        try:
+            perfil = Perfil.objects.get(stripe_subscription_id=stripe_subscription_id)
+            perfil.data_expiracao = data_expiracao
+
+            # Se o pagamento falhar ou atrasar, você pode rebaixar o plano ou tratar aqui
+            if stripe_status != 'active':
+                perfil.plano = 'gratuito' # Ou uma lógica customizada de bloqueio temporário
+
+            perfil.save()
+            logger.info(f"Inscrição {stripe_subscription_id} atualizada. Expira em: {data_expiracao}")
+        except Perfil.DoesNotExist:
+            logger.error(f"Assinatura Stripe {stripe_subscription_id} não mapeada em nenhum Perfil.")
+
+    # 3. Assinatura cancelada definitivamente
+    elif event_type == 'customer.subscription.deleted':
+        stripe_subscription_id = data_object.get('id')
+
+        try:
+            perfil = Perfil.objects.get(stripe_subscription_id=stripe_subscription_id)
+            perfil.plano = 'gratuito'
+            perfil.data_expiracao = make_aware(datetime.now()) # Expira imediatamente
+            perfil.save()
+            logger.info(f"Assinatura {stripe_subscription_id} cancelada. Perfil retornou ao plano gratuito.")
+        except Perfil.DoesNotExist:
+            pass
+
+    return HttpResponse(status=200)

@@ -17,7 +17,6 @@ class Perfil(models.Model):
     ]
 
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-  # Corrigido: trocado 'anecdotes' por 'verbose_name'
     foto = models.ImageField(verbose_name='Foto de perfil', upload_to='avatar/%Y/%m/', blank=True, null=True)
     ultimo_sinal_vida = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ativo')
@@ -36,6 +35,10 @@ class Perfil(models.Model):
     plano = models.CharField(max_length=20, default='gratuito')  # gratuito, basico, premium
     data_assinatura = models.DateTimeField(null=True, blank=True)
     data_expiracao = models.DateTimeField(null=True, blank=True)
+
+    # --- ADICIONE ESTES DOIS CAMPOS ABAIXO EM INGLÊS ---
+    stripe_customer_id = models.CharField(max_length=255, blank=True, null=True)
+    stripe_subscription_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.curador_codigo:
